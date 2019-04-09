@@ -11,7 +11,7 @@ export default class Results extends Component {
                     size={30}
                     style={{ paddingLeft: 10 }}
                     onPress={() => navigation.openDrawer()} />,
-            title: "EatResults"
+            title: "Eat Results"
         }
     }
 

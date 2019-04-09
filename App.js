@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { createStackNavigator, createAppContainer, createDrawerNavigator, createSwitchNavigator, DrawerItems } from "react-navigation";
-import { Icon } from 'react-native-elements';
+import  Icon  from 'react-native-vector-icons/FontAwesome';
 
 import Home from './src/pages/Home'
 import EatResults from './src/pages/EatResults'
@@ -53,11 +53,11 @@ const ProfileStack = createStackNavigator(
 const HomeStack = createStackNavigator(
   {
     Home,
-    EatResults,
-    DoResults,
-    SeeResults,
-    DrinkResults,
-    Details
+    EatResultsStack,
+    // DoResults,
+    // SeeResults,
+    // DrinkResults,
+    // Details
   },
   {
     defaultNavigationOptions: ({ navigation }) => {
@@ -68,6 +68,23 @@ const HomeStack = createStackNavigator(
             size={30}
             style={{ paddingLeft: 10 }}
             onPress={() => navigation.openDrawer()} />
+      };
+    }
+  }
+)
+const EatResultsStack = createStackNavigator(
+  {
+    screen: EatResults
+  },
+  {
+    defaultNavigationOptions: ({ navigation}) => {
+      return {
+        headerLeft:
+          <Icon
+          name="bars"
+          size={30}
+          style={{ paddingLeft: 10 }}
+          onPress={() => navigation.openDrawer()} />
       };
     }
   }

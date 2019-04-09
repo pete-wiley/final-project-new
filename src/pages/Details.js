@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { View, SafeAreaView, StyleSheet } from 'react-native'
 import { Text } from 'react-native-elements'
+import  Icon  from 'react-native-vector-icons/FontAwesome';
+
 
 export default class Details extends Component {
     static navigationOptions = ({ navigation }) => {
