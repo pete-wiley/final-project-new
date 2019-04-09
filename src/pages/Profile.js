@@ -3,6 +3,18 @@ import { View, SafeAreaView, Image, StyleSheet } from 'react-native'
 import { Button, Text } from 'react-native-elements';
 
 export default class Profile extends Component {
+    static navigationOptions = ({ navigation }) => {
+        return {
+            headerLeft:
+                <Icon
+                    name="bars"
+                    size={30}
+                    style={{ paddingLeft: 10 }}
+                    onPress={() => navigation.openDrawer()} />,
+            title: "Profile"
+        }
+    }
+
   render() {
     return (
         <SafeAreaView>
