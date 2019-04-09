@@ -25,6 +25,41 @@ class App extends Component {
   }
 }
 
+const ProfileStack = createStackNavigator(
+  {
+    Profile
+  },
+  {
+    defaultNavigationOptions: ({ navigation }) => {
+      return {
+        headerLeft:
+        <Icon
+          name="bars"
+          size={30}
+          tyle={{ paddingLeft: 10 }}
+          onPress={() => navigation.openDrawer()} />
+      };
+    }
+  }
+)
+
+const MapStack = createStackNavigator(
+  {
+    Map
+  },
+  {
+    defaultNavigationOptions: ({ navigation }) => {
+      return {
+        headerLeft:
+        <Icon
+          name="bars"
+          size={30}
+          tyle={{ paddingLeft: 10 }}
+          onPress={() => navigation.openDrawer()} />
+      };
+    }
+  }
+)
 
 const HomeStack = createStackNavigator(
   {
@@ -54,7 +89,7 @@ const DrawerNavigator = createDrawerNavigator(
     Home: HomeStack,
     Profile: ProfileStack,
     Map: MapStack,
-    Contact: ContactStack,
+    // Contact: ContactStack,
   },
   {
     contentOptions: {
