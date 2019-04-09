@@ -34,8 +34,9 @@ export default class Home extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    alignItems: 'center',
     justifyContent: 'space-evenly',
+    height: '100%'
   },
   button: {
     width: 200,
