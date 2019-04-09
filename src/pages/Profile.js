@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, SafeAreaView, Image, StyleSheet } from 'react-native'
 import { Button, Text } from 'react-native-elements';
+import  Icon  from 'react-native-vector-icons/FontAwesome';
 
 export default class Profile extends Component {
     static navigationOptions = ({ navigation }) => {

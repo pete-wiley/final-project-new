@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Text, View, SafeAreaView, StyleSheet } from 'react-native'
 import { Button } from 'react-native-elements'
+import  Icon  from 'react-native-vector-icons/FontAwesome';
+
 
 export default class Home extends Component {
   static navigationOptions = ({ navigation }) => {
