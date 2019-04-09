@@ -1,7 +1,21 @@
 import React, { Component } from 'react'
 import { Text, SafeAreaView, ImageBackground, StyleSheet, ScrollView, View } from 'react-native'
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class Results extends Component {
+    static navigationOptions = ({ navigation }) => {
+        return {
+            headerLeft:
+                <Icon
+                    name="bars"
+                    size={30}
+                    style={{ paddingLeft: 10 }}
+                    onPress={() => navigation.openDrawer()} />,
+            title: "SeeResults"
+        }
+    }
+
+
   render() {
     return (
     <ScrollView>
