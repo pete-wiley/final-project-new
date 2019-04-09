@@ -6,6 +6,9 @@ export default class Home extends Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
+        <Text>
+          
+        </Text>
         <Button
         buttonStyle= {styles.button}
         title="Eat"
