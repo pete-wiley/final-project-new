@@ -5,4 +5,4 @@ import SwitchNavigator from './App'
 import Home from './src/pages/Home'
 
 
-AppRegistry.registerComponent(appName, () => App);
+AppRegistry.registerComponent(appName, () => SwitchNavigator);

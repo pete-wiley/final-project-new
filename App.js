@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
-import { StyleSheet, SafeAreaView } from 'react-native'
-import { createStackNavigator, createAppContainer, createDrawerNavigator, createSwitchNavigator, DrawerItems, SafeAreaView } from "react-navigation";
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { createStackNavigator, createAppContainer, createDrawerNavigator, createSwitchNavigator, DrawerItems } from "react-navigation";
+import { Icon } from 'react-native-elements';
 
 import Home from './src/pages/Home'
 import EatResults from './src/pages/EatResults'
@@ -10,20 +9,10 @@ import DoResults from './src/pages/DoResults'
 import DrinkResults from './src/pages/DrinkResults'
 import Details from './src/pages/Details'
 import Profile from './src/pages/Profile'
-import Map from './src/pages/Map'
+// import Map from './src/pages/Map'
 import { View } from 'react-native'
 
 
-
-class App extends Component {
-  render() {
-    return (
-      <SafeAreaView>
-        <EatResults/>
-      </SafeAreaView>
-    );
-  }
-}
 
 const ProfileStack = createStackNavigator(
   {
@@ -43,23 +32,23 @@ const ProfileStack = createStackNavigator(
   }
 )
 
-const MapStack = createStackNavigator(
-  {
-    Map
-  },
-  {
-    defaultNavigationOptions: ({ navigation }) => {
-      return {
-        headerLeft:
-        <Icon
-          name="bars"
-          size={30}
-          tyle={{ paddingLeft: 10 }}
-          onPress={() => navigation.openDrawer()} />
-      };
-    }
-  }
-)
+// const MapStack = createStackNavigator(
+//   {
+//     Map
+//   },
+//   {
+//     defaultNavigationOptions: ({ navigation }) => {
+//       return {
+//         headerLeft:
+//         <Icon
+//           name="bars"
+//           size={30}
+//           tyle={{ paddingLeft: 10 }}
+//           onPress={() => navigation.openDrawer()} />
+//       };
+//     }
+//   }
+// )
 
 const HomeStack = createStackNavigator(
   {
@@ -88,7 +77,7 @@ const DrawerNavigator = createDrawerNavigator(
   {
     Home: HomeStack,
     Profile: ProfileStack,
-    Map: MapStack,
+    // Map: MapStack,
     // Contact: ContactStack,
   },
   {
@@ -115,7 +104,7 @@ const SwitchNavigator = createSwitchNavigator(
       screen: DrawerNavigator
   }},
   {
-    initialRouteName: "Login"
+    initialRouteName: "Home"
   },
 );
 
