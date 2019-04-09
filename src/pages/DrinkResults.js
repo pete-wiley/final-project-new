@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Text, SafeAreaView, ImageBackground, StyleSheet, ScrollView, View } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+
+
 export default class Results extends Component {
     static navigationOptions = ({ navigation }) => {
         return {

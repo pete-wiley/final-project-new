@@ -24,15 +24,6 @@ class App extends Component {
     );
   }
 }
-// const MyDrawerNavigator = createDrawerNavigator({
-//   Home: {
-//     screen: MyHomeScreen,
-//   },
-//   Notifications: {
-//     screen: MyNotificationsScreen,
-//   },
-// });
-// const MyApp = createAppContainer(MyDrawerNavigator);
 
 
 const HomeStack = createStackNavigator(
