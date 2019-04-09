@@ -9,7 +9,7 @@ export default class App extends Component {
   render() {
     return (
       <SafeAreaView>
-        <Home />
+        <Home/>
       </SafeAreaView>
     );
   }
