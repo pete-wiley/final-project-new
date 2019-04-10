@@ -5,12 +5,6 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 export default class EatResults extends Component {
     static navigationOptions = ({ navigation }) => {
         return {
-            headerLeft:
-                <Icon
-                    name="bars"
-                    size={30}
-                    style={{ paddingLeft: 10 }}
-                    onPress={() => navigation.openDrawer()} />,
             title: "Eat Results"
         }
     }
