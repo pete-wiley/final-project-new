@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { Text, SafeAreaView, ImageBackground, StyleSheet, ScrollView, View } from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome';
-import Details from './Details'
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { navigation } from 'react-navigation'
+
 
 export default class EatResults extends Component {
     static navigationOptions = ({ navigation }) => {
@@ -18,7 +16,7 @@ export default class EatResults extends Component {
     <ScrollView>
       <SafeAreaView>
         <TouchableOpacity
-        onPress={() => navigation.navigate('Details')}
+        onPress={() => this.props.navigation.navigate('Details')}
         >
             <ImageBackground
             style={styles.resultC}

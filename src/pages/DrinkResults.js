@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Text, SafeAreaView, ImageBackground, StyleSheet, ScrollView, View } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+
 
 
 
@@ -16,7 +18,13 @@ export default class Results extends Component {
     return (
     <ScrollView>
       <SafeAreaView>
-            <ImageBackground style={styles.resultC}>
+      <TouchableOpacity
+        onPress={() => this.props.navigation.navigate('Details')}
+        >
+            <ImageBackground
+            style={styles.resultC}
+            >
+            
                 <Text style={styles.Name}>
                     Name
                 </Text>
@@ -24,6 +32,7 @@ export default class Results extends Component {
                     Type
                 </Text>
             </ImageBackground>
+        </TouchableOpacity>
           {/* This will be a map of the results from the parent choice */}
         </SafeAreaView>
     </ScrollView>
