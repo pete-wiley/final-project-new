@@ -30,7 +30,8 @@ export default class Results extends Component {
                 </Text>
             </ImageBackground>
         </TouchableOpacity>
-          {/* This will be a map of the results from the parent choice */}
+
+
         </SafeAreaView>
     </ScrollView>
     )
