@@ -6,7 +6,8 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 export default class EatResults extends Component {
     static navigationOptions = ({ navigation }) => {
         return {
-            title: "Eat Results"
+            title: "Eat Results",
+            headerBackTitle: null,
         }
     }
 
