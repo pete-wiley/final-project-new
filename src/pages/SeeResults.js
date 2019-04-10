@@ -5,13 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 export default class Results extends Component {
     static navigationOptions = ({ navigation }) => {
         return {
-            headerLeft:
-                <Icon
-                    name="bars"
-                    size={30}
-                    style={{ paddingLeft: 10 }}
-                    onPress={() => navigation.openDrawer()} />,
-            title: "SeeResults"
+            title: "See Results"
         }
     }
 

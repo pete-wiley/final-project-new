@@ -50,46 +50,90 @@ const ProfileStack = createStackNavigator(
 //   }
 // )
 
+
+
 const HomeStack = createStackNavigator(
   {
-    Home,
-    EatResultsStack,
-    // DoResults,
-    // SeeResults,
-    // DrinkResults,
-    // Details
-  },
-  {
-    defaultNavigationOptions: ({ navigation }) => {
-      return {
-        headerLeft:
+    Home:{
+      screen: Home,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerLeft:
           <Icon
             name="bars"
             size={30}
             style={{ paddingLeft: 10 }}
             onPress={() => navigation.openDrawer()} />
-      };
-    }
-  }
-)
-const EatResultsStack = createStackNavigator(
-  {
-    screen: EatResults
+        }
+      }
+    },
+    EatResults:{
+      screen: EatResults,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerLeft:
+          <Icon
+            name="arrow-left"
+            size={30}
+            style={{ paddingLeft: 10}}
+            onPress={() => navigation.navigate('Home')} />
+        }
+      }
+    },
+    DoResults:{
+      screen: DoResults,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerLeft:
+          <Icon
+            name="arrow-left"
+            size={30}
+            style={{ paddingLeft: 10}}
+            onPress={() => navigation.navigate('Home')} />
+        }
+      }
+    },
+    SeeResults:{
+      screen: SeeResults,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerLeft:
+          <Icon
+            name="arrow-left"
+            size={30}
+            style={{ paddingLeft: 10}}
+            onPress={() => navigation.navigate('Home')} />
+        }
+      }
+    },
+    DrinkResults:{
+      screen: DrinkResults,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerLeft:
+          <Icon
+            name="arrow-left"
+            size={30}
+            style={{ paddingLeft: 10}}
+            onPress={() => navigation.navigate('Home')} />
+        }
+      }
+    },
+    Details
   },
   {
-    defaultNavigationOptions: ({ navigation}) => {
-      return {
-        headerLeft:
-          <Icon
-          name="bars"
-          size={30}
-          style={{ paddingLeft: 10 }}
-          onPress={() => navigation.openDrawer()} />
-      };
-    }
+    // defaultNavigationOptions: ({ navigation }) => {
+    //   return {
+    //     headerLeft:
+    //       <Icon
+    //         name="bars"
+    //         size={30}
+    //         style={{ paddingLeft: 10 }}
+    //         onPress={() => navigation.openDrawer()} />
+    //   };
+    // }
   }
 )
-
 const DrawerNavigator = createDrawerNavigator(
   {
     Home: HomeStack,
@@ -115,16 +159,16 @@ DrawerNavigator.navigationOptions = ({ navigation }) => {
 
 
 
-const SwitchNavigator = createSwitchNavigator(
-  {
-    Home: {
-      screen: DrawerNavigator
-  }},
-  {
-    initialRouteName: "Home"
-  },
-);
+// const SwitchNavigator = createSwitchNavigator(
+//   {
+//     Home: {
+//       screen: DrawerNavigator
+//   }},
+//   {
+//     initialRouteName: "Home"
+//   },
+// );
 
 
 
-export default createAppContainer(SwitchNavigator);
+export default createAppContainer(DrawerNavigator);
