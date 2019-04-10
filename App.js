@@ -135,12 +135,13 @@ const HomeStack = createStackNavigator(
       screen: Details,
       navigationOptions: ({ navigation }) => {
         return {
-          headerLeft:
-          <Icon
-            name="arrow-left"
-            size={30}
-            style={{ paddingLeft: 10}}
-            onPress={() => navigation.navigate('Home')} />
+          headerBackTitle: null,
+          headerBackImage:(
+            <Icon
+              name="arrow-left"
+              size={30}
+              style={{ paddingLeft: 10}} />
+          )
         }
       }
     }
