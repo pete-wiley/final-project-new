@@ -20,9 +20,7 @@ export default class EatResults extends Component {
         onPress={() => this.props.navigation.navigate('Details')}
         >
             <ImageBackground
-            style={styles.resultC}
-            >
-            
+            style={styles.resultC}>
                 <Text style={styles.Name}>
                     Name
                 </Text>
