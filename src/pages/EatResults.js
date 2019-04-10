@@ -18,12 +18,9 @@ export default class EatResults extends Component {
     <ScrollView>
       <SafeAreaView>
         <TouchableOpacity
-        onPress={() => navigation.navigate('Details')}
-        >
+        onPress={() => this.props.navigation.navigate('Details')}>
             <ImageBackground
-            style={styles.resultC}
-            >
-            
+            style={styles.resultC}>
                 <Text style={styles.Name}>
                     Name
                 </Text>
