@@ -131,7 +131,19 @@ const HomeStack = createStackNavigator(
         }
       }
     },
-    Details
+    Details:{
+      screen: Details,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerLeft:
+          <Icon
+            name="arrow-left"
+            size={30}
+            style={{ paddingLeft: 10}}
+            onPress={() => navigation.navigate('Home')} />
+        }
+      }
+    }
   },
   {
     // defaultNavigationOptions: ({ navigation }) => {
