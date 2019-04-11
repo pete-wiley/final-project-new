@@ -1,19 +1,13 @@
 import React, { Component } from 'react'
 import { Text, View, SafeAreaView, StyleSheet } from 'react-native'
 import { Button, ListItem } from 'react-native-elements'
-import  Icon  from 'react-native-vector-icons/FontAwesome';
+import  Icon  from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
 
 export default class Home extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
-        headerLeft:
-            <Icon
-                name="bars"
-                size={30}
-                style={{ paddingLeft: 10 }}
-                onPress={() => navigation.openDrawer()} />,
         title: "Home"
     }
 }
@@ -27,25 +21,58 @@ export default class Home extends Component {
         <ListItem
         containerStyle = {styles.ListItem1}
         title="Eat"
+        titleStyle={{ color: 'white', fontWeight: 'bold', fontSize: 35 }}
+        leftIcon = {
+          <Icon
+          name='silverware-variant'
+          color='#517fa4'
+          size = {45}
+        />}
         onPress={() => this.props.navigation.navigate('EatResults')}
+        chevronColor="white"
+        chevron = {{ size: 27}}
         />
         <ListItem
         containerStyle= {styles.ListItem2}
         title="Do"
-        raised = {true}
+        titleStyle={{ color: 'white', fontWeight: 'bold', fontSize: 35 }}
+        leftIcon = {
+          <Icon
+          name='walk'
+          color='#517fa4'
+          size = {45}
+        />}
         onPress={() => this.props.navigation.navigate('DoResults')}
+        chevronColor="white"
+        chevron = {{ size: 27}}
         />
         <ListItem
         containerStyle= {styles.ListItem3}
         title="See"
-        raised = {true}
+        titleStyle={{ color: 'white', fontWeight: 'bold', fontSize: 35 }}
+        leftIcon = {
+          <Icon
+          name='binoculars'
+          color='#517fa4'
+          size = {45}
+        />}
         onPress={() => this.props.navigation.navigate('SeeResults')}
+        chevronColor="white"
+        chevron = {{ size: 27}}
         />
         <ListItem
         containerStyle= {styles.ListItem4}
         title="Drink"
-        raised = {true}
+        titleStyle={{ color: 'white', fontWeight: 'bold', fontSize: 35 }}
+        leftIcon = {
+          <Icon
+          name='beer'
+          color='#517fa4'
+          size = {45}
+        />}
         onPress={() => this.props.navigation.navigate('DrinkResults')}
+        chevronColor="white"
+        chevron = {{ size: 27}}
         />
       </SafeAreaView>
     )
@@ -57,7 +84,8 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'space-evenly',
-    height: '85%'
+    // height: '85%',
+    backgroundColor: '#73877B',
   },
   ListItem1: {
     width: "100%",
@@ -67,6 +95,7 @@ const styles = StyleSheet.create({
     shadowColor: 'black',
     shadowOpacity: 5,
     shadowRadius: 10,
+    borderRadius: 2
   },
   ListItem2: {
     width: "100%",
@@ -76,6 +105,7 @@ const styles = StyleSheet.create({
     shadowColor: 'black',
     shadowOpacity: 5,
     shadowRadius: 10,
+    borderRadius: 2
   },
   ListItem3: {
     width: "100%",
@@ -85,6 +115,7 @@ const styles = StyleSheet.create({
     shadowColor: 'black',
     shadowOpacity: 5,
     shadowRadius: 10,
+    borderRadius: 2
   },
   ListItem4: {
     width: "100%",
@@ -94,11 +125,15 @@ const styles = StyleSheet.create({
     shadowColor: 'black',
     shadowOpacity: 5,
     shadowRadius: 10,
+    borderRadius: 2
   },
   banner: {
     fontSize: 35,
     alignItems: 'center',
-    marginBottom: 50,
-    marginTop: 45,
+    paddingBottom: 50,
+    paddingTop: 45,
+    backgroundColor: '#73877B',
+    width: '100%',
+    borderRadius: 2
   }
 })
