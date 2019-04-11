@@ -1,12 +1,34 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import  Icon  from 'react-native-vector-icons/FontAwesome';
 
-export default class Map extends Component {
+import MapView from 'react-native-maps'
+
+export default class App extends Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+        headerBackTitle: null,
+        headerLeft:
+                <Icon
+                    name="bars"
+                    size={30}
+                    style={{ paddingLeft: 10 }}
+                    onPress={() => navigation.openDrawer()} />,
+        title: "Map"
+    }
+}
   render() {
     return (
-      <View>
-        <Text> textInComponent </Text>
-      </View>
-    )
+      <MapView
+        style={{flex: 1}}
+        region={{
+          latitude: 33.5186,
+          longitude: -86.8104,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421
+        }}
+        showsUserLocation={true}
+      />
+    );
   }
 }
+

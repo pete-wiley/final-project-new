@@ -23,7 +23,7 @@ export default class Details extends Component {
     render() {
         return (
             <SafeAreaView style={styles.Container}>
-                <ScrollView style={styles.Left}>
+                <View style={styles.Left}>
                     <View >
                         <View style={styles.Top}>
                             <Text h3>{global.item.name}</Text>
@@ -37,14 +37,14 @@ export default class Details extends Component {
                         </View>
 
                     </View>
-                </ScrollView>
+                </View>
                 <View style={styles.Right}>
                     <Image
-                        source={{ uri: '/Users/student/Desktop/FinalProject/src/assets/pics/' + global.item.picid + '.jpg'}}
+                        source={{ uri: '/Users/lithelli/Desktop/FinalProject/src/assets/pics/' + global.item.picid + '.jpg'}}
                         style={{ width: 200, height: 200 }}
                     />
                     <Text>
-                        test
+                        Description
                     </Text>
                 </View>
             </SafeAreaView>
@@ -55,9 +55,10 @@ const styles = StyleSheet.create({
     Left: {
         flexDirection: "column",
         backgroundColor: "whitesmoke",
-
         width: "50%",
-        height: "100%"
+        height: "100%",
+        justifyContent: "space-between",
+        alignItems: "center",
     },
     Right: {
         flexDirection: "column",
@@ -67,5 +68,8 @@ const styles = StyleSheet.create({
     Container: {
         flexDirection: "row",
         height: "100%"
+    },
+    Bottom:{
+        justifyContent: 'space-evenly'
     },
 })
