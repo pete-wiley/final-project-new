@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Text, View, SafeAreaView, StyleSheet } from 'react-native'
-import { Button } from 'react-native-elements'
+import { Button, ListItem } from 'react-native-elements'
 import  Icon  from 'react-native-vector-icons/FontAwesome';
+
 
 
 export default class Home extends Component {
@@ -20,29 +21,28 @@ export default class Home extends Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <Text>
-          
+        <Text style={styles.banner}>
+          What do you want to do?
         </Text>
-        <Button
-        buttonStyle= {styles.button}
+        <ListItem
+        containerStyle = {styles.ListItem}
         title="Eat"
-        raised = {true}
         onPress={() => this.props.navigation.navigate('EatResults')}
         />
-        <Button
-        buttonStyle= {styles.button}
+        <ListItem
+        containerStyle= {styles.ListItem}
         title="Do"
         raised = {true}
         onPress={() => this.props.navigation.navigate('DoResults')}
         />
-        <Button
-        buttonStyle= {styles.button}
+        <ListItem
+        containerStyle= {styles.ListItem}
         title="See"
         raised = {true}
         onPress={() => this.props.navigation.navigate('SeeResults')}
         />
-        <Button
-        buttonStyle= {styles.button}
+        <ListItem
+        containerStyle= {styles.ListItem}
         title="Drink"
         raised = {true}
         onPress={() => this.props.navigation.navigate('DrinkResults')}
@@ -57,10 +57,18 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'space-evenly',
-    height: '100%'
+    height: '85%'
   },
-  button: {
-    width: 200,
-    height: 50,
+  ListItem: {
+    width: "100%",
+    height: 144,
+    // borderBottomWidth: 1,
+    margin: 0,
+    backgroundColor: 'whitesmoke',
+    elevation: 1,
   },
+  banner: {
+    fontSize: 35,
+    alignItems: 'center'
+  }
 })
