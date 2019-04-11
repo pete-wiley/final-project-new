@@ -3,8 +3,6 @@ import {
   createStackNavigator,
   createAppContainer,
   createDrawerNavigator,
-  createSwitchNavigator,
-  DrawerItems
 } from "react-navigation";
 import {
   View,
@@ -14,6 +12,7 @@ import {
   ScrollView,
 } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { Header } from 'react-native-elements';
 
 import Home from './src/pages/Home'
 import EatResults from './src/pages/EatResults'
@@ -75,7 +74,8 @@ const HomeStack = createStackNavigator(
             name="bars"
             size={30}
             style={{ paddingLeft: 10 }}
-            onPress={() => navigation.openDrawer()} />
+            onPress={() => navigation.openDrawer()}
+            />
         }
       }
     },
@@ -146,18 +146,6 @@ const HomeStack = createStackNavigator(
       }
     }
   },
-  {
-    // defaultNavigationOptions: ({ navigation }) => {
-    //   return {
-    //     headerLeft:
-    //       <Icon
-    //         name="bars"
-    //         size={30}
-    //         style={{ paddingLeft: 10 }}
-    //         onPress={() => navigation.openDrawer()} />
-    //   };
-    // }
-  }
 )
 const DrawerNavigator = createDrawerNavigator(
   {
