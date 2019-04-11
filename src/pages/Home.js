@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     // borderBottomWidth: 1,
     margin: 0,
     backgroundColor: 'whitesmoke',
-    elevation: 1,
+    shadowOffset: 
   },
   banner: {
     fontSize: 35,
