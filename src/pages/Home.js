@@ -8,7 +8,9 @@ import  Icon  from 'react-native-vector-icons/MaterialCommunityIcons';
 export default class Home extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
-        title: "Home"
+        title: "Home",
+        headerStyle: { backgroundColor: '#CFDBD5' },
+        headerTitleStyle: { fontSize: 25 },
     }
 }
 
@@ -29,8 +31,7 @@ export default class Home extends Component {
           size = {45}
         />}
         onPress={() => this.props.navigation.navigate('EatResults')}
-        chevronColor="white"
-        chevron = {{ size: 27}}
+        chevron = {{ size: 27, color:'#2A2D34'}}
         />
         <ListItem
         containerStyle= {styles.ListItem2}
@@ -43,8 +44,7 @@ export default class Home extends Component {
           size = {45}
         />}
         onPress={() => this.props.navigation.navigate('DoResults')}
-        chevronColor="white"
-        chevron = {{ size: 27}}
+        chevron = {{ size: 27, color:'#2A2D34'}}
         />
         <ListItem
         containerStyle= {styles.ListItem3}
@@ -57,8 +57,7 @@ export default class Home extends Component {
           size = {45}
         />}
         onPress={() => this.props.navigation.navigate('SeeResults')}
-        chevronColor="white"
-        chevron = {{ size: 27}}
+        chevron = {{ size: 27, color:'#2A2D34'}}
         />
         <ListItem
         containerStyle= {styles.ListItem4}
@@ -71,8 +70,7 @@ export default class Home extends Component {
           size = {45}
         />}
         onPress={() => this.props.navigation.navigate('DrinkResults')}
-        chevronColor="white"
-        chevron = {{ size: 27}}
+        chevron = {{ size: 27, color:'#2A2D34'}}
         />
       </SafeAreaView>
     )
