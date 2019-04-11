@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { View, SafeAreaView, StyleSheet } from 'react-native'
 import { Text } from 'react-native-elements'
-import  Icon  from 'react-native-vector-icons/FontAwesome';
-import { ScrollView } from 'react-native-gesture-handler'
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 export default class Details extends Component {
@@ -20,49 +20,49 @@ export default class Details extends Component {
         }
     }
 
-  render() {
-    return (
-        <SafeAreaView style={styles.Container}>
-            <ScrollView style={styles.Left}>
-                <View >
-                    <View style={styles.Top}>
-                        <Text h3>{global.item.name}</Text>
-                        <Text h4>{global.item.description}</Text>
-                    </View>
-                    <View style={styles.Bottom}>
-                        <Text>{global.item.formatted_address}</Text>
-                        <Text>{global.item.formatted_phone_number}</Text>
-                        <Text>{global.item.opening_hours.weekday_text[global.day]}</Text>
-                        <Text>{global.item.website}</Text>
-                    </View>
+    render() {
 
+        return (
+            <SafeAreaView style={styles.Container}>
+                <ScrollView style={styles.Left}>
+                    <View >
+                        <View style={styles.Top}>
+                            <Text h3>{global.item.name}</Text>
+                            <Text h4>{global.item.description}</Text>
+                        </View>
+                        <View style={styles.Bottom}>
+                            <Text>{global.item.formatted_address}</Text>
+                            <Text>{global.item.formatted_phone_number}</Text>
+                            <Text>{global.item.opening_hours.weekday_text[global.day]}</Text>
+                            <Text>{global.item.website}</Text>
+                        </View>
+
+                    </View>
+                </ScrollView>
+                <View style={styles.Right}>
+                    <Text>
+                        test
+                    </Text>
                 </View>
-            </ScrollView>
-            <View style={styles.Right}>
-                <Text>
-                    test
-                </Text>
-            </View>
-        </SafeAreaView>
-    )
-  }
+            </SafeAreaView>
+        )
+    }
 }
 const styles = StyleSheet.create({
-    Left:{
+    Left: {
         flexDirection: "column",
-        backgroundColor:"whitesmoke",
-        justifyContent: "space-between",
-        alignItems:"center",
-        width:"50%",
+        backgroundColor: "whitesmoke",
+
+        width: "50%",
         height: "100%"
     },
-    Right:{
+    Right: {
         flexDirection: "column",
         backgroundColor: "grey",
-        width:"50%",
+        width: "50%",
     },
-    Container:{
-        flexDirection:"row",
-        height:"100%"
+    Container: {
+        flexDirection: "row",
+        height: "100%"
     },
 })
