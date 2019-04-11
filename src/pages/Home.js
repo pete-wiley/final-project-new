@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   ListItem1: {
     width: "100%",
     height: 144,
-    backgroundColor: 'whitesmoke',
+    backgroundColor: '#839788',
     shadowOffset: {width: .2, height: -2 },
     shadowColor: 'black',
     shadowOpacity: 5,
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   ListItem2: {
     width: "100%",
     height: 144,
-    backgroundColor: 'whitesmoke',
+    backgroundColor: '#BDBBB6',
     shadowOffset: {width: .2, height: -2 },
     shadowColor: 'black',
     shadowOpacity: 5,
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
   ListItem3: {
     width: "100%",
     height: 144,
-    backgroundColor: 'whitesmoke',
+    backgroundColor: '#E5D1D0',
     shadowOffset: {width: .2, height: -2 },
     shadowColor: 'black',
     shadowOpacity: 5,
@@ -89,8 +89,8 @@ const styles = StyleSheet.create({
   ListItem4: {
     width: "100%",
     height: 144,
-    backgroundColor: 'whitesmoke',
-    shadowOffset: {width: .2, height: -2 },
+    backgroundColor: '#F5E4D7',
+    shadowOffset: {width: .2, height: 1 },
     shadowColor: 'black',
     shadowOpacity: 5,
     shadowRadius: 10,
