@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, SafeAreaView, StyleSheet } from 'react-native'
-import { Text } from 'react-native-elements'
+import { Text, Image } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { ScrollView } from 'react-native-gesture-handler';
 
@@ -15,13 +15,12 @@ export default class Details extends Component {
 
     constructor(props) {
         super(props)
-        this.state={
+        this.state = {
             days: []
         }
     }
 
     render() {
-
         return (
             <SafeAreaView style={styles.Container}>
                 <ScrollView style={styles.Left}>
@@ -40,6 +39,10 @@ export default class Details extends Component {
                     </View>
                 </ScrollView>
                 <View style={styles.Right}>
+                    <Image
+                        source={{ uri: '/Users/student/Desktop/FinalProject/src/assets/pics/' + global.item.picid + '.jpg'}}
+                        style={{ width: 200, height: 200 }}
+                    />
                     <Text>
                         test
                     </Text>
