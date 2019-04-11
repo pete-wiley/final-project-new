@@ -61,9 +61,11 @@ const styles = StyleSheet.create({
   },
   ListItem: {
     width: "100%",
-    height: 100,
-    borderBottomWidth: 1,
-    margin: 0
+    height: 144,
+    // borderBottomWidth: 1,
+    margin: 0,
+    backgroundColor: 'whitesmoke',
+    elevation: 1,
   },
   banner: {
     fontSize: 35,
