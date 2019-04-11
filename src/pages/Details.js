@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, SafeAreaView, StyleSheet } from 'react-native'
 import { Text } from 'react-native-elements'
 import  Icon  from 'react-native-vector-icons/FontAwesome';
+import { ScrollView } from 'react-native-gesture-handler'
 
 
 export default class Details extends Component {
@@ -12,31 +13,37 @@ export default class Details extends Component {
         }
     }
 
+    constructor(props) {
+        super(props)
+        this.state={
+            days: []
+        }
+    }
 
   render() {
     return (
-      <SafeAreaView style={styles.Container}>
-        <View style={styles.Left}>
-            <View style={styles.Top}>
-                <Text h3>Name</Text>
-                <Text h4>Type</Text>
+        <SafeAreaView style={styles.Container}>
+            <ScrollView style={styles.Left}>
+                <View >
+                    <View style={styles.Top}>
+                        <Text h3>{global.item.name}</Text>
+                        <Text h4>{global.item.description}</Text>
+                    </View>
+                    <View style={styles.Bottom}>
+                        <Text>{global.item.formatted_address}</Text>
+                        <Text>{global.item.formatted_phone_number}</Text>
+                        <Text>{global.item.opening_hours.weekday_text[global.day]}</Text>
+                        <Text>{global.item.website}</Text>
+                    </View>
+
+                </View>
+            </ScrollView>
+            <View style={styles.Right}>
+                <Text>
+                    test
+                </Text>
             </View>
-            <View style={styles.Bottom}>
-                {/* this is where the details are mapped through per place */}
-                <Text>Address</Text>
-                <Text>Phone</Text>
-                <Text>Hours</Text>
-                <Text>Website</Text>
-            </View>
-            
-        </View>
-        
-        <View style={styles.Right}>
-            <Text>
-                test
-            </Text>
-        </View>
-      </SafeAreaView>
+        </SafeAreaView>
     )
   }
 }

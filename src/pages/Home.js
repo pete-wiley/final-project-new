@@ -25,24 +25,24 @@ export default class Home extends Component {
           What do you want to do?
         </Text>
         <ListItem
-        containerStyle = {styles.ListItem}
+        containerStyle = {styles.ListItem1}
         title="Eat"
         onPress={() => this.props.navigation.navigate('EatResults')}
         />
         <ListItem
-        containerStyle= {styles.ListItem}
+        containerStyle= {styles.ListItem2}
         title="Do"
         raised = {true}
         onPress={() => this.props.navigation.navigate('DoResults')}
         />
         <ListItem
-        containerStyle= {styles.ListItem}
+        containerStyle= {styles.ListItem3}
         title="See"
         raised = {true}
         onPress={() => this.props.navigation.navigate('SeeResults')}
         />
         <ListItem
-        containerStyle= {styles.ListItem}
+        containerStyle= {styles.ListItem4}
         title="Drink"
         raised = {true}
         onPress={() => this.props.navigation.navigate('DrinkResults')}
@@ -59,16 +59,46 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     height: '85%'
   },
-  ListItem: {
+  ListItem1: {
     width: "100%",
     height: 144,
-    // borderBottomWidth: 1,
-    margin: 0,
     backgroundColor: 'whitesmoke',
-    shadowOffset: 
+    shadowOffset: {width: .2, height: -2 },
+    shadowColor: 'black',
+    shadowOpacity: 5,
+    shadowRadius: 10,
+  },
+  ListItem2: {
+    width: "100%",
+    height: 144,
+    backgroundColor: 'whitesmoke',
+    shadowOffset: {width: .2, height: -2 },
+    shadowColor: 'black',
+    shadowOpacity: 5,
+    shadowRadius: 10,
+  },
+  ListItem3: {
+    width: "100%",
+    height: 144,
+    backgroundColor: 'whitesmoke',
+    shadowOffset: {width: .2, height: -2 },
+    shadowColor: 'black',
+    shadowOpacity: 5,
+    shadowRadius: 10,
+  },
+  ListItem4: {
+    width: "100%",
+    height: 144,
+    backgroundColor: 'whitesmoke',
+    shadowOffset: {width: .2, height: -2 },
+    shadowColor: 'black',
+    shadowOpacity: 5,
+    shadowRadius: 10,
   },
   banner: {
     fontSize: 35,
-    alignItems: 'center'
+    alignItems: 'center',
+    marginBottom: 50,
+    marginTop: 45,
   }
 })
