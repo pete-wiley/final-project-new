@@ -21,55 +21,34 @@ export default class Details extends Component {
     }
 
     render() {
-        return (
-            <SafeAreaView style={styles.Container}>
-                <View style={styles.Left}>
-                    <View >
-                        <View style={styles.Top}>
-                            <Text h3>{global.item.name}</Text>
-                            <Text h4>{global.item.description}</Text>
-                        </View>
-                        <View style={styles.Bottom}>
-                            <Text>{global.item.formatted_address}</Text>
-                            <Text>{global.item.formatted_phone_number}</Text>
-                            <Text>{global.item.opening_hours.weekday_text[global.day]}</Text>
-                            <Text>{global.item.website}</Text>
-                        </View>
-
-                    </View>
-                </View>
-                <View style={styles.Right}>
-                    <Image
+        return(
+            <SafeAreaView>
+                <Image
                         source={{ uri: '/Users/lithelli/Desktop/FinalProject/src/assets/pics/' + global.item.picid + '.jpg'}}
-                        style={{ width: 200, height: 200 }}
+                        style={{ width: "100%", height: 200 }}
                     />
-                    <Text>
-                        Description
-                    </Text>
+                <View style={styles.Header}>
+                    <Text h3 style={{textAlign: 'center', paddingBottom: 10, marginTop: 10}}>{global.item.name}</Text>
+                    <Text h4 style={{textAlign: "center"}}>{global.item.description}</Text>
+                </View>
+                <View style={styles.Bottom}>
+                    <Text style={{textAlign: 'center'}}>{global.item.formatted_address}</Text>
+                    <Text style={{textAlign: 'center'}}>{global.item.formatted_phone_number}</Text>
+                    <Text style={{textAlign: 'center'}}>{global.item.opening_hours.weekday_text[global.day]}</Text>
+                    <Text style={{textAlign: 'center'}}>{global.item.website}</Text>
                 </View>
             </SafeAreaView>
         )
     }
 }
 const styles = StyleSheet.create({
-    Left: {
+    Header: {
         flexDirection: "column",
-        backgroundColor: "whitesmoke",
-        width: "50%",
-        height: "100%",
-        justifyContent: "space-between",
+        justifyContent: "center",
         alignItems: "center",
     },
-    Right: {
-        flexDirection: "column",
-        backgroundColor: "grey",
-        width: "50%",
-    },
-    Container: {
-        flexDirection: "row",
-        height: "100%"
-    },
     Bottom:{
-        justifyContent: 'space-evenly'
+        marginTop: 25,
+        
     },
 })
