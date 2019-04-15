@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, SafeAreaView, StyleSheet } from 'react-native'
+import { View, SafeAreaView, StyleSheet, Linking } from 'react-native'
 import { Text, Image } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -17,10 +17,15 @@ export default class Details extends Component {
         super(props)
         this.state = {
             days: []
-        }
+        };
     }
 
     render() {
+
+        const url = global.item.website
+        const Phone = global.item.formatted_phone_number
+        
+
         return(
             <SafeAreaView>
                 <Image
@@ -32,15 +37,32 @@ export default class Details extends Component {
                     <Text h4 style={{textAlign: "center"}}>{global.item.description}</Text>
                 </View>
                 <View style={styles.Bottom}>
+                <Text style={{textAlign: 'center'}}>{global.item.opening_hours.weekday_text[global.day]}</Text>
+                    {/* make this link to the maps */}
                     <Text style={{textAlign: 'center'}}>{global.item.formatted_address}</Text>
-                    <Text style={{textAlign: 'center'}}>{global.item.formatted_phone_number}</Text>
-                    <Text style={{textAlign: 'center'}}>{global.item.opening_hours.weekday_text[global.day]}</Text>
-                    <Text style={{textAlign: 'center'}}>{global.item.website}</Text>
+                    {/* make this link to a phone call */}
+                    <Text style={{textAlign: 'center'}} onPress={() => Linking.openURL(`tel:${Phone}`)}>{Phone}</Text>
+                    {/* Style the link maybe a touchable opacity */}
+                    <Text style={{textAlign: 'center'}} onPress={() => Linking.openURL(url)}>{url}</Text>
                 </View>
             </SafeAreaView>
         )
     }
 }
+
+
+
+// const url="https://google.com"
+
+// <Text onPress={() => Linking.openURL(url)}>
+//     {url}
+// </Text>
+
+
+
+
+
+
 const styles = StyleSheet.create({
     Header: {
         flexDirection: "column",
