@@ -27,21 +27,23 @@ import Profile from './src/pages/Profile'
 
 const ProfileStack = createStackNavigator(
   {
-    Profile
-  },
-  {
-    defaultNavigationOptions: ({ navigation }) => {
-      return {
-        headerLeft:
+    Profile:{
+      screen: Profile,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerLeft:
           <Icon
             name="bars"
             size={30}
-            tyle={{ paddingLeft: 10 }}
-            onPress={() => navigation.openDrawer()} />
-      };
+            style={{ paddingLeft: 10 }}
+            onPress={() => navigation.openDrawer()} 
+            />
+        };
     }
-  }
+  },
+}
 )
+  
 
 // const MapStack = createStackNavigator(
 //   {

@@ -6,13 +6,9 @@ import  Icon  from 'react-native-vector-icons/FontAwesome';
 export default class Profile extends Component {
     static navigationOptions = ({ navigation }) => {
         return {
-            headerLeft:
-                <Icon
-                    name="bars"
-                    size={30}
-                    style={{ paddingLeft: 10 }}
-                    onPress={() => navigation.openDrawer()} />,
-            title: "Profile"
+            title: "Profile",
+            headerStyle: { backgroundColor: '#CFDBD5' },
+            headerTitleStyle: { fontSize: 25 },
         }
     }
 
