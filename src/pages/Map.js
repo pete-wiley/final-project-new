@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import  Icon  from 'react-native-vector-icons/FontAwesome';
+import  Icon  from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import MapView from 'react-native-maps'
 
@@ -7,13 +7,15 @@ export default class App extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
         headerBackTitle: null,
-        headerLeft:
-                <Icon
-                    name="bars"
-                    size={30}
-                    style={{ paddingLeft: 10 }}
-                    onPress={() => navigation.openDrawer()} />,
-        title: "Map"
+        title: "Map",
+        headerTitleStyle: { fontSize: 25 },
+        headerRight: 
+        <Icon
+        name="diamond-stone"
+        color="blue"
+        size ={45}
+        style = {{paddingRight: 10}}
+        />
     }
 }
   render() {

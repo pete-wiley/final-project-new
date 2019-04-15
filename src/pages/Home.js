@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Text, View, SafeAreaView, StyleSheet, ImageBackground } from 'react-native'
-import { Button, ListItem } from 'react-native-elements'
+import { Image,  StyleSheet, ImageBackground } from 'react-native'
+import { ListItem } from 'react-native-elements'
 import  Icon  from 'react-native-vector-icons/MaterialCommunityIcons';
 import Bham1 from '../assets/pics/Bham1.jpg'
+import Gem from '../assets/pics/gem.png'
 
 
 
@@ -12,16 +13,19 @@ export default class Home extends Component {
         title: "Home",
         headerStyle: { backgroundColor: '#CFDBD5' },
         headerTitleStyle: { fontSize: 25 },
+        headerRight: 
+          <Icon
+          name="diamond-stone"
+          color="blue"
+          size ={45}
+          style = {{paddingRight: 10}}
+          />
     }
 }
 
   render() {
     return (
-      // <SafeAreaView style={styles.container}>
       <ImageBackground source={Bham1} style={{width: '100%', height: '100%'}}>
-      <Text style={styles.banner}>
-          What do you want to do?
-        </Text>
         <ListItem
         containerStyle = {styles.ListItem1}
         title="Eat"
@@ -33,6 +37,19 @@ export default class Home extends Component {
           size = {45}
         />}
         onPress={() => this.props.navigation.navigate('EatResults')}
+        chevron = {{ size: 27, color:'#F7D82D'}}
+        />
+        <ListItem
+        containerStyle= {styles.ListItem4}
+        title="Drink"
+        titleStyle={{ color: 'white', fontWeight: 'bold', fontSize: 35 }}
+        leftIcon = {
+          <Icon
+          name='beer'
+          color='#F7D82D'
+          size = {45}
+        />}
+        onPress={() => this.props.navigation.navigate('DrinkResults')}
         chevron = {{ size: 27, color:'#F7D82D'}}
         />
         <ListItem
@@ -61,21 +78,7 @@ export default class Home extends Component {
         onPress={() => this.props.navigation.navigate('SeeResults')}
         chevron = {{ size: 27, color:'#F7D82D'}}
         />
-        <ListItem
-        containerStyle= {styles.ListItem4}
-        title="Drink"
-        titleStyle={{ color: 'white', fontWeight: 'bold', fontSize: 35 }}
-        leftIcon = {
-          <Icon
-          name='beer'
-          color='#F7D82D'
-          size = {45}
-        />}
-        onPress={() => this.props.navigation.navigate('DrinkResults')}
-        chevron = {{ size: 27, color:'#F7D82D'}}
-        />
       </ImageBackground>
-      // </SafeAreaView>
     )
   }
 }
@@ -85,7 +88,6 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'space-evenly',
-    // height: '85%',
   },
   ListItem1: {
     width: "100%",

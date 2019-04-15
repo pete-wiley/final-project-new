@@ -2,13 +2,23 @@ import React, { Component } from 'react'
 import { Text, SafeAreaView, ImageBackground, StyleSheet, ScrollView, View } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { ListItem } from 'react-native-elements'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
 export default class EatResults extends Component {
     static navigationOptions = ({ navigation }) => {
         return {
             title: "Eat Results",
+            headerStyle: { backgroundColor: '#CFDBD5' },
             headerBackTitle: null,
+            headerTitleStyle: { fontSize: 25 },
+            headerRight: 
+            <Icon
+            name="diamond-stone"
+            color="blue"
+            size ={45}
+            style = {{paddingRight: 10}}
+            />
         }
     }
 

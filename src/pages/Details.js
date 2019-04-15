@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, SafeAreaView, StyleSheet, Linking } from 'react-native'
 import { Text, Image } from 'react-native-elements'
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { ScrollView } from 'react-native-gesture-handler';
 
 
@@ -12,6 +12,13 @@ export default class Details extends Component {
             title: "Details",
             headerStyle: { backgroundColor: '#CFDBD5' },
             headerTitleStyle: { fontSize: 25 },
+            headerRight: 
+            <Icon
+            name="diamond-stone"
+            color="blue"
+            size ={45}
+            style = {{paddingRight: 10}}
+            />
         }
     }
 

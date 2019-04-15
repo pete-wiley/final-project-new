@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Text, SafeAreaView, ImageBackground, StyleSheet, ScrollView, View } from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { ListItem } from 'react-native-elements'
 
@@ -11,7 +11,16 @@ export default class Results extends Component {
     static navigationOptions = ({ navigation }) => {
         return {
             title: "Drink Results",
+            headerStyle: { backgroundColor: '#CFDBD5' },
             headerBackTitle: null,
+            headerTitleStyle: { fontSize: 25 },
+            headerRight: 
+            <Icon
+            name="diamond-stone"
+            color="blue"
+            size ={45}
+            style = {{paddingRight: 10}}
+            />
         }
     }
 

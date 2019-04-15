@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { View, SafeAreaView, Image, StyleSheet } from 'react-native'
+import { View, SafeAreaView, Image, StyleSheet, ImageBackground } from 'react-native'
 import { Button, Text } from 'react-native-elements';
-import  Icon  from 'react-native-vector-icons/FontAwesome';
+import  Icon  from 'react-native-vector-icons/MaterialCommunityIcons';
+import Sky from '../assets/pics/sky.jpg'
 
 export default class Profile extends Component {
     static navigationOptions = ({ navigation }) => {
@@ -9,13 +10,22 @@ export default class Profile extends Component {
             title: "Profile",
             headerStyle: { backgroundColor: '#CFDBD5' },
             headerTitleStyle: { fontSize: 25 },
+            headerRight: 
+            <Icon
+            name="diamond-stone"
+            color="blue"
+            size ={45}
+            style = {{paddingRight: 10}}
+            />
         }
     }
 
   render() {
     return (
         <SafeAreaView>
-            <View style={styles.UserInfo}>
+            <ImageBackground
+            source={Sky}
+            style={styles.UserInfo}>
                 <View style={styles.Image}>
                     <Image
                     style = {{width: 100, height: 100}}
@@ -26,7 +36,7 @@ export default class Profile extends Component {
                     <Text style={{fontSize: 35}}>John Cena</Text>
                     <Text style={{fontSize: 16}}>Johnnie@gmail.com</Text>
                 </View>
-            </View>
+            </ImageBackground>
             <View style={styles.UserContent}>
             <View style={styles.FoodTruck}>
                     <Button
