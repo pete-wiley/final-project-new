@@ -94,6 +94,11 @@ export default class Results extends Component {
                             <ListItem
                                 key={i}
                                 title={l.name}
+                                titleStyle={{
+                                    fontSize: 25,
+                                    paddingBottom: 6,
+                                    color: 'black',
+                                }}
                                 subtitle={l.description}
                                 bottomDivider
                                 chevron
