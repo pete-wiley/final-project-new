@@ -27,7 +27,6 @@ export default class Details extends Component {
         this.state = {
             days: [],
             items: [],
-            // review: ""
         };
     }
 
@@ -47,10 +46,7 @@ export default class Details extends Component {
                 console.log(res);
                 this.setState({
                     items: res,
-                    // review: res[0].reviewBody
                 })
-                const review = this.state.items[0].reviewBody
-                console.log(review, 'fa')
             }
         } catch (error) {
             console.log('Something went wrong');
