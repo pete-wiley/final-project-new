@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, SafeAreaView, ImageBackground, StyleSheet, ScrollView, View } from 'react-native'
+import { Text, SafeAreaView, ImageBackground, StyleSheet, ScrollView, View, Image } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { ListItem } from 'react-native-elements'
 
@@ -19,6 +19,10 @@ export default class EatResults extends Component {
         }
     }
 
+    componentDidMount() {
+        this.getItems()
+    }
+
     getItems = async () => {
         try {
             let response = await fetch('https://bham-gems-api.herokuapp.com/eat', {
@@ -34,8 +38,7 @@ export default class EatResults extends Component {
             } else {
                 console.log(res);
                 this.setState({
-                    items: res,
-                    gotRes: 1
+                    items: res
                 })
             }
         } catch (error) {
@@ -46,7 +49,7 @@ export default class EatResults extends Component {
     clicked = (thing) => {
         if (thing.opening_hours === undefined) {
             thing.opening_hours = {
-                weekday_text : [
+                weekday_text: [
                     '',
                     '',
                     '',
@@ -73,22 +76,26 @@ export default class EatResults extends Component {
     }
 
     render() {
-        this.getItems()
+
         return (
             <ScrollView>
                 <SafeAreaView>
                     {
                         this.state.items.map((l, i) => (
-                            <ListItem
-                                key={i}
-                                title={l.name}
-                                subtitle={l.description}
-                                bottomDivider
-                                chevron
-                                onPress={() =>
-                                    this.clicked(l)
-                                }
-                            />
+                            <View>
+                            <ImageBackground source={{uri: `../assets/pics/eat/E05`}} style={{width: '100%'}}/>
+                                <ListItem
+                                    key={i}
+                                    title={l.name}
+                                    subtitle={l.description}
+                                    bottomDivider
+                                    chevron
+                                    
+                                    onPress={() =>
+                                        this.clicked(l)
+                                    }
+                                />
+                                </View>
                         ))
                     }
                 </SafeAreaView>
