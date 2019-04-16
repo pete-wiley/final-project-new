@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, SafeAreaView, StyleSheet, Linking } from 'react-native'
-import { Text, Image } from 'react-native-elements'
+import { Text, Image, ListItem } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { ScrollView } from 'react-native-gesture-handler';
 
@@ -25,15 +25,47 @@ export default class Details extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            days: []
+            days: [],
+            items: [],
+            // review: ""
         };
     }
 
-    render() {
+    getItems = async () => {
+        try {
+            let response = await fetch(`https://bham-gems-api.herokuapp.com/reviews/business/${global.item.picid}`, {
+                method: 'GET',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            });
+            let res = await response.json();
+            if (!res) {
+                console.log('Nope');
+            } else {
+                console.log(res);
+                this.setState({
+                    items: res,
+                    // review: res[0].reviewBody
+                })
+                const review = this.state.items[0].reviewBody
+                console.log(review, 'fa')
+            }
+        } catch (error) {
+            console.log('Something went wrong');
+        }
+    }
 
+    componentDidMount(){
+        this.getItems()
+    }
+
+    render() {
+       
         const url = global.item.website
         const Phone = global.item.formatted_phone_number
-        
+
 
         return(
             <ScrollView style={{marginBottom: 60}}>
@@ -55,6 +87,24 @@ export default class Details extends Component {
                     <Text style={{textAlign: 'center', paddingBottom: 5, fontSize: 20}} onPress={() => Linking.openURL(`tel:${Phone}`)}>{Phone}</Text>
                     {/* Style the link maybe a touchable opacity */}
                     <Text style={styles.Website} onPress={() => Linking.openURL(url)}>Check out the Website</Text>
+                    {/* The Mapping for reviews */}
+                    {
+                        this.state.items.map((l, i) => (
+                            <ListItem
+                                key={i}
+                                title={l.title}
+                                rightTitle={l.gems}
+                                rightSubtitle={l.reviewer}
+                                titleStyle={{
+                                    fontSize: 25,
+                                    paddingBottom: 6,
+                                    color: 'black',
+                                }}
+                                subtitle={l.reviewBody}
+                                bottomDivider
+                            />
+                        ))
+                    }
                 </View>
             </ScrollView>
         )

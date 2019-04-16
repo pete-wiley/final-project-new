@@ -82,8 +82,11 @@ export default class EatResults extends Component {
         this.props.navigation.navigate('Details')
     }
 
-    render() {
+    componentDidMount(){
         this.getItems()
+    }
+
+    render() {
         return (
             <ScrollView>
                 <SafeAreaView>

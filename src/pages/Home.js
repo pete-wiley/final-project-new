@@ -25,7 +25,7 @@ export default class Home extends Component {
 
   render() {
     return (
-      <ImageBackground source={Bham1} style={{width: '100%', height: '100%'}}>
+      <ImageBackground source={Bham1} style={{width: '100%', height: '100%', zIndex: -1}}>
         <ListItem
         containerStyle = {styles.ListItem1}
         title="Eat"
@@ -92,17 +92,15 @@ const styles = StyleSheet.create({
   ListItem1: {
     width: "100%",
     height: 144,
-    backgroundColor: 'transparent',
     shadowOffset: {width: .2, height: -2 },
     shadowColor: 'black',
     shadowOpacity: 5,
     shadowRadius: 10,
-    borderRadius: 2
+    borderRadius: 2,
   },
   ListItem2: {
     width: "100%",
     height: 144,
-    backgroundColor: 'transparent',
     shadowOffset: {width: .2, height: -2 },
     shadowColor: 'black',
     shadowOpacity: 5,
@@ -112,7 +110,6 @@ const styles = StyleSheet.create({
   ListItem3: {
     width: "100%",
     height: 144,
-    backgroundColor: 'transparent',
     shadowOffset: {width: .2, height: -2 },
     shadowColor: 'black',
     shadowOpacity: 5,
@@ -122,7 +119,6 @@ const styles = StyleSheet.create({
   ListItem4: {
     width: "100%",
     height: 144,
-    backgroundColor: 'transparent',
     shadowOffset: {width: .2, height: -2 },
     shadowColor: 'black',
     shadowOpacity: 5,
@@ -134,7 +130,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingBottom: 50,
     paddingTop: 45,
-    backgroundColor: 'transparent',
     width: '100%',
     borderRadius: 2,
     color: 'white'
