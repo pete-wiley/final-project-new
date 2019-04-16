@@ -9,7 +9,7 @@
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.8",
     "react": "16.8.3",
-    "react-native": "0.59.3",
+    "react-native": "0.59.4",
     "react-native-elements": "^1.1.0",
     "react-native-gesture-handler": "^1.1.0",
     "react-native-linear-gradient": "^2.5.4",
