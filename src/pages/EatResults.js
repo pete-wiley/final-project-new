@@ -3,6 +3,7 @@ import { Text, SafeAreaView, ImageBackground, StyleSheet, ScrollView, View, Imag
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { ListItem } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { pics } from '../assets/consts'
 
 
 export default class EatResults extends Component {
@@ -12,13 +13,13 @@ export default class EatResults extends Component {
             headerStyle: { backgroundColor: '#CFDBD5' },
             headerBackTitle: null,
             headerTitleStyle: { fontSize: 25 },
-            headerRight: 
-            <Icon
-            name="diamond-stone"
-            color="blue"
-            size ={45}
-            style = {{paddingRight: 10}}
-            />
+            headerRight:
+                <Icon
+                    name="diamond-stone"
+                    color="blue"
+                    size={45}
+                    style={{ paddingRight: 10 }}
+                />
         }
     }
 
@@ -85,7 +86,7 @@ export default class EatResults extends Component {
         this.props.navigation.navigate('Details')
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.getItems()
     }
 
@@ -95,21 +96,31 @@ export default class EatResults extends Component {
                 <SafeAreaView>
                     {
                         this.state.items.map((l, i) => (
-                            <ListItem
-                                key={i}
-                                title={l.name}
-                                titleStyle={{
-                                    fontSize: 25,
-                                    paddingBottom: 6,
-                                    color: 'black',
-                                }}
-                                subtitle={l.description}
-                                bottomDivider
-                                chevron
-                                onPress={() =>
-                                    this.clicked(l)
-                                }
-                            />
+                            <ImageBackground
+                            key={i}
+                            style={{width: '100%'}}
+                            source={pics[l.picid]}
+                            >
+                                <ListItem
+                                    key={i}
+                                    containerStyle={{backgroundColor: 'rgba(25, 25, 25, 0.6)',}}
+                                    title={l.name}
+                                    titleStyle={{
+                                        fontSize: 25,
+                                        paddingBottom: 6,
+                                        color: 'white',
+                                    }}
+                                    subtitle={l.description}
+                                    subtitleStyle={{
+                                        color: 'white'
+                                    }}
+                                    bottomDivider
+                                    chevron
+                                    onPress={() =>
+                                        this.clicked(l)
+                                    }
+                                />
+                            </ImageBackground>
                         ))
                     }
                 </SafeAreaView>

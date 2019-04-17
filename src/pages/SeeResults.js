@@ -3,7 +3,7 @@ import { Text, SafeAreaView, ImageBackground, StyleSheet, ScrollView, View } fro
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { ListItem } from 'react-native-elements'
-
+import { pics } from '../assets/consts'
 
 
 export default class Results extends Component {
@@ -13,13 +13,13 @@ export default class Results extends Component {
             headerStyle: { backgroundColor: '#CFDBD5' },
             headerBackTitle: null,
             headerTitleStyle: { fontSize: 25 },
-            headerRight: 
-            <Icon
-            name="diamond-stone"
-            color="blue"
-            size ={45}
-            style = {{paddingRight: 10}}
-            />
+            headerRight:
+                <Icon
+                    name="diamond-stone"
+                    color="blue"
+                    size={45}
+                    style={{ paddingRight: 10 }}
+                />
         }
     }
 
@@ -57,7 +57,7 @@ export default class Results extends Component {
     clicked = (thing) => {
         if (thing.opening_hours === undefined) {
             thing.opening_hours = {
-                weekday_text : [
+                weekday_text: [
                     '',
                     '',
                     '',
@@ -83,7 +83,7 @@ export default class Results extends Component {
         this.props.navigation.navigate('Details')
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.getItems()
     }
 
@@ -93,21 +93,31 @@ export default class Results extends Component {
                 <SafeAreaView>
                     {
                         this.state.items.map((l, i) => (
-                            <ListItem
+                            <ImageBackground
                                 key={i}
-                                title={l.name}
-                                titleStyle={{
-                                    fontSize: 25,
-                                    paddingBottom: 6,
-                                    color: 'black',
-                                }}
-                                subtitle={l.description}
-                                bottomDivider
-                                chevron
-                                onPress={() =>
-                                    this.clicked(l)
-                                }
-                            />
+                                style={{ width: '100%' }}
+                                source={pics[l.picid]}
+                            >
+                                <ListItem
+                                    key={i}
+                                    containerStyle={{backgroundColor: 'rgba(25, 25, 25, 0.6)',}}
+                                    title={l.name}
+                                    titleStyle={{
+                                        fontSize: 25,
+                                        paddingBottom: 6,
+                                        color: 'white',
+                                    }}
+                                    subtitle={l.description}
+                                    subtitleStyle={{
+                                        color: 'white'
+                                    }}
+                                    bottomDivider
+                                    chevron
+                                    onPress={() =>
+                                        this.clicked(l)
+                                    }
+                                />
+                            </ImageBackground>
                         ))
                     }
                 </SafeAreaView>

@@ -30,6 +30,7 @@ export default class Details extends Component {
         };
     }
 
+    //for reviews
     getItems = async () => {
         try {
             let response = await fetch(`https://bham-gems-api.herokuapp.com/reviews/business/${global.item.picid}`, {
