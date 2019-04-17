@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Text, SafeAreaView, ImageBackground, StyleSheet, ScrollView, View } from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { ListItem } from 'react-native-elements'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
 
@@ -11,6 +11,15 @@ export default class Results extends Component {
         return {
             title: "Do Results",
             headerBackTitle: null,
+            headerStyle: { backgroundColor: '#CFDBD5' },
+            headerTitleStyle: { fontSize: 25 },
+            headerRight: 
+            <Icon
+            name="diamond-stone"
+            color="blue"
+            size ={45}
+            style = {{paddingRight: 10}}
+            />
         }
     }
 
@@ -85,6 +94,11 @@ export default class Results extends Component {
                             <ListItem
                                 key={i}
                                 title={l.name}
+                                titleStyle={{
+                                    fontSize: 25,
+                                    paddingBottom: 6,
+                                    color: 'black',
+                                }}
                                 subtitle={l.description}
                                 bottomDivider
                                 chevron

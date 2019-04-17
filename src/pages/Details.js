@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { View, SafeAreaView, StyleSheet } from 'react-native'
-import { Text } from 'react-native-elements'
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { View, SafeAreaView, StyleSheet, Linking } from 'react-native'
+import { Text, Image } from 'react-native-elements'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { ScrollView } from 'react-native-gesture-handler';
 
 
@@ -9,60 +9,81 @@ export default class Details extends Component {
     static navigationOptions = ({ navigation }) => {
         return {
             headerBackTitle: null,
-            title: "Details"
+            title: "Details",
+            headerStyle: { backgroundColor: '#CFDBD5' },
+            headerTitleStyle: { fontSize: 25 },
+            headerRight: 
+            <Icon
+            name="diamond-stone"
+            color="blue"
+            size ={45}
+            style = {{paddingRight: 10}}
+            />
         }
     }
 
     constructor(props) {
         super(props)
-        this.state={
-            days: []
-        }
+        this.state = {
+            days: [],
+        };
     }
 
     render() {
 
-        return (
-            <SafeAreaView style={styles.Container}>
-                <ScrollView style={styles.Left}>
-                    <View >
-                        <View style={styles.Top}>
-                            <Text h3>{global.item.name}</Text>
-                            <Text h4>{global.item.description}</Text>
-                        </View>
-                        <View style={styles.Bottom}>
-                            <Text>{global.item.formatted_address}</Text>
-                            <Text>{global.item.formatted_phone_number}</Text>
-                            <Text>{global.item.opening_hours.weekday_text[global.day]}</Text>
-                            <Text>{global.item.website}</Text>
-                        </View>
+        const url = global.item.website
+        const Phone = global.item.formatted_phone_number
+        const pic = ('../assets/pics/' + global.item.picid + '.jpg')
+        
 
-                    </View>
-                </ScrollView>
-                <View style={styles.Right}>
-                    <Text>
-                        test
-                    </Text>
+        return(
+            <ScrollView style={{marginBottom: 60}}>
+                <View style={styles.Image}>
+                    <Image
+                        source={require(pic)}
+                        style={{height:200, width: '100%'}}
+                    />
                 </View>
-            </SafeAreaView>
+                <View style={styles.Header}>
+                    <Text h3 style={{textAlign: 'center', paddingBottom: 10, marginTop: 10}}>{global.item.name}</Text>
+                    <Text h4 style={{textAlign: "center"}}>{global.item.description}</Text>
+                </View>
+                <View style={styles.Bottom}>
+                    <Text style={{textAlign: 'center', paddingBottom: 5, fontSize: 20}}>{global.item.opening_hours.weekday_text[global.day]}</Text>
+                    {/* make this link to the maps */}
+                    <Text style={{textAlign: 'center', paddingBottom: 5, fontSize: 20}}>{global.item.formatted_address}</Text>
+                    {/* make this link to a phone call */}
+                    <Text style={{textAlign: 'center', paddingBottom: 5, fontSize: 20}} onPress={() => Linking.openURL(`tel:${Phone}`)}>{Phone}</Text>
+                    {/* Style the link maybe a touchable opacity */}
+                    <Text style={styles.Website} onPress={() => Linking.openURL(url)}>Check out the Website</Text>
+                </View>
+            </ScrollView>
         )
     }
 }
-const styles = StyleSheet.create({
-    Left: {
-        flexDirection: "column",
-        backgroundColor: "whitesmoke",
 
-        width: "50%",
-        height: "100%"
-    },
-    Right: {
+const styles = StyleSheet.create({
+    Header: {
         flexDirection: "column",
-        backgroundColor: "grey",
-        width: "50%",
+        justifyContent: "center",
+        alignItems: "center",
     },
-    Container: {
-        flexDirection: "row",
-        height: "100%"
+    Bottom:{
+        marginTop: 25,
     },
+    Website:{
+        textAlign: 'center',
+        paddingBottom: 5, 
+        fontSize: 20, 
+        fontStyle: 'italic',
+        fontWeight: 'bold',
+        color: '#2A3D45'
+    },
+    Image:{
+        shadowOffset: {width: .2, height: 2 },
+        shadowColor: 'black',
+        shadowOpacity: 5,
+        shadowRadius: 10, 
+        paddingBottom: 10
+    }
 })

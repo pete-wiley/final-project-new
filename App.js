@@ -3,8 +3,6 @@ import {
   createStackNavigator,
   createAppContainer,
   createDrawerNavigator,
-  createSwitchNavigator,
-  DrawerItems
 } from "react-navigation";
 import {
   View,
@@ -14,6 +12,7 @@ import {
   ScrollView,
 } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { Header } from 'react-native-elements';
 
 import Home from './src/pages/Home'
 import EatResults from './src/pages/EatResults'
@@ -28,21 +27,23 @@ import Profile from './src/pages/Profile'
 
 const ProfileStack = createStackNavigator(
   {
-    Profile
-  },
-  {
-    defaultNavigationOptions: ({ navigation }) => {
-      return {
-        headerLeft:
+    Profile:{
+      screen: Profile,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerLeft:
           <Icon
             name="bars"
             size={30}
-            tyle={{ paddingLeft: 10 }}
-            onPress={() => navigation.openDrawer()} />
-      };
+            style={{ paddingLeft: 10 }}
+            onPress={() => navigation.openDrawer()} 
+            />
+        };
     }
-  }
+  },
+}
 )
+  
 
 // const MapStack = createStackNavigator(
 //   {
@@ -75,7 +76,8 @@ const HomeStack = createStackNavigator(
             name="bars"
             size={30}
             style={{ paddingLeft: 10 }}
-            onPress={() => navigation.openDrawer()} />
+            onPress={() => navigation.openDrawer()}
+            />
         }
       }
     },
@@ -146,18 +148,6 @@ const HomeStack = createStackNavigator(
       }
     }
   },
-  {
-    // defaultNavigationOptions: ({ navigation }) => {
-    //   return {
-    //     headerLeft:
-    //       <Icon
-    //         name="bars"
-    //         size={30}
-    //         style={{ paddingLeft: 10 }}
-    //         onPress={() => navigation.openDrawer()} />
-    //   };
-    // }
-  }
 )
 const DrawerNavigator = createDrawerNavigator(
   {
@@ -182,17 +172,6 @@ DrawerNavigator.navigationOptions = ({ navigation }) => {
   };
 };
 
-
-
-// const SwitchNavigator = createSwitchNavigator(
-//   {
-//     Home: {
-//       screen: DrawerNavigator
-//   }},
-//   {
-//     initialRouteName: "Home"
-//   },
-// );
 
 
 

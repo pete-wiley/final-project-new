@@ -9,10 +9,12 @@
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.8",
     "react": "16.8.3",
-    "react-native": "0.59.3",
+    "react-native": "0.59.4",
     "react-native-elements": "^1.1.0",
     "react-native-gesture-handler": "^1.1.0",
     "react-native-linear-gradient": "^2.5.4",
+    "react-native-shadow": "^1.2.2",
+    "react-native-svg": "^9.3.7",
     "react-native-touchable-scale": "^2.0.0",
     "react-native-vector-icons": "^6.4.2",
     "react-navigation": "^3.6.1"

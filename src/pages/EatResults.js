@@ -2,13 +2,23 @@ import React, { Component } from 'react'
 import { Text, SafeAreaView, ImageBackground, StyleSheet, ScrollView, View, Image } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { ListItem } from 'react-native-elements'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
 export default class EatResults extends Component {
     static navigationOptions = ({ navigation }) => {
         return {
             title: "Eat Results",
+            headerStyle: { backgroundColor: '#CFDBD5' },
             headerBackTitle: null,
+            headerTitleStyle: { fontSize: 25 },
+            headerRight: 
+            <Icon
+            name="diamond-stone"
+            color="blue"
+            size ={45}
+            style = {{paddingRight: 10}}
+            />
         }
     }
 
@@ -82,20 +92,21 @@ export default class EatResults extends Component {
                 <SafeAreaView>
                     {
                         this.state.items.map((l, i) => (
-                            <View>
-                            <ImageBackground source={{uri: `../assets/pics/eat/E05`}} style={{width: '100%'}}/>
-                                <ListItem
-                                    key={i}
-                                    title={l.name}
-                                    subtitle={l.description}
-                                    bottomDivider
-                                    chevron
-                                    
-                                    onPress={() =>
-                                        this.clicked(l)
-                                    }
-                                />
-                                </View>
+                            <ListItem
+                                key={i}
+                                title={l.name}
+                                titleStyle={{
+                                    fontSize: 25,
+                                    paddingBottom: 6,
+                                    color: 'black',
+                                }}
+                                subtitle={l.description}
+                                bottomDivider
+                                chevron
+                                onPress={() =>
+                                    this.clicked(l)
+                                }
+                            />
                         ))
                     }
                 </SafeAreaView>
