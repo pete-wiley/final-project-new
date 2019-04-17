@@ -83,9 +83,11 @@ export default class Results extends Component {
         this.props.navigation.navigate('Details')
     }
 
+    componentDidMount(){
+        this.getItems()
+    }
 
     render() {
-        this.getItems()
         return (
             <ScrollView>
                 <SafeAreaView>

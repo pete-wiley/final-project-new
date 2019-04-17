@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Text, SafeAreaView, ImageBackground, StyleSheet, ScrollView, View } from 'react-native'
+import { Text, SafeAreaView, ImageBackground, StyleSheet, ScrollView, View, Image } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { ListItem } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import DO01 from '../assets/pics/DO01.jpg'
 
 
 
@@ -83,9 +84,11 @@ export default class Results extends Component {
         this.props.navigation.navigate('Details')
     }
 
+    componentDidMount(){
+        this.getItems()
+    }
 
     render() {
-        this.getItems()
         return (
             <ScrollView>
                 <SafeAreaView>
@@ -100,12 +103,14 @@ export default class Results extends Component {
                                     color: 'black',
                                 }}
                                 subtitle={l.description}
+                                //contentContainerStyle={<ImageBackground source={DO01} style={{width:'100%', height:'100%'}} />}
                                 bottomDivider
                                 chevron
                                 onPress={() =>
                                     this.clicked(l)
                                 }
                             />
+                            
                         ))
                     }
                 </SafeAreaView>

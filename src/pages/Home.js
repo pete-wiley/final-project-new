@@ -25,7 +25,7 @@ export default class Home extends Component {
 
   render() {
     return (
-      <ImageBackground source={Bham1} style={{width: '100%', height: '100%'}}>
+      <ImageBackground source={Bham1} style={{width: '100%', height: '100%', zIndex: -1}}>
         <ListItem
         containerStyle = {styles.ListItem1}
         title="Eat"
@@ -87,54 +87,62 @@ export default class Home extends Component {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-between',
   },
   ListItem1: {
     width: "100%",
     height: 144,
-    backgroundColor: 'transparent',
+    backgroundColor:'transparent',
     shadowOffset: {width: .2, height: -2 },
     shadowColor: 'black',
-    shadowOpacity: 5,
-    shadowRadius: 10,
-    borderRadius: 2
+    shadowOpacity: 2,
+    shadowRadius: 3,
+    borderRadius: 2,
+    marginBottom: 4,
+    marginTop: 4
+
+
   },
   ListItem2: {
     width: "100%",
     height: 144,
-    backgroundColor: 'transparent',
+    backgroundColor:'transparent',
     shadowOffset: {width: .2, height: -2 },
     shadowColor: 'black',
-    shadowOpacity: 5,
-    shadowRadius: 10,
-    borderRadius: 2
+    shadowOpacity: 2,
+    shadowRadius: 3,
+    borderRadius: 2,
+    marginBottom: 4,
   },
   ListItem3: {
     width: "100%",
     height: 144,
-    backgroundColor: 'transparent',
+    backgroundColor:'transparent',
     shadowOffset: {width: .2, height: -2 },
     shadowColor: 'black',
-    shadowOpacity: 5,
-    shadowRadius: 10,
-    borderRadius: 2
+    shadowOpacity: 2,
+    shadowRadius: 3,
+    borderRadius: 2,
+    marginBottom: 4
+
   },
   ListItem4: {
     width: "100%",
     height: 144,
-    backgroundColor: 'transparent',
+    backgroundColor:'transparent',
     shadowOffset: {width: .2, height: -2 },
     shadowColor: 'black',
-    shadowOpacity: 5,
-    shadowRadius: 10,
-    borderRadius: 2
+    shadowOpacity: 2,
+    shadowRadius: 3,
+    borderRadius: 2,
+    marginBottom: 4
+
   },
   banner: {
     fontSize: 35,
     alignItems: 'center',
     paddingBottom: 50,
     paddingTop: 45,
-    backgroundColor: 'transparent',
     width: '100%',
     borderRadius: 2,
     color: 'white'

@@ -1,18 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {
   createStackNavigator,
   createAppContainer,
   createDrawerNavigator,
 } from "react-navigation";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  ScrollView,
-} from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { Header } from 'react-native-elements';
 
 import Home from './src/pages/Home'
 import EatResults from './src/pages/EatResults'
@@ -21,7 +13,7 @@ import DoResults from './src/pages/DoResults'
 import DrinkResults from './src/pages/DrinkResults'
 import Details from './src/pages/Details'
 import Profile from './src/pages/Profile'
-// import Map from './src/pages/Map'
+import Map from './src/pages/Map'
 
 
 
@@ -45,23 +37,24 @@ const ProfileStack = createStackNavigator(
 )
   
 
-// const MapStack = createStackNavigator(
-//   {
-//     Map
-//   },
-//   {
-//     defaultNavigationOptions: ({ navigation }) => {
-//       return {
-//         headerLeft:
-//         <Icon
-//           name="bars"
-//           size={30}
-//           tyle={{ paddingLeft: 10 }}
-//           onPress={() => navigation.openDrawer()} />
-//       };
-//     }
-//   }
-// )
+const MapStack = createStackNavigator(
+  {
+    Map:{
+      screen: Map,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerLeft:
+          <Icon
+            name="bars"
+            size={30}
+            style={{ paddingLeft: 10 }}
+            onPress={() => navigation.openDrawer()}
+            />
+        }
+    }
+  },
+  }
+)
 
 
 
@@ -153,7 +146,7 @@ const DrawerNavigator = createDrawerNavigator(
   {
     Home: HomeStack,
     Profile: ProfileStack,
-    // Map: MapStack,
+    Map: MapStack,
     // Contact: ContactStack,
   },
   {
