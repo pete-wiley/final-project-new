@@ -4,7 +4,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { ListItem } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { pics } from '../assets/consts'
-
+import ftPic from '../assets/pics/foodTruck2.png'
 
 export default class EatResults extends Component {
     static navigationOptions = ({ navigation }) => {
@@ -26,7 +26,10 @@ export default class EatResults extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            items: []
+            items: [],
+            itemsFT: [],
+            trucksTitle: '',
+            ftPicState: ''
         }
     }
 
@@ -55,6 +58,28 @@ export default class EatResults extends Component {
         } catch (error) {
             console.log('Something went wrong');
         }
+        try {
+            let response = await fetch('https://bham-gems-api.herokuapp.com/foodtruck', {
+                method: 'GET',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            });
+            let res = await response.json();
+            if (!res) {
+                console.log('Nope');
+            } else {
+                console.log(res);
+                this.setState({
+                    itemsFT: res
+                })
+            }
+        } catch (error) {
+            console.log('Something went wrong');
+        }
+        this.setState({ trucksTitle: 'FOOD TRUCKS'})
+        this.setState({ ftPicState: ftPic})
     }
 
     clicked = (thing) => {
@@ -96,6 +121,42 @@ export default class EatResults extends Component {
                 <SafeAreaView>
                     {
                         this.state.items.map((l, i) => (
+                            <ImageBackground
+                            key={i}
+                            style={{width: '100%'}}
+                            source={pics[l.picid]}
+                            >
+                                <ListItem
+                                    key={i}
+                                    containerStyle={{backgroundColor: 'rgba(25, 25, 25, 0.6)',}}
+                                    title={l.name}
+                                    titleStyle={{
+                                        fontSize: 25,
+                                        paddingBottom: 6,
+                                        color: 'white',
+                                    }}
+                                    subtitle={l.description}
+                                    subtitleStyle={{
+                                        color: 'white'
+                                    }}
+                                    bottomDivider
+                                    chevron
+                                    onPress={() =>
+                                        this.clicked(l)
+                                    }
+                                />
+                            </ImageBackground>
+                        ))
+                    }
+                    <ImageBackground
+                        style= {{width: '100%', backgroundColor: 'rgba(25, 35, 35)'}}
+                        source={this.state.ftPicState}>
+                            <Text h1 style={{textAlign: "center", fontWeight: 'bold', color: 'white',
+                             padding: 0, fontSize: 25, paddingTop: 90}}>
+                            {this.state.trucksTitle}</Text>
+                    </ImageBackground>
+                    {
+                        this.state.itemsFT.map((l, i) => (
                             <ImageBackground
                             key={i}
                             style={{width: '100%'}}
