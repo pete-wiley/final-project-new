@@ -75,7 +75,7 @@ export default class Details extends Component {
                 </View>
                 <View style={styles.Header}>
                     <Text h3 style={{textAlign: 'center', paddingBottom: 10, marginTop: 10}}>{global.item.name}</Text>
-                    <Text h4 style={{textAlign: "center"}}>{global.item.description}</Text>
+                    <Text style={{textAlign: "center", fontSize: 26}}>{global.item.description}</Text>
                 </View>
                 <View style={styles.Bottom}>
                     <Text style={{textAlign: 'center', paddingBottom: 5, fontSize: 20}}>{global.item.opening_hours.weekday_text[global.day]}</Text>
