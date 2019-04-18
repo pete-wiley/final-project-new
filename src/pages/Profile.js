@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { View, SafeAreaView, Image, StyleSheet, ImageBackground } from 'react-native'
-import { Button, Text, ListItem } from 'react-native-elements';
+import { Button, Text, ListItem, Overlay, FormLabel, FormInput, FormValidationMessage } from 'react-native-elements';
 import  Icon  from 'react-native-vector-icons/MaterialCommunityIcons';
 import Sky from '../assets/pics/sky.jpg'
+import Form from './form'
 
 export default class Profile extends Component {
     static navigationOptions = ({ navigation }) => {
@@ -55,6 +56,12 @@ export default class Profile extends Component {
         this.getItems()
     }
 
+    clicked = () =>{
+        this.setState({
+            isVisible: true
+        })
+    }
+
   render() {
     return (
         <SafeAreaView>
@@ -77,7 +84,16 @@ export default class Profile extends Component {
                     <Button
                     title = "Add Food Truck"
                     raised = {true}
+                    onPress={() =>
+                        this.clicked()
+                    }
                     />
+                    <Overlay
+                    isVisible={this.state.isVisible}
+                    onBackdropPress={() => this.setState({ isVisible: false })}
+                    >
+                    <Form/>
+                    </Overlay>
                 </View>
                 <View style={styles.Reviews}>
                     <Text h3 style={{paddingBottom: 20, alignSelf: 'center'}}>My Reviews</Text>
@@ -100,7 +116,6 @@ export default class Profile extends Component {
                         ))
                     }
                 </View>
-                
             </View>
         </SafeAreaView>
     )
