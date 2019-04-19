@@ -4,6 +4,7 @@ import { Button, Text, ListItem, Overlay, FormLabel, FormInput, FormValidationMe
 import  Icon  from 'react-native-vector-icons/MaterialCommunityIcons';
 import Sky from '../assets/pics/sky.jpg'
 import Form from './form'
+import { IDkey } from '../assets/consts'
 
 export default class Profile extends Component {
     static navigationOptions = ({ navigation }) => {
@@ -104,7 +105,7 @@ export default class Profile extends Component {
                                 key={i}
                                 title={l.title}
                                 rightTitle={l.gems}
-                                rightSubtitle={l.businessid}
+                                rightSubtitle={IDkey[l.businessid]}
                                 titleStyle={{
                                     fontSize: 25,
                                     paddingBottom: 6,
