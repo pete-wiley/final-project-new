@@ -4,7 +4,8 @@ import { Button, Text, ListItem, Overlay, Rating, FormLabel, FormInput, FormVali
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Sky from '../assets/pics/sky.jpg'
 import Form from './form'
-import { IDkey } from '../assets/consts'
+import { IDkey  } from '../assets/consts' 
+import Gem from '../assets/pics/gemIcon.png'
 
 export default class Profile extends Component {
     static navigationOptions = ({ navigation }) => {
@@ -64,62 +65,72 @@ export default class Profile extends Component {
         })
     }
 
-  render() {
-    return (
-        <SafeAreaView>
+    render() {
+        return (
+            <SafeAreaView>
                 <ImageBackground
-                source={Sky}
-                style={styles.UserInfo}>
+                    source={Sky}
+                    style={styles.UserInfo}>
                     <View style={styles.Image}>
                         <Image
-                        style = {{width: 100, height: 100}}
-                        borderRadius= {50}
-                        source={{uri: "https://411mania.com/wp-content/uploads/2018/04/John-Cena-Raw-4218-645x370.jpg"}}/>
+                            style={{ width: 100, height: 100 }}
+                            borderRadius={50}
+                            source={{ uri: "https://411mania.com/wp-content/uploads/2018/04/John-Cena-Raw-4218-645x370.jpg" }} />
                     </View>
                     <View style={styles.Name}>
-                        <Text style={{fontSize: 35}}>John Cena</Text>
-                        <Text style={{fontSize: 16}}>Johnnie@gmail.com</Text>
+                        <Text style={{ fontSize: 35 }}>John Cena</Text>
+                        <Text style={{ fontSize: 16 }}>Johnnie@gmail.com</Text>
                     </View>
                 </ImageBackground>
-            <View style={styles.UserContent}>
-                <View style={styles.FoodTruck}>
-                    <Button
-                    title = "Add Food Truck"
-                    raised = {true}
-                    onPress={() =>
-                        this.clicked()
-                    }
-                    />
-                    <Overlay
-                    isVisible={this.state.isVisible}
-                    onBackdropPress={() => this.setState({ isVisible: false })}
-                    >
-                    <Form/>
-                    </Overlay>
+                <View style={styles.UserContent}>
+                    <View style={styles.FoodTruck}>
+                        <Button
+                            title="Add Food Truck"
+                            raised={true}
+                            onPress={() =>
+                                this.clicked()
+                            }
+                        />
+                        <Overlay
+                            isVisible={this.state.isVisible}
+                            onBackdropPress={() => this.setState({ isVisible: false })}
+                        >
+                            <Form />
+                        </Overlay>
+                    </View>
+                    <View style={styles.Reviews}>
+                        <Text h3 style={{ paddingBottom: 20, alignSelf: 'center' }}>My Reviews</Text>
+                        {/* mapping through reviews */}
+                        {
+                            this.state.items.map((l, i) => (
+                                <>
+                                <Rating
+                                    type='custom'
+                                    ratingImage={Gem}
+                                    ratingCount={l.gems}
+                                    ratingTextColor='lightblue'
+                                    ratingColor=''
+                                    imageSize={30}
+                                    onFinishRating={this.ratingCompleted}
+                                />
+                                <ListItem
+                                    key={i}
+                                    title={l.title}
+                                    rightSubtitle={IDkey[l.businessid]}
+                                    titleStyle={{
+                                        fontSize: 25,
+                                        paddingBottom: 6,
+                                        color: 'black',
+                                    }}
+                                    subtitle={l.reviewBody}
+                                    bottomDivider
+                                />
+                                </>
+                            ))
+                        }
+                    </View>
                 </View>
-                <View style={styles.Reviews}>
-                    <Text h3 style={{paddingBottom: 20, alignSelf: 'center'}}>My Reviews</Text>
-                    {/* mapping through reviews */}
-                    {
-                        this.state.items.map((l, i) => (
-                            <ListItem
-                                key={i}
-                                title={l.title}
-                                rightTitle={l.gems}
-                                rightSubtitle={IDkey[l.businessid]}
-                                titleStyle={{
-                                    fontSize: 25,
-                                    paddingBottom: 6,
-                                    color: 'black',
-                                }}
-                                subtitle={l.reviewBody}
-                                bottomDivider
-                            />
-                        ))
-                    }
-                </View>
-            </View>
-        </SafeAreaView>
+            </SafeAreaView>
         )
     }
 }
