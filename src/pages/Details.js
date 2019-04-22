@@ -101,6 +101,7 @@ export default class Details extends Component {
                             title={l.title}
                             rightTitle={
                                 <Rating
+<<<<<<< HEAD
                             type='custom'
                             ratingImage={Gem}
                             ratingCount={l.gems}
@@ -109,6 +110,16 @@ export default class Details extends Component {
                             imageSize={30}
                             onFinishRating={this.ratingCompleted}
                             />
+=======
+                                type='custom'
+                                ratingImage={Gem}
+                                ratingCount={l.gems}
+                                ratingTextColor='lightblue'
+                                ratingColor=''
+                                imageSize={30}
+                                onFinishRating={this.ratingCompleted}
+                                />
+>>>>>>> 9b2962a160520b2dd2521d90885f78869a4fa4cb
                             }
                             rightSubtitle={l.reviewer}
                             titleStyle={{
