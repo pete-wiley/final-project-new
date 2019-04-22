@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Sky from '../assets/pics/sky.jpg'
 import Form from './form'
 import { IDkey } from '../assets/consts'
+import Gem from '../assets/pics/gemIcon.png'
 
 export default class Profile extends Component {
     static navigationOptions = ({ navigation }) => {
@@ -102,10 +103,20 @@ export default class Profile extends Component {
                     {/* mapping through reviews */}
                     {
                         this.state.items.map((l, i) => (
-                            <ListItem
+                                <ListItem
                                 key={i}
                                 title={l.title}
-                                rightTitle={l.gems}
+                                rightTitle={
+                                    <Rating
+                                type='custom'
+                                ratingImage={Gem}
+                                ratingCount={l.gems}
+                                ratingTextColor='lightblue'
+                                ratingColor=''
+                                imageSize={30}
+                                onFinishRating={this.ratingCompleted}
+                                />
+                                }
                                 rightSubtitle={IDkey[l.businessid]}
                                 titleStyle={{
                                     fontSize: 25,
