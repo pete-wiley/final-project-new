@@ -78,8 +78,8 @@ export default class EatResults extends Component {
         } catch (error) {
             console.log('Something went wrong');
         }
-        this.setState({ trucksTitle: 'FOOD TRUCKS'})
-        this.setState({ ftPicState: ftPic})
+        this.setState({ trucksTitle: 'FOOD TRUCKS' })
+        this.setState({ ftPicState: ftPic })
     }
 
     clicked = (thing) => {
@@ -111,6 +111,29 @@ export default class EatResults extends Component {
         this.props.navigation.navigate('Details')
     }
 
+    FTclicked = (thing) => {
+        if (thing.opening_hours.weekday_text === undefined) {
+            global.item = thing
+            global.day = 0
+            if (thing.opening_hours.open.time === "") {
+                global.item.opening_hours.weekday_text = [
+                    "Closed"
+                ]
+            } //else times have been updated, make readable weekday text for today HERE
+            ///////////////////////////////////////////////////////////////////////////
+        } else if (thing.opening_hours.weekday_text.length == 7) {
+            global.item = thing
+            n = new Date()
+            d = n.getDay()
+            if (d == 0) {
+                global.day = 6
+            } else {
+                global.day = (d - 1)
+            }
+        }
+        this.props.navigation.navigate('Details')
+    }
+
     componentDidMount() {
         this.getItems()
     }
@@ -122,13 +145,13 @@ export default class EatResults extends Component {
                     {
                         this.state.items.map((l, i) => (
                             <ImageBackground
-                            key={i}
-                            style={{width: '100%'}}
-                            source={pics[l.picid]}
+                                key={i}
+                                style={{ width: '100%' }}
+                                source={pics[l.picid]}
                             >
                                 <ListItem
                                     key={i}
-                                    containerStyle={{backgroundColor: 'rgba(25, 25, 25, 0.6)',}}
+                                    containerStyle={{ backgroundColor: 'rgba(25, 25, 25, 0.6)', }}
                                     title={l.name}
                                     titleStyle={{
                                         fontSize: 25,
@@ -149,22 +172,24 @@ export default class EatResults extends Component {
                         ))
                     }
                     <ImageBackground
-                        style= {{width: '100%', backgroundColor: 'rgba(25, 35, 35)'}}
+                        style={{ width: '100%', backgroundColor: 'rgba(25, 35, 35)' }}
                         source={this.state.ftPicState}>
-                            <Text h1 style={{textAlign: "center", fontWeight: 'bold', color: 'white',
-                             padding: 0, fontSize: 25, paddingTop: 90}}>
+                        <Text h1 style={{
+                            textAlign: "center", fontWeight: 'bold', color: 'white',
+                            padding: 0, fontSize: 25, paddingTop: 90
+                        }}>
                             {this.state.trucksTitle}</Text>
                     </ImageBackground>
                     {
                         this.state.itemsFT.map((l, i) => (
                             <ImageBackground
-                            key={i}
-                            style={{width: '100%'}}
-                            source={pics[l.picid]}
+                                key={i}
+                                style={{ width: '100%' }}
+                                source={pics[l.picid]}
                             >
                                 <ListItem
                                     key={i}
-                                    containerStyle={{backgroundColor: 'rgba(25, 25, 25, 0.6)',}}
+                                    containerStyle={{ backgroundColor: 'rgba(25, 25, 25, 0.6)', }}
                                     title={l.name}
                                     titleStyle={{
                                         fontSize: 25,
@@ -178,7 +203,7 @@ export default class EatResults extends Component {
                                     bottomDivider
                                     chevron
                                     onPress={() =>
-                                        this.clicked(l)
+                                        this.FTclicked(l)
                                     }
                                 />
                             </ImageBackground>
