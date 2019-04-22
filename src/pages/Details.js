@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { View, SafeAreaView, StyleSheet, Linking } from 'react-native'
-import { Text, Image, ListItem } from 'react-native-elements'
+import { Text, Image, ListItem, Rating } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { ScrollView } from 'react-native-gesture-handler';
 import { pics } from '../assets/consts'
 import LaunchNavigator from 'react-native-launch-navigator';
+import Gem from '../assets/pics/gemIcon.png'
 
 export default class Details extends Component {
     static navigationOptions = ({ navigation }) => {
@@ -14,12 +15,15 @@ export default class Details extends Component {
             headerStyle: { backgroundColor: '#CFDBD5' },
             headerTitleStyle: { fontSize: 25 },
             headerRight:
-                <Icon
-                    name="diamond-stone"
-                    color="blue"
-                    size={45}
-                    style={{ paddingRight: 10 }}
-                />
+            <Rating
+            style={{paddingRight: 102}}
+            type='custom'
+            ratingImage={Gem}
+            ratingCount='1'
+            ratingColor=''
+            imageSize={40}
+            onFinishRating={this.ratingCompleted}
+          />
         }
     }
 
@@ -95,7 +99,17 @@ export default class Details extends Component {
                         <ListItem
                             key={i}
                             title={l.title}
-                            rightTitle={l.gems}
+                            rightTitle={
+                                <Rating
+                            type='custom'
+                            ratingImage={Gem}
+                            ratingCount={l.gems}
+                            ratingTextColor='lightblue'
+                            ratingColor=''
+                            imageSize={30}
+                            onFinishRating={this.ratingCompleted}
+                            />
+                            }
                             rightSubtitle={l.reviewer}
                             titleStyle={{
                                 fontSize: 25,

@@ -4,7 +4,7 @@ import { Button, Text, ListItem, Overlay, Rating, FormLabel, FormInput, FormVali
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Sky from '../assets/pics/sky.jpg'
 import Form from './form'
-import { IDkey  } from '../assets/consts' 
+import { IDkey } from '../assets/consts'
 import Gem from '../assets/pics/gemIcon.png'
 
 export default class Profile extends Component {
@@ -14,12 +14,15 @@ export default class Profile extends Component {
             headerStyle: { backgroundColor: '#CFDBD5' },
             headerTitleStyle: { fontSize: 25 },
             headerRight:
-                <Icon
-                    name="diamond-stone"
-                    color="blue"
-                    size={45}
-                    style={{ paddingRight: 10 }}
-                />
+            <Rating
+            style={{ paddingRight: 100 }}
+            type='custom'
+            ratingImage={Gem}
+            ratingCount='1'
+            ratingColor=''
+            imageSize={40}
+            onFinishRating={this.ratingCompleted}
+        />
         }
     }
 
@@ -82,53 +85,53 @@ export default class Profile extends Component {
                         <Text style={{ fontSize: 16 }}>Johnnie@gmail.com</Text>
                     </View>
                 </ImageBackground>
-                <View style={styles.UserContent}>
-                    <View style={styles.FoodTruck}>
-                        <Button
-                            title="Add Food Truck"
-                            raised={true}
-                            onPress={() =>
-                                this.clicked()
-                            }
-                        />
-                        <Overlay
-                            isVisible={this.state.isVisible}
-                            onBackdropPress={() => this.setState({ isVisible: false })}
-                        >
-                            <Form />
-                        </Overlay>
-                    </View>
-                    <View style={styles.Reviews}>
-                        <Text h3 style={{ paddingBottom: 20, alignSelf: 'center' }}>My Reviews</Text>
-                        {/* mapping through reviews */}
-                        {
-                            this.state.items.map((l, i) => (
-                                <>
-                                <Rating
-                                    type='custom'
-                                    ratingImage={Gem}
-                                    ratingCount={l.gems}
-                                    ratingTextColor='lightblue'
-                                    ratingColor=''
-                                    imageSize={30}
-                                    onFinishRating={this.ratingCompleted}
-                                />
+            <View style={styles.UserContent}>
+                <View style={styles.FoodTruck}>
+                    <Button
+                    title = "Add Food Truck"
+                    raised = {true}
+                    onPress={() =>
+                        this.clicked()
+                    }
+                    />
+                    <Overlay
+                    isVisible={this.state.isVisible}
+                    onBackdropPress={() => this.setState({ isVisible: false })}
+                    >
+                    <Form/>
+                    </Overlay>
+                </View>
+                <View style={styles.Reviews}>
+                    <Text h3 style={{paddingBottom: 20, alignSelf: 'center'}}>My Reviews</Text>
+                    {/* mapping through reviews */}
+                    {
+                        this.state.items.map((l, i) => (
                                 <ListItem
-                                    key={i}
-                                    title={l.title}
-                                    rightSubtitle={IDkey[l.businessid]}
-                                    titleStyle={{
-                                        fontSize: 25,
-                                        paddingBottom: 6,
-                                        color: 'black',
-                                    }}
-                                    subtitle={l.reviewBody}
-                                    bottomDivider
+                                key={i}
+                                title={l.title}
+                                rightTitle={
+                                    <Rating
+                                type='custom'
+                                ratingImage={Gem}
+                                ratingCount={l.gems}
+                                ratingTextColor='lightblue'
+                                ratingColor=''
+                                imageSize={30}
+                                onFinishRating={this.ratingCompleted}
                                 />
-                                </>
-                            ))
-                        }
-                    </View>
+                                }
+                                rightSubtitle={IDkey[l.businessid]}
+                                titleStyle={{
+                                    fontSize: 25,
+                                    paddingBottom: 6,
+                                    color: 'black',
+                                }}
+                                subtitle={l.reviewBody}
+                                bottomDivider
+                            />
+                        ))
+                    }
+                </View>
                 </View>
             </SafeAreaView>
         )
