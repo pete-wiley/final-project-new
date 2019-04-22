@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, TextInput, Picker } from 'react-native'
+import { Text, View, TextInput, Picker, StyleSheet } from 'react-native'
 
 
 export default class Form extends Component {
@@ -16,17 +16,21 @@ export default class Form extends Component {
 
   render() {
     return (
-      <View>
+      <View style={{flexDirection: 'column', alignSelf: 'center'}}>
           <TextInput
             placeholder="Location"
             maxLength={50}
+            style = {styles.input}
             onChangeText={location => this.setState({ location })}
           />
-          <View>
-            <Text style={{alignSelf: 'flex-start'}}>Open Time</Text>
+          <View style={{flexDirection: 'row'}}>
+            <Text style={{ paddingRight: 10}}>Opening</Text>
+            <Text>Closing</Text>
+          </View>
+          <View style={{flexDirection: 'row'}}> 
             <Picker
               selectedValue={this.state.openTime}
-              style={{height: 50, width: 100, alignSelf: 'flex-start'}}
+              style={{height: 50, width: 75, paddingRight: 10}}
               onValueChange={(itemValue, itemIndex) =>
                 this.setState({openTime: itemValue})
               }>
@@ -48,13 +52,9 @@ export default class Form extends Component {
               <Picker.Item label="11pm" value="11pm"/>
               <Picker.Item label="12am" value="12am"/>
             </Picker>
-          </View>
-
-          <View>
-            <Text style={{alignSelf: 'flex-end'}} >Close Time</Text>
             <Picker
               selectedValue={this.state.closeTime}
-              style={{height: 50, width: 100, alignSelf: 'flex-end'}}
+              style={{height: 50, width: 75}}
               onValueChange={(itemValue, itemIndex) =>
                 this.setState({closeTime: itemValue})
               }>
@@ -77,9 +77,16 @@ export default class Form extends Component {
               <Picker.Item label="12am" value="12am"/>
             </Picker>
           </View>
-          
       </View>
     )
   }
 }
 
+const styles = StyleSheet.create({
+  input:{
+    borderBottomWidth: 1, 
+    width: '50%', 
+    height: '20%',
+    alignSelf: 'center'
+  }
+})
