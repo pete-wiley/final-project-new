@@ -14,12 +14,15 @@ export default class Profile extends Component {
             headerStyle: { backgroundColor: '#CFDBD5' },
             headerTitleStyle: { fontSize: 25 },
             headerRight:
-                <Icon
-                    name="diamond-stone"
-                    color="blue"
-                    size={45}
-                    style={{ paddingRight: 10 }}
-                />
+            <Rating
+            style={{ paddingRight: 100 }}
+            type='custom'
+            ratingImage={Gem}
+            ratingCount='1'
+            ratingColor=''
+            imageSize={40}
+            onFinishRating={this.ratingCompleted}
+        />
         }
     }
 
@@ -65,21 +68,21 @@ export default class Profile extends Component {
         })
     }
 
-  render() {
-    return (
-        <SafeAreaView>
+    render() {
+        return (
+            <SafeAreaView>
                 <ImageBackground
-                source={Sky}
-                style={styles.UserInfo}>
+                    source={Sky}
+                    style={styles.UserInfo}>
                     <View style={styles.Image}>
                         <Image
-                        style = {{width: 100, height: 100}}
-                        borderRadius= {50}
-                        source={{uri: "https://411mania.com/wp-content/uploads/2018/04/John-Cena-Raw-4218-645x370.jpg"}}/>
+                            style={{ width: 100, height: 100 }}
+                            borderRadius={50}
+                            source={{ uri: "https://411mania.com/wp-content/uploads/2018/04/John-Cena-Raw-4218-645x370.jpg" }} />
                     </View>
                     <View style={styles.Name}>
-                        <Text style={{fontSize: 35}}>John Cena</Text>
-                        <Text style={{fontSize: 16}}>Johnnie@gmail.com</Text>
+                        <Text style={{ fontSize: 35 }}>John Cena</Text>
+                        <Text style={{ fontSize: 16 }}>Johnnie@gmail.com</Text>
                     </View>
                 </ImageBackground>
             <View style={styles.UserContent}>
@@ -129,8 +132,8 @@ export default class Profile extends Component {
                         ))
                     }
                 </View>
-            </View>
-        </SafeAreaView>
+                </View>
+            </SafeAreaView>
         )
     }
 }
