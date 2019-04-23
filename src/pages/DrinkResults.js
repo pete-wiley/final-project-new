@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import { Text, SafeAreaView, ImageBackground, StyleSheet, ScrollView, View } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { ListItem } from 'react-native-elements'
+import { ListItem, Rating } from 'react-native-elements'
 import { pics } from '../assets/consts'
+import Gem from '../assets/pics/gemIcon.png'
 
 
 
@@ -15,12 +16,15 @@ export default class Results extends Component {
             headerBackTitle: null,
             headerTitleStyle: { fontSize: 25 },
             headerRight:
-                <Icon
-                    name="diamond-stone"
-                    color="blue"
-                    size={45}
-                    style={{ paddingRight: 10 }}
-                />
+            <Rating
+            style={{ paddingRight: 70 }}
+            type='custom'
+            ratingImage={Gem}
+            ratingCount='1'
+            ratingColor=''
+            imageSize={40}
+            onFinishRating={this.ratingCompleted}
+        />
         }
     }
 

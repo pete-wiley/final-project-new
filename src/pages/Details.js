@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { View, SafeAreaView, StyleSheet, Linking } from 'react-native'
-import { Text, Image, ListItem, Button, Overlay, Input } from 'react-native-elements'
+import { Text, Image, ListItem, Button, Overlay, Input, Rating, AirbnbRating } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { ScrollView } from 'react-native-gesture-handler';
 import { pics } from '../assets/consts'
 import LaunchNavigator from 'react-native-launch-navigator';
+import Gem from '../assets/pics/gemIcon.png'
 
 export default class Details extends Component {
     static navigationOptions = ({ navigation }) => {
@@ -14,11 +15,14 @@ export default class Details extends Component {
             headerStyle: { backgroundColor: '#CFDBD5' },
             headerTitleStyle: { fontSize: 25 },
             headerRight:
-                <Icon
-                    name="diamond-stone"
-                    color="blue"
-                    size={45}
-                    style={{ paddingRight: 10 }}
+                <Rating
+                    style={{ paddingRight: 102 }}
+                    type='custom'
+                    ratingImage={Gem}
+                    ratingCount='1'
+                    ratingColor=''
+                    imageSize={40}
+                    onFinishRating={this.ratingCompleted}
                 />
         }
     }
@@ -32,7 +36,8 @@ export default class Details extends Component {
             newRatingPicker: ["circle-medium", "circle-medium", "circle-medium", "circle-medium", "circle-medium",],
             newRatingNumber: 0,
             reviewTitle: '',
-            reviewBody: ''
+            reviewBody: '',
+            reviewer: 'John Cena'
         };
     }
 
@@ -60,6 +65,37 @@ export default class Details extends Component {
         }
     }
 
+    addReview = async () => {
+        try {
+            let response = await fetch(`https://bham-gems-api.herokuapp.com/reviews`, {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    title: this.state.reviewTitle,
+                    reviewBody: this.state.reviewBody,
+                    reviewer: this.state.reviewer,
+                    gems: this.state.newRatingNumber,
+                    businessid: global.item.picid
+                })
+            })
+            let res = await response.json();
+            if (res.errors) {
+                this.setState({ errors: res.errors });
+            } else {
+                this.setState({
+                    isVisible: false
+                })
+                this.getItems()
+            }
+        } catch (errors) {
+            console.log('catch err');
+            console.log(errors);
+        }
+    }
+
     componentDidMount() {
         this.getItems()
     }
@@ -79,7 +115,16 @@ export default class Details extends Component {
                     onBackdropPress={() => this.setState({ isVisible: false })}
                 >
                     <View style={{ flexDirection: 'column' }}>
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginTop: 50 }}>
+
+                        <AirbnbRating
+                            count={5}
+                            defaultRating={11}
+                            size={40}
+                            type='heart'
+                        />
+
+
+                        {/* <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginTop: 50 }}>
                             <Icon
                                 name={this.state.newRatingPicker[0]}
                                 color='gray'
@@ -175,7 +220,7 @@ export default class Details extends Component {
                                     }
                                 }}
                             />
-                        </View>
+                        </View> */}
                         <Input
                             inputContainerStyle={{
                                 borderColor: 'black',
@@ -186,6 +231,7 @@ export default class Details extends Component {
                                 marginTop: 50
                             }}
                             placeholder='Review Title'
+                            onChangeText={(reviewTitle) => this.setState({ reviewTitle })}
                         />
                         <Input
                             inputContainerStyle={{
@@ -199,8 +245,9 @@ export default class Details extends Component {
                                 height: 300
                             }}
                             placeholder='Type your review here'
+                            onChangeText={(reviewBody) => this.setState({ reviewBody })}
                         />
-                        <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
                             <Button
                                 buttonStyle={{
                                     height: 50,
@@ -210,6 +257,9 @@ export default class Details extends Component {
                                     backgroundColor: '#f44336'
                                 }}
                                 title='Cancel'
+                                onPress={() => this.setState({
+                                    isVisible: false
+                                })}
                             />
                             <Button
                                 buttonStyle={{
@@ -220,6 +270,9 @@ export default class Details extends Component {
                                     backgroundColor: '#509f67'
                                 }}
                                 title='Submit'
+                                onPress={() =>
+                                    this.addReview()
+                                }
                             />
                         </View>
                     </View>
@@ -270,15 +323,23 @@ export default class Details extends Component {
                             <ListItem
                                 key={i}
                                 title={l.title}
-                                rightTitle={l.gems}
+                                rightTitle={
+                                    <Rating
+                                        type='custom'
+                                        ratingImage={Gem}
+                                        ratingCount={l.gems}
+                                        ratingTextColor='lightblue'
+                                        ratingColor=''
+                                        imageSize={30}
+                                        onFinishRating={this.ratingCompleted}
+                                    />
+                                }
                                 rightSubtitle={l.reviewer}
                                 titleStyle={{
                                     fontSize: 25,
                                     paddingBottom: 6,
                                     color: 'black',
                                 }}
-                                subtitle={l.reviewBody}
-                                bottomDivider
                             />
                         ))
                     }
