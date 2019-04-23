@@ -16,7 +16,7 @@ export default class Form extends Component {
 
   render() {
     return (
-      <View style={{flexDirection: 'column', alignSelf: 'center'}}>
+      <View style={{flexDirection: 'column', alignSelf: 'center', justifyContent: 'center'}}>
           <TextInput
             placeholder="Location"
             maxLength={50}
@@ -24,13 +24,14 @@ export default class Form extends Component {
             onChangeText={location => this.setState({ location })}
           />
           <View style={{flexDirection: 'row'}}>
-            <Text style={{ paddingRight: 10}}>Opening</Text>
-            <Text>Closing</Text>
-          </View>
-          <View style={{flexDirection: 'row'}}> 
+            
+            
+          
+          <View style={{flexDirection: 'column'}}> 
+          <Text style={{ marginRight: 10, fontSize: 30}}>Opening</Text>
             <Picker
               selectedValue={this.state.openTime}
-              style={{height: 50, width: 75, paddingRight: 10}}
+              style={{height: 50, width: 75, marginRight: 10}}
               onValueChange={(itemValue, itemIndex) =>
                 this.setState({openTime: itemValue})
               }>
@@ -52,6 +53,9 @@ export default class Form extends Component {
               <Picker.Item label="11pm" value="11pm"/>
               <Picker.Item label="12am" value="12am"/>
             </Picker>
+            </View>
+            <View style={{ flexDirection: 'column'}}>
+            <Text style={{ fontSize: 30}}>Closing</Text>
             <Picker
               selectedValue={this.state.closeTime}
               style={{height: 50, width: 75}}
@@ -77,6 +81,7 @@ export default class Form extends Component {
               <Picker.Item label="12am" value="12am"/>
             </Picker>
           </View>
+          </View>
       </View>
     )
   }
@@ -85,7 +90,7 @@ export default class Form extends Component {
 const styles = StyleSheet.create({
   input:{
     borderBottomWidth: 1, 
-    width: '50%', 
+    width: 180, 
     height: '20%',
     alignSelf: 'center'
   }
