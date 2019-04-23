@@ -28,7 +28,7 @@ export default class Home extends Component {
       <ImageBackground source={Bham1} style={{width: '100%', height: '100%', zIndex: -1}}>
         <ListItem
         containerStyle = {styles.ListItem1}
-        title="Eat"
+        title="Eat" 
         titleStyle={{ color: 'white', fontWeight: 'bold', fontSize: 35 }}
         leftIcon = {
           <Icon
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     borderRadius: 2,
     marginBottom: 4,
-    marginTop: 4
+    marginTop: 4,
 
 
   },
@@ -146,5 +146,11 @@ const styles = StyleSheet.create({
     width: '100%',
     borderRadius: 2,
     color: 'white'
+  },
+  fontStyle: {
+    fontFamily: 'Catamaran',
   }
+
+  
 })
+   

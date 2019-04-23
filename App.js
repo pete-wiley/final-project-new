@@ -16,7 +16,6 @@ import Profile from './src/pages/Profile'
 import Map from './src/pages/Map'
 
 
-
 const ProfileStack = createStackNavigator(
   {
     Profile:{

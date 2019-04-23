@@ -77,7 +77,7 @@ export default class Details extends Component {
                 </View>
                 <View style={styles.Header}>
                     <Text h3 style={{ textAlign: 'center', paddingBottom: 10, marginTop: 10 }}>{global.item.name}</Text>
-                    <Text style={{ textAlign: "center", fontSize: 26 }}>{global.item.description}</Text>
+                    <Text style={{ textAlign: "center", fontSize: 20 }}>{global.item.description}</Text>
                 </View>
                 <View style={styles.Bottom}>
                     <Text style={{ textAlign: 'center', paddingBottom: 5, fontSize: 20 }}>{global.item.opening_hours.weekday_text[global.day]}</Text>
@@ -86,19 +86,24 @@ export default class Details extends Component {
                         .then(() => console.log("Launched navigator"))
                         .catch((err) => console.error("Error launching navigator: " + err)) }>{global.item.formatted_address}</Text>
                 {/* make this link to a phone call */}
-                <Text style={{ textAlign: 'center', paddingBottom: 5, fontSize: 20 }} onPress={() => Linking.openURL(`tel:${Phone}`)}>{Phone}</Text>
+                <Text style={{ textAlign: 'center', paddingBottom: 5, fontSize: 20, color: 'blue' }} onPress={() => Linking.openURL(`tel:${Phone}`)}>{Phone}</Text>
                 {/* Style the link maybe a touchable opacity */}
                 <Text style={styles.Website} onPress={() => Linking.openURL(url)}>Check out the Website</Text>
                 {/* The Mapping for reviews */}
                 {
                     this.state.items.map((l, i) => (
                         <ListItem
+                            containerStyle={{
+                                backgroundColor: '#cce6ff', 
+                                paddingLeft: 10, 
+                                paddingRight: 10,
+                            }}
                             key={i}
                             title={l.title}
                             rightTitle={l.gems}
                             rightSubtitle={l.reviewer}
                             titleStyle={{
-                                fontSize: 25,
+                                fontSize: 20,
                                 paddingBottom: 6,
                                 color: 'black',
                             }}
@@ -118,9 +123,14 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+        paddingLeft: 10, 
+        paddingRight: 10,
     },
     Bottom: {
         marginTop: 25,
+        paddingLeft: 10, 
+        paddingRight: 10,
+
     },
     Website: {
         textAlign: 'center',
@@ -128,7 +138,8 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontStyle: 'italic',
         fontWeight: 'bold',
-        color: '#2A3D45'
+        color: '#2A3D45',
+        textDecorationLine: 'underline'
     },
     Image: {
         shadowOffset: { width: .2, height: 2 },
