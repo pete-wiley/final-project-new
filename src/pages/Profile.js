@@ -97,6 +97,8 @@ export default class Profile extends Component {
                     <Overlay
                     isVisible={this.state.isVisible}
                     onBackdropPress={() => this.setState({ isVisible: false })}
+                    width="auto"
+                    height="auto"
                     >
                     <Form/>
                     </Overlay>
