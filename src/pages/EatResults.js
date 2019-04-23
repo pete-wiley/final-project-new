@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { Text, SafeAreaView, ImageBackground, StyleSheet, ScrollView, View, Image } from 'react-native'
+import { Text, SafeAreaView, ImageBackground, StyleSheet, ScrollView,  View, Image } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { ListItem } from 'react-native-elements'
+import { ListItem, Rating } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { pics } from '../assets/consts'
 import ftPic from '../assets/pics/foodTruck2.png'
+import Gem from '../assets/pics/gemIcon.png'
 
 export default class EatResults extends Component {
     static navigationOptions = ({ navigation }) => {
@@ -14,11 +15,14 @@ export default class EatResults extends Component {
             headerBackTitle: null,
             headerTitleStyle: { fontSize: 25 },
             headerRight:
-                <Icon
-                    name="diamond-stone"
-                    color="blue"
-                    size={45}
-                    style={{ paddingRight: 10 }}
+                <Rating
+                    style={{ paddingRight: 80 }}
+                    type='custom'
+                    ratingImage={Gem}
+                    ratingCount='1'
+                    ratingColor=''
+                    imageSize={40}
+                    onFinishRating={this.ratingCompleted}
                 />
         }
     }

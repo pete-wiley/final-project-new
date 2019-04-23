@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { View, SafeAreaView, StyleSheet, Linking } from 'react-native'
-import { Text, Image, ListItem } from 'react-native-elements'
+import { Text, Image, ListItem, Button, Overlay, Input, Rating, AirbnbRating } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { ScrollView } from 'react-native-gesture-handler';
 import { pics } from '../assets/consts'
 import LaunchNavigator from 'react-native-launch-navigator';
+import Gem from '../assets/pics/gemIcon.png'
 
 export default class Details extends Component {
     static navigationOptions = ({ navigation }) => {
@@ -14,11 +15,14 @@ export default class Details extends Component {
             headerStyle: { backgroundColor: '#CFDBD5' },
             headerTitleStyle: { fontSize: 25 },
             headerRight:
-                <Icon
-                    name="diamond-stone"
-                    color="blue"
-                    size={45}
-                    style={{ paddingRight: 10 }}
+                <Rating
+                    style={{ paddingRight: 102 }}
+                    type='custom'
+                    ratingImage={Gem}
+                    ratingCount='1'
+                    ratingColor=''
+                    imageSize={40}
+                    onFinishRating={this.ratingCompleted}
                 />
         }
     }
@@ -28,6 +32,12 @@ export default class Details extends Component {
         this.state = {
             days: [],
             items: [],
+            isVisible: false,
+            newRatingPicker: ["circle-medium", "circle-medium", "circle-medium", "circle-medium", "circle-medium",],
+            newRatingNumber: 0,
+            reviewTitle: '',
+            reviewBody: '',
+            reviewer: 'John Cena'
         };
     }
 
@@ -55,6 +65,37 @@ export default class Details extends Component {
         }
     }
 
+    addReview = async () => {
+        try {
+            let response = await fetch(`https://bham-gems-api.herokuapp.com/reviews`, {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    title: this.state.reviewTitle,
+                    reviewBody: this.state.reviewBody,
+                    reviewer: this.state.reviewer,
+                    gems: this.state.newRatingNumber,
+                    businessid: global.item.picid
+                })
+            })
+            let res = await response.json();
+            if (res.errors) {
+                this.setState({ errors: res.errors });
+            } else {
+                this.setState({
+                    isVisible: false
+                })
+                this.getItems()
+            }
+        } catch (errors) {
+            console.log('catch err');
+            console.log(errors);
+        }
+    }
+
     componentDidMount() {
         this.getItems()
     }
@@ -69,6 +110,175 @@ export default class Details extends Component {
 
         return (
             <ScrollView style={{ marginBottom: 60 }}>
+                <Overlay
+                    isVisible={this.state.isVisible}
+                    onBackdropPress={() => this.setState({ isVisible: false })}
+                >
+                    <View style={{ flexDirection: 'column' }}>
+
+                        <AirbnbRating
+                            count={5}
+                            defaultRating={11}
+                            size={40}
+                            type='heart'
+                        />
+
+
+                        {/* <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginTop: 50 }}>
+                            <Icon
+                                name={this.state.newRatingPicker[0]}
+                                color='gray'
+                                size={40}
+                                onPress={() => {
+                                    this.setState({
+                                        newRatingNumber: 1
+                                    })
+                                    console.log("new rating number: " + this.state.newRatingNumber)
+                                    for (i = 0; i < 1; i++) {
+                                        this.state.newRatingPicker[i] = 'diamond-stone'
+                                        console.log(i + 'changed to gem')
+                                    }
+                                    for (j = 1; j < 6; j++) {
+                                        this.state.newRatingPicker[j] = 'circle-medium'
+                                        console.log(j + 'changed to circle')
+                                    }
+                                }}
+                            />
+                            <Icon
+                                name={this.state.newRatingPicker[1]}
+                                color='gray'
+                                size={40}
+                                onPress={() => {
+                                    this.setState({
+                                        newRatingNumber: 2
+                                    })
+                                    console.log("new rating number: " + this.state.newRatingNumber)
+                                    for (i = 0; i < 2; i++) {
+                                        this.state.newRatingPicker[i] = 'diamond-stone'
+                                        console.log(i + 'changed to gem')
+                                    }
+                                    for (j = 2; j < 6; j++) {
+                                        this.state.newRatingPicker[j] = 'circle-medium'
+                                        console.log(j + 'changed to circle')
+                                    }
+                                }}
+                            />
+                            <Icon
+                                name={this.state.newRatingPicker[2]}
+                                color='gray'
+                                size={40}
+                                onPress={() => {
+                                    this.setState({
+                                        newRatingNumber: 3
+                                    })
+                                    console.log("new rating number: " + this.state.newRatingNumber)
+                                    for (i = 0; i < 3; i++) {
+                                        this.state.newRatingPicker[i] = 'diamond-stone'
+                                        console.log(i + 'changed to gem')
+                                    }
+                                    for (j = 3; j < 6; j++) {
+                                        this.state.newRatingPicker[j] = 'circle-medium'
+                                        console.log(j + 'changed to circle')
+                                    }
+                                }}
+                            />
+                            <Icon
+                                name={this.state.newRatingPicker[3]}
+                                color='gray'
+                                size={40}
+                                onPress={() => {
+                                    this.setState({
+                                        newRatingNumber: 4
+                                    })
+                                    console.log("new rating number: " + this.state.newRatingNumber)
+                                    for (i = 0; i < 4; i++) {
+                                        this.state.newRatingPicker[i] = 'diamond-stone'
+                                        console.log(i + 'changed to gem')
+                                    }
+                                    for (j = 4; j < 6; j++) {
+                                        this.state.newRatingPicker[j] = 'circle-medium'
+                                        console.log(j + 'changed to circle')
+                                    }
+                                }}
+                            />
+                            <Icon
+                                name={this.state.newRatingPicker[4]}
+                                color='gray'
+                                size={40}
+                                onPress={() => {
+                                    this.setState({
+                                        newRatingNumber: 5
+                                    })
+                                    console.log("new rating number: " + this.state.newRatingNumber)
+                                    for (i = 0; i < 5; i++) {
+                                        this.state.newRatingPicker[i] = 'diamond-stone'
+                                        console.log(i + 'changed to gem')
+                                    }
+                                    for (j = 5; j < 6; j++) {
+                                        this.state.newRatingPicker[j] = 'circle-medium'
+                                        console.log(j + 'changed to circle')
+                                    }
+                                }}
+                            />
+                        </View> */}
+                        <Input
+                            inputContainerStyle={{
+                                borderColor: 'black',
+                                borderWidth: 1,
+                                borderRadius: 20
+                            }}
+                            containerStyle={{
+                                marginTop: 50
+                            }}
+                            placeholder='Review Title'
+                            onChangeText={(reviewTitle) => this.setState({ reviewTitle })}
+                        />
+                        <Input
+                            inputContainerStyle={{
+                                borderColor: 'black',
+                                borderWidth: 1,
+                                borderRadius: 20,
+                                height: 300
+                            }}
+                            containerStyle={{
+                                marginTop: 25,
+                                height: 300
+                            }}
+                            placeholder='Type your review here'
+                            onChangeText={(reviewBody) => this.setState({ reviewBody })}
+                        />
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+                            <Button
+                                buttonStyle={{
+                                    height: 50,
+                                    width: 145,
+                                    borderRadius: 30,
+                                    marginTop: 30,
+                                    backgroundColor: '#f44336'
+                                }}
+                                title='Cancel'
+                                onPress={() => this.setState({
+                                    isVisible: false
+                                })}
+                            />
+                            <Button
+                                buttonStyle={{
+                                    height: 50,
+                                    width: 145,
+                                    borderRadius: 30,
+                                    marginTop: 30,
+                                    backgroundColor: '#509f67'
+                                }}
+                                title='Submit'
+                                onPress={() =>
+                                    this.addReview()
+                                }
+                            />
+                        </View>
+                    </View>
+                </Overlay>
+
+
                 <View style={styles.Image}>
                     <Image
                         source={pic}
@@ -84,34 +294,55 @@ export default class Details extends Component {
                     {/* make this link to the maps */}
                     <Text style={{ textAlign: 'center', paddingBottom: 5, fontSize: 20 }} onPress={() => LaunchNavigator.navigate(address)
                         .then(() => console.log("Launched navigator"))
-                        .catch((err) => console.error("Error launching navigator: " + err)) }>{global.item.formatted_address}</Text>
-                {/* make this link to a phone call */}
-                <Text style={{ textAlign: 'center', paddingBottom: 5, fontSize: 20, color: 'blue' }} onPress={() => Linking.openURL(`tel:${Phone}`)}>{Phone}</Text>
-                {/* Style the link maybe a touchable opacity */}
-                <Text style={styles.Website} onPress={() => Linking.openURL(url)}>Check out the Website</Text>
-                {/* The Mapping for reviews */}
-                {
-                    this.state.items.map((l, i) => (
-                        <ListItem
-                            containerStyle={{
-                                backgroundColor: '#cce6ff', 
-                                paddingLeft: 10, 
-                                paddingRight: 10,
+                        .catch((err) => console.error("Error launching navigator: " + err))}>{global.item.formatted_address}</Text>
+                    {/* make this link to a phone call */}
+                    <Text style={{ textAlign: 'center', paddingBottom: 5, fontSize: 20 }} onPress={() => Linking.openURL(`tel:${Phone}`)}>{Phone}</Text>
+                    {/* Style the link maybe a touchable opacity */}
+                    <Text style={styles.Website} onPress={() => Linking.openURL(url)}>Check out the Website</Text>
+                    {/* Add review button */}
+                    <View
+                        style={{ alignItems: 'center' }}
+                    >
+                        <Button
+                            buttonStyle={{
+                                height: 50,
+                                width: 270,
+                                borderRadius: 30
                             }}
-                            key={i}
-                            title={l.title}
-                            rightTitle={l.gems}
-                            rightSubtitle={l.reviewer}
-                            titleStyle={{
-                                fontSize: 20,
-                                paddingBottom: 6,
-                                color: 'black',
+                            title='Add a review'
+                            onPress={() => {
+                                this.setState({
+                                    isVisible: true
+                                })
                             }}
-                            subtitle={l.reviewBody}
-                            bottomDivider
                         />
-                    ))
-                }
+                    </View>
+                    {/* The Mapping for reviews */}
+                    {
+                        this.state.items.map((l, i) => (
+                            <ListItem
+                                key={i}
+                                title={l.title}
+                                rightTitle={
+                                    <Rating
+                                        type='custom'
+                                        ratingImage={Gem}
+                                        ratingCount={l.gems}
+                                        ratingTextColor='lightblue'
+                                        ratingColor=''
+                                        imageSize={30}
+                                        onFinishRating={this.ratingCompleted}
+                                    />
+                                }
+                                rightSubtitle={l.reviewer}
+                                titleStyle={{
+                                    fontSize: 25,
+                                    paddingBottom: 6,
+                                    color: 'black',
+                                }}
+                            />
+                        ))
+                    }
                 </View>
             </ScrollView >
         )
