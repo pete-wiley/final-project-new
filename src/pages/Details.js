@@ -37,7 +37,9 @@ export default class Details extends Component {
             newRatingNumber: 0,
             reviewTitle: '',
             reviewBody: '',
-            reviewer: 'John Cena'
+            reviewer: 'John Cena',
+            addToFavs: 'Add to Favorites',
+            currentFavs: []
         };
     }
 
@@ -96,8 +98,61 @@ export default class Details extends Component {
         }
     }
 
+    addToFavorites = async () => {
+        console.log('current favs: ' + this.state.currentFavs)
+        let newFavs = this.state.currentFavs.push(global.item.picid)
+        console.log('new favs: ' + this.state.currentFavs)
+        try {
+            let response = await fetch(`https://bham-gems-api.herokuapp.com/user/5cc08a331c9d440000e62b2d`, {
+                method: 'PUT',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    favorites: this.state.currentFavs
+                })
+            })
+            let res = await response.json();
+            if (res.errors) {
+                this.setState({ errors: res.errors });
+            } else {
+                this.setState({
+                    addToFavs: 'Added!'
+                })
+            }
+        } catch (errors) {
+            console.log('catch err');
+            console.log(errors);
+        }
+    }
+    getFavorites = async () => {
+        try {
+            let response = await fetch(`https://bham-gems-api.herokuapp.com/user/5cc08a331c9d440000e62b2d`, {
+                method: 'GET',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            });
+            let res = await response.json();
+            if (!res) {
+                console.log('Nope');
+            } else {
+                console.log(res);
+                this.setState({
+                    currentFavs: res.favorites,
+                })
+            }
+        } catch (error) {
+            console.log('Something went wrong');
+        }
+        console.log('current favs: ' + this.state.currentFavs)
+    }
+
     componentDidMount() {
         this.getItems()
+        this.getFavorites()
     }
 
     render() {
@@ -122,105 +177,6 @@ export default class Details extends Component {
                             size={40}
                             type='heart'
                         />
-
-
-                        {/* <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginTop: 50 }}>
-                            <Icon
-                                name={this.state.newRatingPicker[0]}
-                                color='gray'
-                                size={40}
-                                onPress={() => {
-                                    this.setState({
-                                        newRatingNumber: 1
-                                    })
-                                    console.log("new rating number: " + this.state.newRatingNumber)
-                                    for (i = 0; i < 1; i++) {
-                                        this.state.newRatingPicker[i] = 'diamond-stone'
-                                        console.log(i + 'changed to gem')
-                                    }
-                                    for (j = 1; j < 6; j++) {
-                                        this.state.newRatingPicker[j] = 'circle-medium'
-                                        console.log(j + 'changed to circle')
-                                    }
-                                }}
-                            />
-                            <Icon
-                                name={this.state.newRatingPicker[1]}
-                                color='gray'
-                                size={40}
-                                onPress={() => {
-                                    this.setState({
-                                        newRatingNumber: 2
-                                    })
-                                    console.log("new rating number: " + this.state.newRatingNumber)
-                                    for (i = 0; i < 2; i++) {
-                                        this.state.newRatingPicker[i] = 'diamond-stone'
-                                        console.log(i + 'changed to gem')
-                                    }
-                                    for (j = 2; j < 6; j++) {
-                                        this.state.newRatingPicker[j] = 'circle-medium'
-                                        console.log(j + 'changed to circle')
-                                    }
-                                }}
-                            />
-                            <Icon
-                                name={this.state.newRatingPicker[2]}
-                                color='gray'
-                                size={40}
-                                onPress={() => {
-                                    this.setState({
-                                        newRatingNumber: 3
-                                    })
-                                    console.log("new rating number: " + this.state.newRatingNumber)
-                                    for (i = 0; i < 3; i++) {
-                                        this.state.newRatingPicker[i] = 'diamond-stone'
-                                        console.log(i + 'changed to gem')
-                                    }
-                                    for (j = 3; j < 6; j++) {
-                                        this.state.newRatingPicker[j] = 'circle-medium'
-                                        console.log(j + 'changed to circle')
-                                    }
-                                }}
-                            />
-                            <Icon
-                                name={this.state.newRatingPicker[3]}
-                                color='gray'
-                                size={40}
-                                onPress={() => {
-                                    this.setState({
-                                        newRatingNumber: 4
-                                    })
-                                    console.log("new rating number: " + this.state.newRatingNumber)
-                                    for (i = 0; i < 4; i++) {
-                                        this.state.newRatingPicker[i] = 'diamond-stone'
-                                        console.log(i + 'changed to gem')
-                                    }
-                                    for (j = 4; j < 6; j++) {
-                                        this.state.newRatingPicker[j] = 'circle-medium'
-                                        console.log(j + 'changed to circle')
-                                    }
-                                }}
-                            />
-                            <Icon
-                                name={this.state.newRatingPicker[4]}
-                                color='gray'
-                                size={40}
-                                onPress={() => {
-                                    this.setState({
-                                        newRatingNumber: 5
-                                    })
-                                    console.log("new rating number: " + this.state.newRatingNumber)
-                                    for (i = 0; i < 5; i++) {
-                                        this.state.newRatingPicker[i] = 'diamond-stone'
-                                        console.log(i + 'changed to gem')
-                                    }
-                                    for (j = 5; j < 6; j++) {
-                                        this.state.newRatingPicker[j] = 'circle-medium'
-                                        console.log(j + 'changed to circle')
-                                    }
-                                }}
-                            />
-                        </View> */}
                         <Input
                             inputContainerStyle={{
                                 borderColor: 'black',
@@ -303,19 +259,38 @@ export default class Details extends Component {
                     <View
                         style={{ alignItems: 'center' }}
                     >
-                        <Button
-                            buttonStyle={{
-                                height: 50,
-                                width: 270,
-                                borderRadius: 30
-                            }}
-                            title='Add a review'
-                            onPress={() => {
-                                this.setState({
-                                    isVisible: true
-                                })
-                            }}
-                        />
+                        <View style={{
+                            flexDirection: 'row',
+                            justifyContent: 'space-evenly',
+                            marginTop: 25,
+                            marginBottom: 15
+                        }}>
+
+                            <Button
+                                buttonStyle={{
+                                    height: 50,
+                                    width: 150,
+                                    borderRadius: 30,
+                                    marginRight: 30
+                                }}
+                                title={this.state.addToFavs}
+                                onPress={() => this.addToFavorites()}
+                            />
+
+                            <Button
+                                buttonStyle={{
+                                    height: 50,
+                                    width: 150,
+                                    borderRadius: 30
+                                }}
+                                title='Add a review'
+                                onPress={() => {
+                                    this.setState({
+                                        isVisible: true
+                                    })
+                                }}
+                            />
+                        </View>
                     </View>
                     {/* The Mapping for reviews */}
                     {
@@ -323,6 +298,7 @@ export default class Details extends Component {
                             <ListItem
                                 key={i}
                                 title={l.title}
+                                subtitle={l.reviewBody}
                                 rightTitle={
                                     <Rating
                                         type='custom'
