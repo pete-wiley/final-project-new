@@ -17,7 +17,6 @@ import Map from './src/pages/Map'
 import Favorites from './src/pages/Favorites'
 
 
-
 const ProfileStack = createStackNavigator(
   {
     Profile:{

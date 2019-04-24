@@ -282,7 +282,7 @@ export default class Details extends Component {
                 </View>
                 <View style={styles.Header}>
                     <Text h3 style={{ textAlign: 'center', paddingBottom: 10, marginTop: 10 }}>{global.item.name}</Text>
-                    <Text style={{ textAlign: "center", fontSize: 26 }}>{global.item.description}</Text>
+                    <Text style={{ textAlign: "center", fontSize: 20 }}>{global.item.description}</Text>
                 </View>
                 <View style={styles.Bottom}>
                     <Text style={{ textAlign: 'center', paddingBottom: 5, fontSize: 20 }}>{global.item.opening_hours.weekday_text[global.day]}</Text>
@@ -349,9 +349,14 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+        paddingLeft: 10, 
+        paddingRight: 10,
     },
     Bottom: {
         marginTop: 25,
+        paddingLeft: 10, 
+        paddingRight: 10,
+
     },
     Website: {
         textAlign: 'center',
@@ -359,7 +364,8 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontStyle: 'italic',
         fontWeight: 'bold',
-        color: '#2A3D45'
+        color: '#2A3D45',
+        textDecorationLine: 'underline'
     },
     Image: {
         shadowOffset: { width: .2, height: 2 },

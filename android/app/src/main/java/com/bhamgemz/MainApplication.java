@@ -3,6 +3,7 @@ package com.bhamgemz;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.airbnb.android.react.maps.MapsPackage;
 import uk.co.workingedge.RNLaunchNavigator.RNLaunchNavigatorPackage;
 import com.horcrux.svg.SvgPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
@@ -12,7 +13,7 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
-import com.airbnb.android.react.maps.MapsPackage;
+// import com.airbnb.android.react.maps.MapsPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,12 +34,13 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new MapsPackage(),
             new RNLaunchNavigatorPackage(),
             new SvgPackage(),
             new LinearGradientPackage(),
             new VectorIconsPackage(),
-            new RNGestureHandlerPackage(),
-            new MapsPackage()
+            new RNGestureHandlerPackage()
+            // new MapsPackage()
       );
     }
 
