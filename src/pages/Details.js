@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { View, SafeAreaView, StyleSheet, Linking } from 'react-native'
 import { Text, Image, ListItem, Button, Overlay, Input, Rating, AirbnbRating } from 'react-native-elements'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { ScrollView } from 'react-native-gesture-handler';
 import { pics } from '../assets/consts'
 import LaunchNavigator from 'react-native-launch-navigator';
@@ -15,14 +14,10 @@ export default class Details extends Component {
             headerStyle: { backgroundColor: '#CFDBD5' },
             headerTitleStyle: { fontSize: 25 },
             headerRight:
-                <Rating
-                    style={{ paddingRight: 102 }}
-                    type='custom'
-                    ratingImage={Gem}
-                    ratingCount='1'
-                    ratingColor=''
-                    imageSize={40}
-                    onFinishRating={this.ratingCompleted}
+                <Image
+                source={Gem}
+                style={{width: 50, height: 50, paddingRight: 200}}
+                resizeMode={"contain"}
                 />
         }
     }
