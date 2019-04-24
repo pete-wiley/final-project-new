@@ -14,7 +14,7 @@ import DrinkResults from './src/pages/DrinkResults'
 import Details from './src/pages/Details'
 import Profile from './src/pages/Profile'
 import Map from './src/pages/Map'
-
+import Favorites from './src/pages/Favorites'
 
 
 const ProfileStack = createStackNavigator(
@@ -36,6 +36,24 @@ const ProfileStack = createStackNavigator(
 }
 )
   
+const FavoritesStack = createStackNavigator(
+  {
+    Favorite:{
+      screen: Favorites,
+      navigationOptions: ({ navigation }) => {
+        return{
+          headerLeft:
+          <Icon
+            name="bars"
+            size={30}
+            style={{ paddingLeft: 10 }}
+            onPress={() => navigation.openDrawer()}
+            />
+        };
+      }
+    },
+  }
+)
 
 const MapStack = createStackNavigator(
   {
@@ -147,7 +165,7 @@ const DrawerNavigator = createDrawerNavigator(
     Home: HomeStack,
     Profile: ProfileStack,
     Map: MapStack,
-    // Contact: ContactStack,
+    Favorites: FavoritesStack
   },
   {
     contentOptions: {

@@ -6,6 +6,7 @@ import Sky from '../assets/pics/sky.jpg'
 import Form from './form'
 import { IDkey } from '../assets/consts'
 import Gem from '../assets/pics/gemIcon.png'
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default class Profile extends Component {
     static navigationOptions = ({ navigation }) => {
@@ -14,15 +15,11 @@ export default class Profile extends Component {
             headerStyle: { backgroundColor: '#CFDBD5' },
             headerTitleStyle: { fontSize: 25 },
             headerRight:
-            <Rating
-            style={{ paddingRight: 100 }}
-            type='custom'
-            ratingImage={Gem}
-            ratingCount='1'
-            ratingColor=''
-            imageSize={40}
-            onFinishRating={this.ratingCompleted}
-        />
+            <Image
+                source={Gem}
+                style={{width: 50, height: 50, paddingRight: 200}}
+                resizeMode={"contain"}
+                />
         }
     }
 
@@ -71,6 +68,7 @@ export default class Profile extends Component {
     render() {
         return (
             <SafeAreaView>
+                <ScrollView>
                 <ImageBackground
                     source={Sky}
                     style={styles.UserInfo}>
@@ -81,8 +79,7 @@ export default class Profile extends Component {
                             source={{ uri: "https://411mania.com/wp-content/uploads/2018/04/John-Cena-Raw-4218-645x370.jpg" }} />
                     </View>
                     <View style={styles.Name}>
-                        <Text style={{ fontSize: 35 }}>John Cena</Text>
-                        <Text style={{ fontSize: 16 }}>Johnnie@gmail.com</Text>
+                        <Text style={{ fontSize: 45 }}>John Cena</Text>
                     </View>
                 </ImageBackground>
             <View style={styles.UserContent}>
@@ -94,9 +91,17 @@ export default class Profile extends Component {
                         this.clicked()
                     }
                     />
+                    <Text> {"\n"}{"\n"} </Text>
+                    <Button
+                    title = "Add Happy Hour"
+                    raised = {true}
+
+                    />
                     <Overlay
                     isVisible={this.state.isVisible}
                     onBackdropPress={() => this.setState({ isVisible: false })}
+                    width="auto"
+                    height="auto"
                     >
                     <Form/>
                     </Overlay>
@@ -133,6 +138,7 @@ export default class Profile extends Component {
                     }
                 </View>
                 </View>
+                </ScrollView>
             </SafeAreaView>
         )
     }

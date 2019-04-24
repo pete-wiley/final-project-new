@@ -14,15 +14,11 @@ export default class Home extends Component {
       headerStyle: { backgroundColor: '#CFDBD5' },
       headerTitleStyle: { fontSize: 25 },
       headerRight:
-        <Rating
-          style={{paddingRight: 80}}
-          type='custom'
-          ratingImage={Gem}
-          ratingCount='1'
-          ratingColor=''
-          imageSize={40}
-          onFinishRating={this.ratingCompleted}
-        />
+      <Image
+      source={Gem}
+      style={{width: 50, height: 50, paddingRight: 200}}
+      resizeMode={"contain"}
+      />
     }
   }
 
@@ -102,7 +98,7 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     borderRadius: 2,
     marginBottom: 4,
-    marginTop: 4
+    marginTop: 4,
 
 
   },
@@ -149,5 +145,11 @@ const styles = StyleSheet.create({
     width: '100%',
     borderRadius: 2,
     color: 'white'
+  },
+  fontStyle: {
+    fontFamily: 'Catamaran',
   }
+
+  
 })
+   
