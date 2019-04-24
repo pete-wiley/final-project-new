@@ -16,15 +16,11 @@ export default class Results extends Component {
             headerStyle: { backgroundColor: '#CFDBD5' },
             headerTitleStyle: { fontSize: 25 },
             headerRight:
-                <Rating
-                    style={{ paddingRight: 80 }}
-                    type='custom'
-                    ratingImage={Gem}
-                    ratingCount='1'
-                    ratingColor=''
-                    imageSize={40}
-                    onFinishRating={this.ratingCompleted}
-                />
+            <Image
+            source={Gem}
+            style={{width: 50, height: 50, paddingRight: 200}}
+            resizeMode={"contain"}
+            />
         }
     }
 

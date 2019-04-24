@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Rating } from 'react-native-elements'
 import MapView from 'react-native-maps'
+import { Image } from 'react-native'
 import Gem from '../assets/pics/gemIcon.png'
 
 export default class App extends Component {
@@ -11,15 +12,11 @@ export default class App extends Component {
       title: "Map",
       headerTitleStyle: { fontSize: 25 },
       headerRight:
-        <Rating
-          style={{ paddingRight: 110 }}
-          type='custom'
-          ratingImage={Gem}
-          ratingCount='1'
-          ratingColor=''
-          imageSize={40}
-          onFinishRating={this.ratingCompleted}
-        />
+      <Image
+      source={Gem}
+      style={{width: 50, height: 50, paddingRight: 200}}
+      resizeMode={"contain"}
+      />
     }
   }
   render() {
