@@ -296,7 +296,7 @@ export default class Details extends Component {
                         .then(() => console.log("Launched navigator"))
                         .catch((err) => console.error("Error launching navigator: " + err))}>{global.item.formatted_address}</Text>
                     {/* make this link to a phone call */}
-                    <Text style={{ textAlign: 'center', paddingBottom: 5, fontSize: 20 }} onPress={() => Linking.openURL(`tel:${Phone}`)}>{Phone}</Text>
+                    <Text style={{ textAlign: 'center', paddingBottom: 5, fontSize: 20, color: 'blue' }} onPress={() => Linking.openURL(`tel:${Phone}`)}>{Phone}</Text>
                     {/* Style the link maybe a touchable opacity */}
                     <Text style={styles.Website} onPress={() => Linking.openURL(url)}>Check out the Website</Text>
                     {/* Add review button */}
@@ -365,7 +365,7 @@ const styles = StyleSheet.create({
     },
     Website: {
         textAlign: 'center',
-        paddingBottom: 5,
+        paddingBottom: 10,
         fontSize: 20,
         fontStyle: 'italic',
         fontWeight: 'bold',
