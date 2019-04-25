@@ -4,20 +4,20 @@ import {
 	Text,
 	Image,
 	ScrollView,
-	Platform,
-	Dimensions,
 	StyleSheet,
     TouchableOpacity,
     ImageBackground
 } from 'react-native';
 import Sky from '../assets/pics/sky.jpg'
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 export default class MenuDrawer extends React.Component {
-	navLink(nav, text) {
+	navLink(nav, text, icon) {
 		return(
-			<TouchableOpacity style={{height: 50}} onPress={() => this.props.navigation.navigate(nav)}>
-				<Text style={styles.link}>{text}</Text>
+			<TouchableOpacity style={{height: 50, flexDirection: 'row'}} onPress={() => this.props.navigation.navigate(nav)}>
+				<Text style={styles.link}>{text} </Text>
+				<Icon name={icon} style={{fontSize: 30, paddingRight: 20}}/>
 			</TouchableOpacity>
 		)
 	}
@@ -42,11 +42,11 @@ export default class MenuDrawer extends React.Component {
                         </View>
                    </ImageBackground>
 					<View style={styles.bottomLinks}>
-						{this.navLink('Home', 'Home')}
-						{this.navLink('Profile', 'Profile')}
-                        {this.navLink('Map', 'Map')}
-                        {this.navLink('Favorites', 'Favorites')}
-                        {this.navLink('Playlists', 'Playlists')}
+						{this.navLink('Home', 'Home', 'home')}
+						{this.navLink('Profile', 'Profile', 'user')}
+                        {this.navLink('Map', 'Map', 'map-signs')}
+                        {this.navLink('Favorites', 'Favorites', 'heart')}
+                        {this.navLink('Playlists', 'Playlists', 'folder-open')}
 					</View>
 				</ScrollView>
 				<View style={styles.footer}>
@@ -95,7 +95,6 @@ const styles = StyleSheet.create({
 		height: 100,
 		width: 100,
         borderRadius: 50,
-
 	},
 	topLinks:{
 		height: 160,
@@ -112,7 +111,7 @@ const styles = StyleSheet.create({
 		padding: 6,
 		paddingLeft: 14,
 		margin: 5,
-		textAlign: 'left',
+		justifyContent:'space-between'
 	},
 	footer: {
 		height: 50,
