@@ -112,8 +112,9 @@ export default class Details extends Component {
             if (res.errors) {
                 this.setState({ errors: res.errors });
             } else {
+                disabled = true
                 this.setState({
-                    addToFavs: 'Added!'
+                    addToFavs: 'Added!',
                 })
             }
         } catch (errors) {

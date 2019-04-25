@@ -107,7 +107,7 @@ const HomeStack = createStackNavigator(
             size={30}
             style={{ paddingLeft: 10 }}
             onPress={() => navigation.openDrawer()}
-            />
+            />,
         }
       }
     },

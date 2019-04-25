@@ -158,7 +158,7 @@ export default class EatResults extends Component {
                                         paddingBottom: 6,
                                         color: 'white',
                                     }}
-                                    subtitle={l.b}
+                                    subtitle={l.description}
                                     subtitleStyle={{
                                         color: 'white'
                                     }}

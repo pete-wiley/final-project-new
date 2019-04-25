@@ -9,6 +9,7 @@ import Gem from '../assets/pics/gemIcon.png'
 
 export default class Home extends Component {
   static navigationOptions = ({ navigation }) => {
+    
     return {
       title: "BhamGems",
       headerStyle: { backgroundColor: '#CFDBD5' },
