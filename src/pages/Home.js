@@ -5,8 +5,6 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Bham1 from '../assets/pics/Bham1.jpg'
 import Gem from '../assets/pics/gemIcon.png'
 
-
-
 export default class Home extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
@@ -14,12 +12,49 @@ export default class Home extends Component {
       headerStyle: { backgroundColor: '#CFDBD5' },
       headerTitleStyle: { fontSize: 25 },
       headerRight:
-      <Image
-      source={Gem}
-      style={{width: 50, height: 50, paddingRight: 200}}
-      resizeMode={"contain"}
-      />
+        <Image
+          source={Gem}
+          style={{ width: 50, height: 50, paddingRight: 200 }}
+          resizeMode={"contain"}
+        />
     }
+  }
+
+  compare(a, b) {
+    if (a.picid < b.picid){
+      return -1;
+    }
+    if (a.picid > b.picid){
+      return 1;
+    }
+    return 0;
+  }
+
+  getFavorites = async () => {
+    try {
+        let response = await fetch(`https://bham-gems-api.herokuapp.com/user/5cc08a331c9d440000e62b2d`, {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
+        let res = await response.json();
+        if (!res) {
+            console.log('Nope');
+        } else {
+            console.log('res ' + res);
+            global.favorites = res.favorites
+            global.favorites.sort(this.compare)
+        }
+    } catch (error) {
+        console.log('Something went wrong');
+    }
+    console.log('sorted favs: ' + global.favorites)
+}
+
+  componentDidMount() {
+    this.getFavorites()
   }
 
   render() {
@@ -150,6 +185,5 @@ const styles = StyleSheet.create({
     fontFamily: 'Catamaran',
   }
 
-  
+
 })
-   
