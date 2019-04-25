@@ -21,10 +21,10 @@ export default class Home extends Component {
   }
 
   compare(a, b) {
-    if (a.picid < b.picid){
+    if (a.picid < b.picid) {
       return -1;
     }
-    if (a.picid > b.picid){
+    if (a.picid > b.picid) {
       return 1;
     }
     return 0;
@@ -32,26 +32,131 @@ export default class Home extends Component {
 
   getFavorites = async () => {
     try {
-        let response = await fetch(`https://bham-gems-api.herokuapp.com/user/5cc08a331c9d440000e62b2d`, {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            }
-        });
-        let res = await response.json();
-        if (!res) {
-            console.log('Nope');
-        } else {
-            console.log('res ' + res);
-            global.favorites = res.favorites
-            global.favorites.sort(this.compare)
+      let response = await fetch(`https://bham-gems-api.herokuapp.com/user/5cc08a331c9d440000e62b2d`, {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
         }
+      });
+      let res = await response.json();
+      if (!res) {
+        console.log('Nope');
+      } else {
+        console.log('res ' + res);
+        global.favorites = res.favorites
+        global.favorites.sort(this.compare)
+      }
     } catch (error) {
-        console.log('Something went wrong');
+      console.log('Something went wrong');
     }
     console.log('sorted favs: ' + global.favorites)
-}
+    this.getRenderFavorites()
+  }
+
+  getRenderFavorites = async () => {
+    let renderFavs = []
+    for (i = 0; i < global.favorites.length; i++) {
+      if (global.favorites[i].picid[0] == "E") {
+        try {
+          let response = await fetch(`https://bham-gems-api.herokuapp.com/eat/${global.favorites[i].objectid}`, {
+            method: 'GET',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json'
+            }
+          });
+          let res = await response.json();
+          if (!res) {
+            console.log('Nope');
+          } else {
+            console.log(res)
+            renderFavs.push(res)
+          }
+        } catch (error) {
+          console.log('Something went wrong');
+        }
+      } else if (global.favorites[i].picid[0] == "S") {
+        try {
+          let response = await fetch(`https://bham-gems-api.herokuapp.com/see/${global.favorites[i].objectid}`, {
+            method: 'GET',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json'
+            }
+          });
+          let res = await response.json();
+          if (!res) {
+            console.log('Nope');
+          } else {
+            console.log(res)
+            renderFavs.push(res)
+          }
+        } catch (error) {
+          console.log('Something went wrong');
+        }
+      } else if (global.favorites[i].picid[1] == "T") {
+        try {
+          let response = await fetch(`https://bham-gems-api.herokuapp.com/foodtruck/${global.favorites[i].objectid}`, {
+            method: 'GET',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json'
+            }
+          });
+          let res = await response.json();
+          if (!res) {
+            console.log('Nope');
+          } else {
+            console.log(res)
+            renderFavs.push(res)
+          }
+        } catch (error) {
+          console.log('Something went wrong');
+        }
+      } else if (global.favorites[i].picid[1] == "O") {
+        try {
+          let response = await fetch(`https://bham-gems-api.herokuapp.com/do/${global.favorites[i].objectid}`, {
+              method: 'GET',
+              headers: {
+                  Accept: 'application/json',
+                  'Content-Type': 'application/json'
+              }
+          });
+          let res = await response.json();
+          if (!res) {
+              console.log('Nope');
+          } else {
+            console.log(res)
+              renderFavs.push(res)
+          }
+      } catch (error) {
+          console.log('Something went wrong');
+      }
+      } else if (global.favorites[i].picid[1] == "R") {
+        try {
+          let response = await fetch(`https://bham-gems-api.herokuapp.com/drink/${global.favorites[i].objectid}`, {
+              method: 'GET',
+              headers: {
+                  Accept: 'application/json',
+                  'Content-Type': 'application/json'
+              }
+          });
+          let res = await response.json();
+          if (!res) {
+              console.log('Nope');
+          } else {
+            console.log(res)
+              renderFavs.push(res)
+          }
+      } catch (error) {
+          console.log('Something went wrong');
+      }
+      }
+    }
+    console.log('render favs: ' + JSON.stringify(renderFavs))
+    global.renderFavs = renderFavs
+  }
 
   componentDidMount() {
     this.getFavorites()
