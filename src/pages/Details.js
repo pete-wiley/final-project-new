@@ -15,9 +15,9 @@ export default class Details extends Component {
             headerTitleStyle: { fontSize: 25 },
             headerRight:
                 <Image
-                source={Gem}
-                style={{width: 50, height: 50, paddingRight: 200}}
-                resizeMode={"contain"}
+                    source={Gem}
+                    style={{ width: 50, height: 50, paddingRight: 200 }}
+                    resizeMode={"contain"}
                 />
         }
     }
@@ -34,7 +34,12 @@ export default class Details extends Component {
             reviewBody: '',
             reviewer: 'John Cena',
             addToFavs: 'Add to Favorites',
-            currentFavs: []
+            currentFavs: [],
+            thisFav: {
+                picid: global.item.picid,
+                objectid: global.item._id
+            },
+            disabled: false
         };
     }
 
@@ -94,31 +99,33 @@ export default class Details extends Component {
     }
 
     addToFavorites = async () => {
-        console.log('current favs: ' + this.state.currentFavs)
-        let newFavs = this.state.currentFavs.push(global.item.picid)
-        console.log('new favs: ' + this.state.currentFavs)
-        try {
-            let response = await fetch(`https://bham-gems-api.herokuapp.com/user/5cc08a331c9d440000e62b2d`, {
-                method: 'PUT',
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    favorites: this.state.currentFavs
+        if (this.state.addToFavs !== "Added!") {
+            console.log('current favs: ' + this.state.currentFavs)
+            let newFavs = this.state.currentFavs.push(this.state.thisFav)
+            console.log('new favs: ' + this.state.currentFavs)
+            try {
+                let response = await fetch(`https://bham-gems-api.herokuapp.com/user/5cc08a331c9d440000e62b2d`, {
+                    method: 'PUT',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        favorites: this.state.currentFavs
+                    })
                 })
-            })
-            let res = await response.json();
-            if (res.errors) {
-                this.setState({ errors: res.errors });
-            } else {
-                this.setState({
-                    addToFavs: 'Added!'
-                })
+                let res = await response.json();
+                if (res.errors) {
+                    this.setState({ errors: res.errors });
+                } else {
+                    this.setState({
+                        addToFavs: 'Added!'
+                    })
+                }
+            } catch (errors) {
+                console.log('catch err');
+                console.log(errors);
             }
-        } catch (errors) {
-            console.log('catch err');
-            console.log(errors);
         }
     }
     getFavorites = async () => {
@@ -143,6 +150,19 @@ export default class Details extends Component {
             console.log('Something went wrong');
         }
         console.log('current favs: ' + this.state.currentFavs)
+        this.hasBeenAdded()
+    }
+
+    hasBeenAdded() {
+        for (i = 0; i < this.state.currentFavs.length; i++) {
+            console.log('this one: ' + JSON.stringify(this.state.currentFavs[i].picid))
+            if (this.state.currentFavs[i].picid == global.item.picid) {
+                console.log('gotem')
+                this.setState({
+                    addToFavs: "Added!"
+                })
+            }
+        }
     }
 
     componentDidMount() {
@@ -325,12 +345,12 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        paddingLeft: 10, 
+        paddingLeft: 10,
         paddingRight: 10,
     },
     Bottom: {
         marginTop: 25,
-        paddingLeft: 10, 
+        paddingLeft: 10,
         paddingRight: 10,
 
     },
