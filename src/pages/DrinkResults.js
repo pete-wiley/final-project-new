@@ -18,7 +18,7 @@ export default class Results extends Component {
             headerRight:
             <Image
                 source={Gem}
-                style={{width: 50, height: 50, paddingRight: 200}}
+                style={{width: 50, height: 50, paddingRight: 175}}
                 resizeMode={"contain"}
                 />
         }
