@@ -181,7 +181,10 @@ const HomeStack = createStackNavigator(
 )
 
 const DrawerConfig = {
-	drawerWidth: 300,
+  drawerWidth: 300,
+  contentOptions:{
+    activeTintColor: 'orange'
+  },
 	contentComponent: ({ navigation }) => {
 		return(<MenuDrawer navigation={navigation} />)
 	}
@@ -204,8 +207,8 @@ const DrawerNavigator = createDrawerNavigator(
     Playlists:{
       screen: PlaylistStack
     }, 
-  },DrawerConfig
-  
+  },
+  DrawerConfig,
 )
 
 DrawerNavigator.navigationOptions = ({ navigation }) => {
