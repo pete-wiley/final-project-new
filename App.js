@@ -53,6 +53,20 @@ const FavoritesStack = createStackNavigator(
         };
       }
     },
+    Details:{
+      screen: Details,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerBackTitle: null,
+          headerBackImage:(
+            <Icon
+              name="arrow-left"
+              size={30}
+              style={{ paddingLeft: 10}} />
+          )
+        }
+      }
+    }
   }
 )
 const PlaylistStack = createStackNavigator(

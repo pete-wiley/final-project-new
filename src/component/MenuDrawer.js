@@ -15,9 +15,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 export default class MenuDrawer extends React.Component {
 	navLink(nav, text, icon) {
 		return(
-			<TouchableOpacity style={{height: 50, flexDirection: 'row'}} onPress={() => this.props.navigation.navigate(nav)}>
+			<TouchableOpacity style={{height: 50, flexDirection: 'row'}} onPress={() => this.props.navigation.navigate(nav)} onPressOut={() => this.props.navigation.closeDrawer()}>
 				<Text style={styles.link}>{text} </Text>
-				<Icon name={icon} style={{fontSize: 30, paddingRight: 20}}/>
+				<Icon name={icon} style={{fontSize: 30, paddingRight: 20, justifyContent: 'flex-end'}}/>
 			</TouchableOpacity>
 		)
 	}
@@ -111,7 +111,6 @@ const styles = StyleSheet.create({
 		padding: 6,
 		paddingLeft: 14,
 		margin: 5,
-		justifyContent:'space-between'
 	},
 	footer: {
 		height: 50,

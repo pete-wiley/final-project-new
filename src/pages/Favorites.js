@@ -8,6 +8,20 @@ import Gem from '../assets/pics/gemIcon.png'
 
 
 export default class Favorites extends Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+        title: "Favorites",
+        headerStyle: { backgroundColor: '#CFDBD5' },
+        headerBackTitle: null,
+        headerTitleStyle: { fontSize: 25 },
+        headerRight:
+        <Image
+            source={Gem}
+            style={{width: 50, height: 50, paddingRight: 175}}
+            resizeMode={"contain"}
+            />
+    }
+}
 
   constructor(props) {
     super(props)

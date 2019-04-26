@@ -9,8 +9,8 @@ import Gem from '../assets/pics/gemIcon.png'
 export default class Details extends Component {
     static navigationOptions = ({ navigation }) => {
         return {
-            headerBackTitle: null,
             title: "Details",
+            headerBackTitle: null,
             headerStyle: { backgroundColor: '#CFDBD5' },
             headerTitleStyle: { fontSize: 25 },
             headerRight:
