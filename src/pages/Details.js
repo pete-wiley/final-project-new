@@ -287,7 +287,7 @@ export default class Details extends Component {
                 <View style={styles.Bottom}>
                     <Text style={{ textAlign: 'center', paddingBottom: 5, fontSize: 20 }}>{global.item.opening_hours.weekday_text[global.day]}</Text>
                     {/* make this link to the maps */}
-                    <Text style={{ textAlign: 'center', paddingBottom: 5, fontSize: 20 }} onPress={() => LaunchNavigator.navigate(address)
+                    <Text style={{ textAlign: 'center', paddingBottom: 5, fontSize: 15, textDecorationLine: "underline" }} onPress={() => LaunchNavigator.navigate(address)
                         .then(() => console.log("Launched navigator"))
                         .catch((err) => console.error("Error launching navigator: " + err))}>{global.item.formatted_address}</Text>
                     {/* make this link to a phone call */}
