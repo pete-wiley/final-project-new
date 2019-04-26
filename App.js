@@ -15,7 +15,8 @@ import Details from './src/pages/Details'
 import Profile from './src/pages/Profile'
 import Map from './src/pages/Map'
 import Favorites from './src/pages/Favorites'
-
+import Playlists from './src/pages/Playlists'
+import MenuDrawer from './src/component/MenuDrawer';
 
 const ProfileStack = createStackNavigator(
   {
@@ -40,6 +41,24 @@ const FavoritesStack = createStackNavigator(
   {
     Favorite:{
       screen: Favorites,
+      navigationOptions: ({ navigation }) => {
+        return{
+          headerLeft:
+          <Icon
+            name="bars"
+            size={30}
+            style={{ paddingLeft: 10 }}
+            onPress={() => navigation.openDrawer()}
+            />
+        };
+      }
+    },
+  }
+)
+const PlaylistStack = createStackNavigator(
+  {
+    Playlists:{
+      screen: Playlists,
       navigationOptions: ({ navigation }) => {
         return{
           headerLeft:
@@ -88,7 +107,7 @@ const HomeStack = createStackNavigator(
             size={30}
             style={{ paddingLeft: 10 }}
             onPress={() => navigation.openDrawer()}
-            />
+            />,
         }
       }
     },
@@ -160,19 +179,36 @@ const HomeStack = createStackNavigator(
     }
   },
 )
+
+const DrawerConfig = {
+  drawerWidth: 300,
+  contentOptions:{
+    activeTintColor: 'orange'
+  },
+	contentComponent: ({ navigation }) => {
+		return(<MenuDrawer navigation={navigation} />)
+	}
+}
+
 const DrawerNavigator = createDrawerNavigator(
   {
-    Home: HomeStack,
-    Profile: ProfileStack,
-    Map: MapStack,
-    Favorites: FavoritesStack
+    Home:{
+      screen:HomeStack
+    }, 
+    Profile:{
+      screen:ProfileStack
+    },
+    Map:{
+      screen: MapStack
+    },
+    Favorites:{
+      screen: FavoritesStack
+    },
+    Playlists:{
+      screen: PlaylistStack
+    }, 
   },
-  {
-    contentOptions: {
-      inactiveTintColor: 'black',
-      activeTintColor: 'rgb(249, 15, 28)'
-    }
-  }
+  DrawerConfig,
 )
 
 DrawerNavigator.navigationOptions = ({ navigation }) => {
