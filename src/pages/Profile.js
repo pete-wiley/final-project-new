@@ -95,8 +95,9 @@ export default class Profile extends Component {
                     <Button
                     title = "Add Happy Hour"
                     raised = {true}
-
                     />
+                   </View>
+                   <View> 
                     <Overlay
                     isVisible={this.state.isVisible}
                     onBackdropPress={() => this.setState({ isVisible: false })}
@@ -175,7 +176,8 @@ const styles = StyleSheet.create({
     FoodTruck: {
         // flex: 1,
         alignItems: "center",
-        justifyContent: "flex-start",
+        justifyContent: "space-evenly",
         marginBottom: 40,
+        flexDirection: 'row'
     }
 })
