@@ -11,7 +11,7 @@ export default class Details extends Component {
         return {
             title: "Details",
             headerBackTitle: null,
-            headerStyle: { backgroundColor: '#CFDBD5' },
+            headerStyle: { backgroundColor: 'white' },
             headerTitleStyle: { fontSize: 25 },
             headerRight:
                 <Image

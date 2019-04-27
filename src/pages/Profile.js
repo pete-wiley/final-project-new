@@ -4,6 +4,7 @@ import { Button, Text, ListItem, Overlay, Rating, FormLabel, FormInput, FormVali
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Sky from '../assets/pics/sky.jpg'
 import Form from './form'
+import FormH from './formH'
 import { IDkey } from '../assets/consts'
 import Gem from '../assets/pics/gemIcon.png'
 import { ScrollView } from 'react-native-gesture-handler';
@@ -12,7 +13,7 @@ export default class Profile extends Component {
     static navigationOptions = ({ navigation }) => {
         return {
             title: "Profile",
-            headerStyle: { backgroundColor: '#CFDBD5' },
+            headerStyle: { backgroundColor: 'white' },
             headerTitleStyle: { fontSize: 25 },
             headerRight:
             <Image
@@ -28,6 +29,7 @@ export default class Profile extends Component {
         this.state = {
             items: [],
             isVisible: false,
+            isVisible1: false,
             gems: ''
         };
     }
@@ -61,7 +63,13 @@ export default class Profile extends Component {
 
     clicked = () => {
         this.setState({
-            isVisible: true
+            isVisible: true,
+        })
+    }
+
+    clicked1 = () => {
+        this.setState({
+            isVisible1: true,
         })
     }
 
@@ -87,14 +95,18 @@ export default class Profile extends Component {
                     <Button
                     title = "Add Food Truck"
                     raised = {true}
+                    buttonStyle = {{borderRadius: 20}}
                     onPress={() =>
                         this.clicked()
                     }
                     />
-                    <Text> {"\n"}{"\n"} </Text>
                     <Button
                     title = "Add Happy Hour"
                     raised = {true}
+                    buttonStyle = {{borderRadius: 20}}
+                    onPress={() =>
+                        this.clicked1()
+                    }
                     />
                    </View>
                    <View> 
@@ -105,6 +117,16 @@ export default class Profile extends Component {
                     height="auto"
                     >
                     <Form/>
+                    </Overlay>
+                </View>
+                <View> 
+                    <Overlay
+                    isVisible={this.state.isVisible1}
+                    onBackdropPress={() => this.setState({ isVisible1: false })}
+                    width="auto"
+                    height="auto"
+                    >
+                    <FormH/>
                     </Overlay>
                 </View>
                 <View style={styles.Reviews}>
@@ -157,16 +179,12 @@ const styles = StyleSheet.create({
         backgroundColor: "#BDBBB6"
     },
     Name: {
-        // flex:1,
         alignItems: "center",
-        // paddingRight: 15,
         marginBottom: 4,
         justifyContent: "center"
     },
     Image: {
-        // flex:1,
         alignItems: "center",
-        // paddingRight: 10,
         justifyContent: "center"
     },
     UserContent: {
@@ -174,7 +192,6 @@ const styles = StyleSheet.create({
         height: "75%"
     },
     FoodTruck: {
-        // flex: 1,
         alignItems: "center",
         justifyContent: "space-evenly",
         marginBottom: 40,

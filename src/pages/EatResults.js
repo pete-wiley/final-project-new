@@ -11,7 +11,7 @@ export default class EatResults extends Component {
     static navigationOptions = ({ navigation }) => {
         return {
             title: "Eat Results",
-            headerStyle: { backgroundColor: '#CFDBD5' },
+            headerStyle: { backgroundColor: 'white' },
             headerBackTitle: null,
             headerTitleStyle: { fontSize: 25 },
             headerRight:

@@ -11,6 +11,7 @@ export default class App extends Component {
       headerBackTitle: null,
       title: "Map",
       headerTitleStyle: { fontSize: 25 },
+      headerStyle: { backgroundColor: 'white' },
       headerRight:
       <Image
       source={Gem}

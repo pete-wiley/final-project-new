@@ -11,7 +11,7 @@ export default class Favorites extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
         title: "Favorites",
-        headerStyle: { backgroundColor: '#CFDBD5' },
+        headerStyle: { backgroundColor: 'white' },
         headerBackTitle: null,
         headerTitleStyle: { fontSize: 25 },
         headerRight:

@@ -12,7 +12,7 @@ export default class Results extends Component {
     static navigationOptions = ({ navigation }) => {
         return {
             title: "Drink Results",
-            headerStyle: { backgroundColor: '#CFDBD5' },
+            headerStyle: { backgroundColor: 'white' },
             headerBackTitle: null,
             headerTitleStyle: { fontSize: 25 },
             headerRight:
