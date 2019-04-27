@@ -103,6 +103,7 @@ export default class Details extends Component {
             console.log('current favs: ' + this.state.currentFavs)
             let newFavs = this.state.currentFavs.push(this.state.thisFav)
             console.log('new favs: ' + this.state.currentFavs)
+         
             try {
                 let response = await fetch(`https://bham-gems-api.herokuapp.com/user/5cc08a331c9d440000e62b2d`, {
                     method: 'PUT',
@@ -163,6 +164,10 @@ export default class Details extends Component {
                 })
             }
         }
+    }
+
+    removeFavorite() {
+        
     }
 
     componentDidMount() {

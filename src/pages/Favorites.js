@@ -46,6 +46,10 @@ export default class Favorites extends Component {
     this.props.navigation.navigate('Details')
 }
 
+
+
+
+
   render() {
     return (
       <ScrollView>
