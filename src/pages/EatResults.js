@@ -149,7 +149,7 @@ export default class EatResults extends Component {
                             >
                                 <ListItem
                                     key={i}
-                                    containerStyle={{ backgroundColor: 'rgba(25, 25, 25, 0.6)', marginBottom: 2}}
+                                    containerStyle={{ backgroundColor: 'rgba(25, 25, 25, 0.6)'}}
                                     title={l.name}
                                     titleStyle={{
                                         fontSize: 25,
