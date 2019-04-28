@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { Text, SafeAreaView, ImageBackground, StyleSheet, ScrollView,  View, Image } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { ListItem, Rating } from 'react-native-elements'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { pics } from '../assets/consts'
 import ftPic from '../assets/pics/foodTruck2.png'
 import Gem from '../assets/pics/gemIcon.png'
@@ -146,12 +144,12 @@ export default class EatResults extends Component {
                         this.state.items.map((l, i) => (
                             <ImageBackground
                                 key={i}
-                                style={{ width: '100%' }}
+                                style={{ width: '100%', marginBottom: 2 }}
                                 source={pics[l.picid]}
                             >
                                 <ListItem
                                     key={i}
-                                    containerStyle={{ backgroundColor: 'rgba(25, 25, 25, 0.6)', }}
+                                    containerStyle={{ backgroundColor: 'rgba(25, 25, 25, 0.6)', marginBottom: 2}}
                                     title={l.name}
                                     titleStyle={{
                                         fontSize: 25,
