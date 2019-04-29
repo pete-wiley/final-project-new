@@ -3,30 +3,20 @@ import { Text, View, TextInput, Picker, StyleSheet } from 'react-native'
 import { Button } from 'react-native-elements'
 
 
-export default class Form extends Component {
+export default class FormH extends Component {
 
     constructor(){
       super()
       this.state = {
         openTime: '',
         closeTime: '',
-        location: ''
       }
     }
-  
-    // clicked = () => {
-    //   this.props.isVisible = false
-    // }
+    
 
   render() {
     return (
       <View style={{flexDirection: 'column', alignSelf: 'center', justifyContent: 'center'}}>
-          <TextInput
-            placeholder="Location"
-            maxLength={50}
-            style = {styles.input}
-            onChangeText={location => this.setState({ location })}
-          />
           <View style={{flexDirection: 'row'}}>
             <View style={{flexDirection: 'column'}}> 
               <Text style={{ marginRight: 10, fontSize: 30}}>Opening</Text>
@@ -87,9 +77,6 @@ export default class Form extends Component {
           title="Submit"
           type="outline"
           raised={true}
-        //   onPress={() =>
-        //     this.clicked()
-        // }
           containerStyle={styles.container}
           />
       </View>

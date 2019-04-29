@@ -4,7 +4,7 @@ import {
   createAppContainer,
   createDrawerNavigator,
 } from "react-navigation";
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import Home from './src/pages/Home'
 import EatResults from './src/pages/EatResults'
@@ -17,6 +17,7 @@ import Map from './src/pages/Map'
 import Favorites from './src/pages/Favorites'
 import Playlists from './src/pages/Playlists'
 import MenuDrawer from './src/component/MenuDrawer';
+import SplashScreen from './src/pages/Splash'
 
 const ProfileStack = createStackNavigator(
   {
@@ -26,7 +27,7 @@ const ProfileStack = createStackNavigator(
         return {
           headerLeft:
           <Icon
-            name="bars"
+            name="grip-lines"
             size={30}
             style={{ paddingLeft: 10 }}
             onPress={() => navigation.openDrawer()} 
@@ -45,7 +46,7 @@ const FavoritesStack = createStackNavigator(
         return{
           headerLeft:
           <Icon
-            name="bars"
+            name="grip-lines"
             size={30}
             style={{ paddingLeft: 10 }}
             onPress={() => navigation.openDrawer()}
@@ -53,6 +54,20 @@ const FavoritesStack = createStackNavigator(
         };
       }
     },
+    Details:{
+      screen: Details,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerBackTitle: null,
+          headerBackImage:(
+            <Icon
+              name="arrow-left"
+              size={30}
+              style={{ paddingLeft: 10}} />
+          )
+        }
+      }
+    }
   }
 )
 const PlaylistStack = createStackNavigator(
@@ -63,7 +78,7 @@ const PlaylistStack = createStackNavigator(
         return{
           headerLeft:
           <Icon
-            name="bars"
+            name="grip-lines"
             size={30}
             style={{ paddingLeft: 10 }}
             onPress={() => navigation.openDrawer()}
@@ -82,7 +97,7 @@ const MapStack = createStackNavigator(
         return {
           headerLeft:
           <Icon
-            name="bars"
+            name="grip-lines"
             size={30}
             style={{ paddingLeft: 10 }}
             onPress={() => navigation.openDrawer()}
@@ -103,7 +118,7 @@ const HomeStack = createStackNavigator(
         return {
           headerLeft:
           <Icon
-            name="bars"
+            name="grip-lines"
             size={30}
             style={{ paddingLeft: 10 }}
             onPress={() => navigation.openDrawer()}
@@ -192,6 +207,7 @@ const DrawerConfig = {
 
 const DrawerNavigator = createDrawerNavigator(
   {
+    Splash: SplashScreen,
     Home:{
       screen:HomeStack
     }, 

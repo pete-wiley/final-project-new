@@ -8,10 +8,25 @@ import Gem from '../assets/pics/gemIcon.png'
 
 
 export default class Favorites extends Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+        title: "Favorites",
+        headerStyle: { backgroundColor: 'white' },
+        headerBackTitle: null,
+        headerTitleStyle: { fontSize: 25 },
+        headerRight:
+        <Image
+            source={Gem}
+            style={{width: 50, height: 50, paddingRight: 175}}
+            resizeMode={"contain"}
+            />
+    }
+}
 
   constructor(props) {
     super(props)
     this.state = {
+      renderFavsState: []
     }
   }
 
@@ -19,43 +34,184 @@ export default class Favorites extends Component {
 
   clicked = (thing) => {
     if (thing.opening_hours === undefined) {
-        thing.opening_hours = {
-            weekday_text: [
-                '',
-                '',
-                '',
-                '',
-                '',
-                '',
-                ''
-            ]
-        }
-        console.log('yup')
-        global.item = thing
+      thing.opening_hours = {
+        weekday_text: [
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          ''
+        ]
+      }
+      console.log('yup')
+      global.item = thing
     } else {
-        global.item = thing
-        console.log('yay!')
+      global.item = thing
+      console.log('yay!')
     }
     n = new Date()
     d = n.getDay()
     if (d == 0) {
-        global.day = 6
+      global.day = 6
     } else {
-        global.day = (d - 1)
+      global.day = (d - 1)
     }
     this.props.navigation.navigate('Details')
-}
+  }
+
+  compare(a, b) {
+    if (a.picid < b.picid) {
+      return -1;
+    }
+    if (a.picid > b.picid) {
+      return 1;
+    }
+    return 0;
+  }
+
+  getFavorites = async () => {
+    try {
+      let response = await fetch(`https://bham-gems-api.herokuapp.com/user/5cc08a331c9d440000e62b2d`, {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        }
+      });
+      let res = await response.json();
+      if (!res) {
+        console.log('Nope');
+      } else {
+        console.log('res ' + res);
+        global.favorites = res.favorites
+        global.favorites.sort(this.compare)
+      }
+    } catch (error) {
+      console.log('Something went wrong');
+    }
+    console.log('sorted favs: ' + global.favorites)
+    this.getRenderFavorites()
+  }
+
+  getRenderFavorites = async () => {
+    let renderFavs = []
+    for (i = 0; i < global.favorites.length; i++) {
+      if (global.favorites[i].picid[0] == "E") {
+        try {
+          let response = await fetch(`https://bham-gems-api.herokuapp.com/eat/${global.favorites[i].objectid}`, {
+            method: 'GET',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json'
+            }
+          });
+          let res = await response.json();
+          if (!res) {
+            console.log('Nope');
+          } else {
+            console.log(res)
+            renderFavs.push(res)
+          }
+        } catch (error) {
+          console.log('Something went wrong');
+        }
+      } else if (global.favorites[i].picid[0] == "S") {
+        try {
+          let response = await fetch(`https://bham-gems-api.herokuapp.com/see/${global.favorites[i].objectid}`, {
+            method: 'GET',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json'
+            }
+          });
+          let res = await response.json();
+          if (!res) {
+            console.log('Nope');
+          } else {
+            console.log(res)
+            renderFavs.push(res)
+          }
+        } catch (error) {
+          console.log('Something went wrong');
+        }
+      } else if (global.favorites[i].picid[1] == "T") {
+        try {
+          let response = await fetch(`https://bham-gems-api.herokuapp.com/foodtruck/${global.favorites[i].objectid}`, {
+            method: 'GET',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json'
+            }
+          });
+          let res = await response.json();
+          if (!res) {
+            console.log('Nope');
+          } else {
+            console.log(res)
+            renderFavs.push(res)
+          }
+        } catch (error) {
+          console.log('Something went wrong');
+        }
+      } else if (global.favorites[i].picid[1] == "O") {
+        try {
+          let response = await fetch(`https://bham-gems-api.herokuapp.com/do/${global.favorites[i].objectid}`, {
+            method: 'GET',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json'
+            }
+          });
+          let res = await response.json();
+          if (!res) {
+            console.log('Nope');
+          } else {
+            console.log(res)
+            renderFavs.push(res)
+          }
+        } catch (error) {
+          console.log('Something went wrong');
+        }
+      } else if (global.favorites[i].picid[1] == "R") {
+        try {
+          let response = await fetch(`https://bham-gems-api.herokuapp.com/drink/${global.favorites[i].objectid}`, {
+            method: 'GET',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json'
+            }
+          });
+          let res = await response.json();
+          if (!res) {
+            console.log('Nope');
+          } else {
+            console.log(res)
+            renderFavs.push(res)
+          }
+        } catch (error) {
+          console.log('Something went wrong');
+        }
+      }
+    }
+    console.log('render favs: ' + JSON.stringify(renderFavs))
+    this.setState({
+      renderFavsState: renderFavs
+    })
+  }
 
 
 
 
 
   render() {
+    this.getFavorites()
     return (
       <ScrollView>
         <SafeAreaView>
           {
-            global.renderFavs.map((l, i) => (
+            this.state.renderFavsState.map((l, i) => (
               <ImageBackground
                 key={i}
                 style={{ width: '100%' }}

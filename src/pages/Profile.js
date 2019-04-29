@@ -4,6 +4,7 @@ import { Button, Text, ListItem, Overlay, Rating, FormLabel, FormInput, FormVali
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Sky from '../assets/pics/sky.jpg'
 import Form from './form'
+import FormH from './formH'
 import { IDkey } from '../assets/consts'
 import Gem from '../assets/pics/gemIcon.png'
 import { ScrollView } from 'react-native-gesture-handler';
@@ -12,13 +13,13 @@ export default class Profile extends Component {
     static navigationOptions = ({ navigation }) => {
         return {
             title: "Profile",
-            headerStyle: { backgroundColor: '#CFDBD5' },
+            headerStyle: { backgroundColor: 'white' },
             headerTitleStyle: { fontSize: 25 },
             headerRight:
-                <Image
-                    source={Gem}
-                    style={{ width: 50, height: 50, paddingRight: 200 }}
-                    resizeMode={"contain"}
+            <Image
+                source={Gem}
+                style={{width: 50, height: 50, paddingRight: 200}}
+                resizeMode={"contain"}
                 />
         }
     }
@@ -28,6 +29,7 @@ export default class Profile extends Component {
         this.state = {
             items: [],
             isVisible: false,
+            isVisible1: false,
             gems: ''
         };
     }
@@ -61,7 +63,13 @@ export default class Profile extends Component {
 
     clicked = () => {
         this.setState({
-            isVisible: true
+            isVisible: true,
+        })
+    }
+
+    clicked1 = () => {
+        this.setState({
+            isVisible1: true,
         })
     }
 
@@ -69,83 +77,90 @@ export default class Profile extends Component {
         return (
             <SafeAreaView>
                 <ScrollView>
-                    <ImageBackground
-                        source={Sky}
-                        style={styles.UserInfo}>
-                        <View style={styles.Image}>
-                            <Image
-                                style={{ width: 100, height: 100 }}
-                                borderRadius={50}
-                                source={{ uri: "https://411mania.com/wp-content/uploads/2018/04/John-Cena-Raw-4218-645x370.jpg" }} />
-                        </View>
-                        <View style={styles.Name}>
-                            <Text style={{ fontSize: 45 }}>John Cena</Text>
-                        </View>
-                    </ImageBackground>
-                    <Text>
-                        {"\n"}
-                    </Text>
-                    <View style={styles.UserContent}>
-                        <View style={styles.FoodTruck}>
-                            <View style={styles.Container}>
-                                <Button
-                                    title="Add Food Truck"
-                                    raised={true}
-                                    style={styles.Button}
-                                    onPress={() =>
-                                        this.clicked()
-                                    }
-                                />
-                                <Button
-                                    title="Add Happy Hour"
-                                    raised={true}
-                                    style={styles.Button}
-                                />
-                            </View>
-                            <Text>
-                                {"\n"}{"\n"}
-                            </Text>
-                            <Overlay
-                                isVisible={this.state.isVisible}
-                                onBackdropPress={() => this.setState({ isVisible: false })}
-                                width="auto"
-                                height="auto"
-                            >
-                                <Form />
-                            </Overlay>
-                        </View>
-                        <View style={styles.Reviews}>
-                            <Text h3 style={{ paddingBottom: 20, alignSelf: 'center' }}>My Reviews</Text>
-                            {/* mapping through reviews */}
-                            {
-                                this.state.items.map((l, i) => (
-                                    <ListItem
-                                        key={i}
-                                        title={l.title}
-                                        rightTitle={
-                                            <Rating
-                                                type='custom'
-                                                ratingImage={Gem}
-                                                ratingCount={l.gems}
-                                                ratingTextColor='lightblue'
-                                                ratingColor=''
-                                                imageSize={30}
-                                                onFinishRating={this.ratingCompleted}
-                                            />
-                                        }
-                                        rightSubtitle={IDkey[l.businessid]}
-                                        titleStyle={{
-                                            fontSize: 25,
-                                            paddingBottom: 6,
-                                            color: 'black',
-                                        }}
-                                        subtitle={l.reviewBody}
-                                        bottomDivider
-                                    />
-                                ))
-                            }
-                        </View>
+                <ImageBackground
+                    source={Sky}
+                    style={styles.UserInfo}>
+                    <View style={styles.Image}>
+                        <Image
+                            style={{ width: 100, height: 100 }}
+                            borderRadius={50}
+                            source={{ uri: "https://411mania.com/wp-content/uploads/2018/04/John-Cena-Raw-4218-645x370.jpg" }} />
                     </View>
+                    <View style={styles.Name}>
+                        <Text style={{ fontSize: 45 }}>John Cena</Text>
+                    </View>
+                </ImageBackground>
+            <View style={styles.UserContent}>
+                <View style={styles.FoodTruck}>
+                    <Button
+                    title = "Add Food Truck"
+                    raised = {true}
+                    buttonStyle = {{borderRadius: 20}}
+                    onPress={() =>
+                        this.clicked()
+                    }
+                    />
+                    <Button
+                    title = "Add Happy Hour"
+                    raised = {true}
+                    buttonStyle = {{borderRadius: 20}}
+                    onPress={() =>
+                        this.clicked1()
+                    }
+                    />
+                   </View>
+                   <View> 
+                    <Overlay
+                    isVisible={this.state.isVisible}
+                    onBackdropPress={() => this.setState({ isVisible: false })}
+                    width="auto"
+                    height="auto"
+                    >
+                    <Form/>
+                    </Overlay>
+                </View>
+                <View> 
+                    <Overlay
+                    isVisible={this.state.isVisible1}
+                    onBackdropPress={() => this.setState({ isVisible1: false })}
+                    width="auto"
+                    height="auto"
+                    >
+                    <FormH/>
+                    </Overlay>
+                </View>
+                <View style={styles.Reviews}>
+                    <Text h3 style={{paddingBottom: 20, alignSelf: 'center'}}>My Reviews</Text>
+                    {/* mapping through reviews */}
+                    {
+                        this.state.items.map((l, i) => (
+                                <ListItem
+                                key={i}
+                                title={l.title}
+                                rightTitle={
+                                    <Rating
+                                type='custom'
+                                ratingImage={Gem}
+                                ratingCount={l.gems}
+                                ratingTextColor='lightblue'
+                                ratingColor=''
+                                imageSize={30}
+                                onFinishRating={this.ratingCompleted}
+                                />
+                                }
+                                rightSubtitle={IDkey[l.businessid]}
+                                titleStyle={{
+                                    fontSize: 25,
+                                    paddingBottom: 6,
+                                    color: 'black',
+                                }}
+                                subtitle={l.reviewBody}
+                                bottomDivider
+                            />
+                        ))
+                    }
+                </View>
+                </View>
                 </ScrollView>
             </SafeAreaView>
         )
@@ -164,30 +179,22 @@ const styles = StyleSheet.create({
         backgroundColor: "#BDBBB6"
     },
     Name: {
-        // flex:1,
         alignItems: "center",
-        // paddingRight: 15,
         marginBottom: 4,
         justifyContent: "center"
     },
     Image: {
-        // flex:1,
         alignItems: "center",
-        // paddingRight: 10,
         justifyContent: "center"
     },
     UserContent: {
         flexDirection: "column",
         height: "75%"
     },
-    Container: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-evenly'
-    },
-    Button: {
-        width: '40%',
-    },
-
-
+    FoodTruck: {
+        alignItems: "center",
+        justifyContent: "space-evenly",
+        marginBottom: 40,
+        flexDirection: 'row'
+    }
 })

@@ -9,7 +9,7 @@ export default class Home extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
       title: "BhamGems",
-      headerStyle: { backgroundColor: '#CFDBD5' },
+      headerStyle: { backgroundColor: 'white' },
       headerTitleStyle: { fontSize: 25 },
       headerRight:
         <Image

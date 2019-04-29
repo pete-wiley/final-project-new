@@ -13,7 +13,7 @@ export default class Results extends Component {
         return {
             title: "Do Results",
             headerBackTitle: null,
-            headerStyle: { backgroundColor: '#CFDBD5' },
+            headerStyle: { backgroundColor: 'white' },
             headerTitleStyle: { fontSize: 25 },
             headerRight:
             <Image
