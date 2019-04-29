@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, SafeAreaView, ImageBackground, StyleSheet, ScrollView,  View, Image } from 'react-native'
+import { Text, SafeAreaView, ImageBackground, View, StyleSheet, ScrollView, Image, ActivityIndicator, } from 'react-native'
 import { ListItem, Rating } from 'react-native-elements'
 import { pics } from '../assets/consts'
 import ftPic from '../assets/pics/foodTruck2.png'
@@ -27,7 +27,8 @@ export default class EatResults extends Component {
             items: [],
             itemsFT: [],
             trucksTitle: '',
-            ftPicState: ''
+            ftPicState: '',
+            loading: true
         }
     }
 
@@ -136,10 +137,25 @@ export default class EatResults extends Component {
         this.getItems()
     }
 
+    componentWillMount() {
+        setTimeout(() =>{
+            this.setState({
+                loading: false
+            })
+        },1750
+        )
+    }
     render() {
         return (
             <ScrollView>
-                <SafeAreaView>
+                {
+                        this.state.loading ?
+                        <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
+                            <ActivityIndicator style={{paddingTop: 325}} size="large" />
+                        </View>
+                        
+                        :
+                        <SafeAreaView>
                     {
                         this.state.items.map((l, i) => (
                             <ImageBackground
@@ -208,6 +224,7 @@ export default class EatResults extends Component {
                         ))
                     }
                 </SafeAreaView>
+                    }
             </ScrollView>
         )
     }

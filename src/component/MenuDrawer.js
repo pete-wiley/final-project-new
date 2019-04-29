@@ -11,7 +11,6 @@ import {
 import Sky from '../assets/pics/sky.jpg'
 import HaleyMK from '../assets/pics/HaleyMK.jpg'
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { whileStatement } from '@babel/types';
 
 
 export default class MenuDrawer extends React.Component {

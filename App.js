@@ -126,7 +126,6 @@ const HomeStack = createStackNavigator(
         }
       }
     },
-    
     EatResults:{
       screen: EatResults,
       navigationOptions: ({ navigation }) => {
@@ -208,7 +207,7 @@ const DrawerConfig = {
 
 const DrawerNavigator = createDrawerNavigator(
   {
-    // SplashScreen,
+    
     Home:{
       screen:HomeStack
     }, 
