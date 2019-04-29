@@ -165,6 +165,8 @@ export default class Details extends Component {
         }
     }
 
+    
+
     componentDidMount() {
         this.getItems()
         this.getFavorites()
@@ -191,6 +193,12 @@ export default class Details extends Component {
                             defaultRating={11}
                             size={40}
                             type='heart'
+                            onFinishRating={(rating) => {
+                                this.setState({
+                                    newRatingNumber: rating
+                                })
+                                console.log(rating)
+                            }}
                         />
                         <Input
                             inputContainerStyle={{
