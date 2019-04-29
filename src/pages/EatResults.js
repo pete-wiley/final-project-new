@@ -79,6 +79,7 @@ export default class EatResults extends Component {
         }
         this.setState({ trucksTitle: 'FOOD TRUCKS' })
         this.setState({ ftPicState: ftPic })
+        this.setState({ loading: false})
     }
 
     clicked = (thing) => {
@@ -137,14 +138,6 @@ export default class EatResults extends Component {
         this.getItems()
     }
 
-    componentWillMount() {
-        setTimeout(() =>{
-            this.setState({
-                loading: false
-            })
-        },1750
-        )
-    }
     render() {
         return (
             <ScrollView>
