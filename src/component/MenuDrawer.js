@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import Sky from '../assets/pics/sky.jpg'
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { whileStatement } from '@babel/types';
 
 
 export default class MenuDrawer extends React.Component {
@@ -28,7 +29,7 @@ export default class MenuDrawer extends React.Component {
 	render() {
 		return(
 			<View style={styles.container}>
-				<ScrollView style={styles.scroller}>
+				{/* <ScrollView style={styles.scroller}> */}
                    <ImageBackground
                    source={Sky}
                    style={{width:'100%'}}
@@ -49,9 +50,13 @@ export default class MenuDrawer extends React.Component {
 						{this.navLink('Profile', 'Profile', 'user')}
                         {this.navLink('Map', 'Map', 'map-signs')}
                         {this.navLink('Favorites', 'Favorites', 'heart')}
-                        {this.navLink('Playlists', 'Playlists', 'folder-open')}
+						{this.navLink('Playlists', 'Playlists', 'folder-open')}
 					</View>
-				</ScrollView>
+					<View style={styles.contact}>
+						<Text style={{fontSize: 15, fontWeight: 'bold'}}>Contact</Text>
+						<Text style={{fontSize: 15, fontWeight: 'bold'}}>Bham@gems.com</Text>
+					</View>
+				{/* </ScrollView> */}
 				<View style={styles.footer}>
 					<Text style={styles.description}>Bham Gemz</Text>
 					<Text style={styles.version}>v1.0</Text>
@@ -77,6 +82,13 @@ const styles = StyleSheet.create({
 	},
 	scroller: {
 		flex: 1,
+	},
+	contact:{
+		bottom: 0,
+		backgroundColor: 'white',
+		alignItems: 'flex-start',
+		paddingBottom: 20,
+		paddingLeft: 20,
 	},
 	profile: {
 		flex: 1,
