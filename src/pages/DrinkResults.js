@@ -45,7 +45,8 @@ export default class Results extends Component {
             } else {
                 this.setState({
                     items: res,
-                    gotRes: 1
+                    gotRes: 1,
+                    loading: false
                 })
             }
         } catch (error) {
@@ -84,15 +85,6 @@ export default class Results extends Component {
 
     componentDidMount() {
         this.getItems()
-    }
-
-    componentWillMount() {
-        setTimeout(() =>{
-            this.setState({
-                loading: false
-            })
-        },1750
-        )
     }
 
     render() {
