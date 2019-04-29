@@ -9,6 +9,7 @@ import {
     ImageBackground
 } from 'react-native';
 import Sky from '../assets/pics/sky.jpg'
+import HaleyMK from '../assets/pics/HaleyMK.jpg'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { whileStatement } from '@babel/types';
 
@@ -37,10 +38,13 @@ export default class MenuDrawer extends React.Component {
                         <View style={styles.topLinks}>
                             <View style={styles.profile}>
                                 <View style={styles.imgView}>
-                                    <Image style={styles.img} source={{ uri: "https://411mania.com/wp-content/uploads/2018/04/John-Cena-Raw-4218-645x370.jpg" }} />
+									<Image 
+                            			source={HaleyMK} 
+										style={styles.img} 
+										/>
                                 </View>
                                 <View style={styles.profileText}>
-                                    <Text style={styles.name}>John Cena</Text>
+                                    <Text style={styles.name}>Haley Medved Kendrick</Text>
                                 </View>
                             </View>
                         </View>
@@ -104,7 +108,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 	},
 	name: {
-		fontSize: 35,
+		fontSize: 25,
 		paddingBottom: 5,
         color: 'black',
         fontWeight: '300',

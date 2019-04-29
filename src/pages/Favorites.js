@@ -199,6 +199,10 @@ export default class Favorites extends Component {
     })
   }
 
+
+
+
+
   render() {
     this.getFavorites()
     return (

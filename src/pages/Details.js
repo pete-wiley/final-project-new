@@ -103,6 +103,7 @@ export default class Details extends Component {
             console.log('current favs: ' + this.state.currentFavs)
             let newFavs = this.state.currentFavs.push(this.state.thisFav)
             console.log('new favs: ' + this.state.currentFavs)
+         
             try {
                 let response = await fetch(`https://bham-gems-api.herokuapp.com/user/5cc08a331c9d440000e62b2d`, {
                     method: 'PUT',
@@ -163,6 +164,10 @@ export default class Details extends Component {
                 })
             }
         }
+    }
+
+    removeFavorite() {
+        
     }
 
     componentDidMount() {
@@ -263,7 +268,7 @@ export default class Details extends Component {
                 <View style={styles.Bottom}>
                     <Text style={{ textAlign: 'center', paddingBottom: 5, fontSize: 20 }}>{global.item.opening_hours.weekday_text[global.day]}</Text>
                     {/* make this link to the maps */}
-                    <Text style={{ textAlign: 'center', paddingBottom: 5, fontSize: 20 }} onPress={() => LaunchNavigator.navigate(address)
+                    <Text style={{ textAlign: 'center', paddingBottom: 5, fontSize: 15, textDecorationLine: "underline" }} onPress={() => LaunchNavigator.navigate(address)
                         .then(() => console.log("Launched navigator"))
                         .catch((err) => console.error("Error launching navigator: " + err))}>{global.item.formatted_address}</Text>
                     {/* make this link to a phone call */}
