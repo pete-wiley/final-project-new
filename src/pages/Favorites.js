@@ -196,19 +196,10 @@ export default class Favorites extends Component {
     }
     console.log('render favs: ' + JSON.stringify(renderFavs))
     this.setState({
-      renderFavsState: renderFavs
+      renderFavsState: renderFavs,
+      loading: false
     })
   }
-
-
-  componentWillMount() {
-    setTimeout(() =>{
-        this.setState({
-            loading: false
-        })
-    },1750
-    )
-}
 
 
   render() {
