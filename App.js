@@ -27,7 +27,7 @@ const ProfileStack = createStackNavigator(
         return {
           headerLeft:
           <Icon
-            name="grip-lines"
+            name="bars"
             size={30}
             style={{ paddingLeft: 10 }}
             onPress={() => navigation.openDrawer()} 
@@ -46,7 +46,7 @@ const FavoritesStack = createStackNavigator(
         return{
           headerLeft:
           <Icon
-            name="grip-lines"
+            name="bars"
             size={30}
             style={{ paddingLeft: 10 }}
             onPress={() => navigation.openDrawer()}
@@ -78,7 +78,7 @@ const PlaylistStack = createStackNavigator(
         return{
           headerLeft:
           <Icon
-            name="grip-lines"
+            name="bars"
             size={30}
             style={{ paddingLeft: 10 }}
             onPress={() => navigation.openDrawer()}
@@ -97,7 +97,7 @@ const MapStack = createStackNavigator(
         return {
           headerLeft:
           <Icon
-            name="grip-lines"
+            name="bars"
             size={30}
             style={{ paddingLeft: 10 }}
             onPress={() => navigation.openDrawer()}
@@ -118,7 +118,7 @@ const HomeStack = createStackNavigator(
         return {
           headerLeft:
           <Icon
-            name="grip-lines"
+            name="bars"
             size={30}
             style={{ paddingLeft: 10 }}
             onPress={() => navigation.openDrawer()}
@@ -126,7 +126,6 @@ const HomeStack = createStackNavigator(
         }
       }
     },
-    
     EatResults:{
       screen: EatResults,
       navigationOptions: ({ navigation }) => {
@@ -208,7 +207,7 @@ const DrawerConfig = {
 
 const DrawerNavigator = createDrawerNavigator(
   {
-    SplashScreen,
+    
     Home:{
       screen:HomeStack
     }, 

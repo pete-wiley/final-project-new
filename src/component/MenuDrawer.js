@@ -9,6 +9,7 @@ import {
     ImageBackground
 } from 'react-native';
 import Sky from '../assets/pics/sky.jpg'
+import HaleyMK from '../assets/pics/HaleyMK.jpg'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
@@ -28,7 +29,7 @@ export default class MenuDrawer extends React.Component {
 	render() {
 		return(
 			<View style={styles.container}>
-				<ScrollView style={styles.scroller}>
+				{/* <ScrollView style={styles.scroller}> */}
                    <ImageBackground
                    source={Sky}
                    style={{width:'100%'}}
@@ -36,10 +37,13 @@ export default class MenuDrawer extends React.Component {
                         <View style={styles.topLinks}>
                             <View style={styles.profile}>
                                 <View style={styles.imgView}>
-                                    <Image style={styles.img} source={{ uri: "https://411mania.com/wp-content/uploads/2018/04/John-Cena-Raw-4218-645x370.jpg" }} />
+									<Image 
+                            			source={HaleyMK} 
+										style={styles.img} 
+										/>
                                 </View>
                                 <View style={styles.profileText}>
-                                    <Text style={styles.name}>John Cena</Text>
+                                    <Text style={styles.name}>Haley Medved Kendrick</Text>
                                 </View>
                             </View>
                         </View>
@@ -49,11 +53,15 @@ export default class MenuDrawer extends React.Component {
 						{this.navLink('Profile', 'Profile', 'user')}
                         {this.navLink('Map', 'Map', 'map-signs')}
                         {this.navLink('Favorites', 'Favorites', 'heart')}
-                        {this.navLink('Playlists', 'Playlists', 'folder-open')}
+						{this.navLink('Playlists', 'Playlists', 'folder-open')}
 					</View>
-				</ScrollView>
+					<View style={styles.contact}>
+						<Text style={{fontSize: 15, fontWeight: 'bold'}}>Contact</Text>
+						<Text style={{fontSize: 15, fontWeight: 'bold'}}>Bham@gems.com</Text>
+					</View>
+				{/* </ScrollView> */}
 				<View style={styles.footer}>
-					<Text style={styles.description}>Bham Gemz</Text>
+					<Text style={styles.description}>Bham Gems</Text>
 					<Text style={styles.version}>v1.0</Text>
 				</View>
 			</View>
@@ -78,6 +86,13 @@ const styles = StyleSheet.create({
 	scroller: {
 		flex: 1,
 	},
+	contact:{
+		bottom: 0,
+		backgroundColor: 'white',
+		alignItems: 'flex-start',
+		paddingBottom: 20,
+		paddingLeft: 20,
+	},
 	profile: {
 		flex: 1,
 		flexDirection: 'row',
@@ -92,7 +107,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 	},
 	name: {
-		fontSize: 35,
+		fontSize: 25,
 		paddingBottom: 5,
         color: 'black',
         fontWeight: '300',
