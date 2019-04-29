@@ -29,11 +29,12 @@ export default class Details extends Component {
             items: [],
             isVisible: false,
             newRatingPicker: ["circle-medium", "circle-medium", "circle-medium", "circle-medium", "circle-medium",],
-            newRatingNumber: 0,
+            newRatingNumber: 5,
             reviewTitle: '',
             reviewBody: '',
-            reviewer: 'John Cena',
+            reviewer: 'haley-mk',
             addToFavs: 'Add to Favorites',
+            favsColor: "#1E89E0",
             currentFavs: [],
             thisFav: {
                 picid: global.item.picid,
@@ -119,7 +120,8 @@ export default class Details extends Component {
                     this.setState({ errors: res.errors });
                 } else {
                     this.setState({
-                        addToFavs: 'Added!'
+                        addToFavs: 'Remove from Favs',
+                        favsColor: '#ff4f6c'
                     })
                 }
             } catch (errors) {
@@ -159,7 +161,8 @@ export default class Details extends Component {
             if (this.state.currentFavs[i].picid == global.item.picid) {
                 console.log('gotem')
                 this.setState({
-                    addToFavs: "Added!"
+                    addToFavs: "Added!",
+                    favsColor: "#ff4f6c"
                 })
             }
         }
@@ -190,7 +193,7 @@ export default class Details extends Component {
 
                         <AirbnbRating
                             count={5}
-                            defaultRating={11}
+                            defaultRating={5}
                             size={40}
                             type='heart'
                             onFinishRating={(rating) => {
@@ -294,7 +297,8 @@ export default class Details extends Component {
                                     height: 50,
                                     width: 150,
                                     borderRadius: 30,
-                                    marginRight: 30
+                                    marginRight: 30,
+                                    backgroundColor: this.state.favsColor
                                 }}
                                 title={this.state.addToFavs}
                                 onPress={() => this.addToFavorites()}

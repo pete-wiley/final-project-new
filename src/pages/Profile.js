@@ -36,7 +36,7 @@ export default class Profile extends Component {
 
     getItems = async () => {
         try {
-            let response = await fetch(`https://bham-gems-api.herokuapp.com/reviews/reviewer/asdfasdf`, {
+            let response = await fetch(`https://bham-gems-api.herokuapp.com/reviews/reviewer/john-cena`, {
                 method: 'GET',
                 headers: {
                     Accept: 'application/json',
@@ -58,7 +58,7 @@ export default class Profile extends Component {
     }
 
     componentDidMount() {
-        this.getItems()
+        // this.getItems()
     }
 
     clicked = () => {
@@ -74,6 +74,7 @@ export default class Profile extends Component {
     }
 
     render() {
+        this.getItems()
         return (
             <SafeAreaView>
                 <ScrollView>
