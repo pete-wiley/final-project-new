@@ -1,13 +1,25 @@
 import React, { Component } from 'react'
 import { Text, SafeAreaView, ImageBackground, StyleSheet, ScrollView, Image } from 'react-native'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { ListItem, Rating } from 'react-native-elements'
 import { pics } from '../assets/consts'
 import Gem from '../assets/pics/gemIcon.png'
 
 
 export default class Favorites extends Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+        title: "Favorites",
+        headerStyle: { backgroundColor: 'white' },
+        headerBackTitle: null,
+        headerTitleStyle: { fontSize: 25 },
+        headerRight:
+        <Image
+            source={Gem}
+            style={{width: 50, height: 50, paddingRight: 175}}
+            resizeMode={"contain"}
+            />
+    }
+}
 
   constructor(props) {
     super(props)
@@ -196,12 +208,12 @@ export default class Favorites extends Component {
             this.state.renderFavsState.map((l, i) => (
               <ImageBackground
                 key={i}
-                style={{ width: '100%' }}
+                style={{ width: '100%', marginBottom: 2 }}
                 source={pics[l.picid]}
               >
                 <ListItem
                   key={i}
-                  containerStyle={{ backgroundColor: 'rgba(25, 25, 25, 0.6)', }}
+                  containerStyle={{ backgroundColor: 'rgba(25, 25, 25, 0.6)'}}
                   title={l.name}
                   titleStyle={{
                     fontSize: 25,
