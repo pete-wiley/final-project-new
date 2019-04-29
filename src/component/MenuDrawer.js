@@ -62,7 +62,7 @@ export default class MenuDrawer extends React.Component {
 					</View>
 				{/* </ScrollView> */}
 				<View style={styles.footer}>
-					<Text style={styles.description}>Bham Gemz</Text>
+					<Text style={styles.description}>Bham Gems</Text>
 					<Text style={styles.version}>v1.0</Text>
 				</View>
 			</View>
