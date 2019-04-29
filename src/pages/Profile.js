@@ -3,6 +3,7 @@ import { View, SafeAreaView, Image, StyleSheet, ImageBackground } from 'react-na
 import { Button, Text, ListItem, Overlay, Rating, FormLabel, FormInput, FormValidationMessage } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Sky from '../assets/pics/sky.jpg'
+import HaleyMK from '../assets/pics/HaleyMK.jpg'
 import Form from './form'
 import FormH from './formH'
 import { IDkey } from '../assets/consts'
@@ -82,12 +83,13 @@ export default class Profile extends Component {
                     style={styles.UserInfo}>
                     <View style={styles.Image}>
                         <Image
-                            style={{ width: 100, height: 100 }}
+                            source={HaleyMK} 
+                            style={{ width: 120, height: 120 }}
                             borderRadius={50}
-                            source={{ uri: "https://411mania.com/wp-content/uploads/2018/04/John-Cena-Raw-4218-645x370.jpg" }} />
+                            />
                     </View>
                     <View style={styles.Name}>
-                        <Text style={{ fontSize: 45 }}>John Cena</Text>
+                        <Text style={{ fontSize: 30 }}>Haley Medved Kendrick</Text>
                     </View>
                 </ImageBackground>
             <View style={styles.UserContent}>
