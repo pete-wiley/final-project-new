@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, SafeAreaView, ImageBackground, StyleSheet, ScrollView, Image } from 'react-native'
+import { View, SafeAreaView, ImageBackground, ActivityIndicator, ScrollView, Image } from 'react-native'
 import { ListItem, Rating } from 'react-native-elements'
 import { pics } from '../assets/consts'
 import Gem from '../assets/pics/gemIcon.png'
@@ -24,7 +24,8 @@ export default class Favorites extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      renderFavsState: []
+      renderFavsState: [],
+      loading: true
     }
   }
 
@@ -200,14 +201,27 @@ export default class Favorites extends Component {
   }
 
 
-
+  componentWillMount() {
+    setTimeout(() =>{
+        this.setState({
+            loading: false
+        })
+    },1750
+    )
+}
 
 
   render() {
     this.getFavorites()
     return (
       <ScrollView>
-        <SafeAreaView>
+        {
+          this.state.loading ?
+          <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
+              <ActivityIndicator style={{paddingTop: 325}} size="large" />
+          </View> 
+          :
+          <SafeAreaView>
           {
             this.state.renderFavsState.map((l, i) => (
               <ImageBackground
@@ -238,6 +252,7 @@ export default class Favorites extends Component {
             ))
           }
         </SafeAreaView>
+        }
       </ScrollView>
     )
   }
