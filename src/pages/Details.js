@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
-import { View, SafeAreaView, StyleSheet, Linking } from 'react-native'
+import { View, SafeAreaView, StyleSheet, Linking, TouchableOpacity } from 'react-native'
 import { Text, Image, ListItem, Button, Overlay, Input, Rating, AirbnbRating } from 'react-native-elements'
 import { ScrollView } from 'react-native-gesture-handler';
 import { pics } from '../assets/consts'
 import LaunchNavigator from 'react-native-launch-navigator';
 import Gem from '../assets/pics/gemIcon.png'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 
 export default class Details extends Component {
     static navigationOptions = ({ navigation }) => {
@@ -28,19 +30,21 @@ export default class Details extends Component {
             days: [],
             items: [],
             isVisible: false,
-            newRatingPicker: ["circle-medium", "circle-medium", "circle-medium", "circle-medium", "circle-medium",],
+            newRatingPicker: [require('../assets/pics/gemIcon.png'), require('../assets/pics/gemIcon.png'), require('../assets/pics/gemIcon.png'), require('../assets/pics/gemIcon.png'), require('../assets/pics/gemIcon.png'),],
+            newRatingIconSize: [50, 50, 50, 50, 50],
             newRatingNumber: 5,
             reviewTitle: '',
             reviewBody: '',
             reviewer: 'haley-mk',
             addToFavs: 'Add to Favorites',
-            favsColor: "#1E89E0",
+            favsColor: "#32D6F1",
             currentFavs: [],
             thisFav: {
                 picid: global.item.picid,
                 objectid: global.item._id
             },
-            disabled: false
+            disabled: false,
+            ratingIcon: []
         };
     }
 
@@ -97,6 +101,7 @@ export default class Details extends Component {
             console.log('catch err');
             console.log(errors);
         }
+        console.log('rating number on submit: ' + this.state.newRatingNumber)
     }
 
     addToFavorites = async () => {
@@ -104,7 +109,7 @@ export default class Details extends Component {
             console.log('current favs: ' + this.state.currentFavs)
             let newFavs = this.state.currentFavs.push(this.state.thisFav)
             console.log('new favs: ' + this.state.currentFavs)
-         
+
             try {
                 let response = await fetch(`https://bham-gems-api.herokuapp.com/user/5cc08a331c9d440000e62b2d`, {
                     method: 'PUT',
@@ -122,7 +127,7 @@ export default class Details extends Component {
                 } else {
                     this.setState({
                         addToFavs: 'Remove from Favs',
-                        favsColor: '#ff4f6c'
+                        favsColor: '#A7A7A7'
                     })
                 }
             } catch (errors) {
@@ -163,13 +168,13 @@ export default class Details extends Component {
                 console.log('gotem')
                 this.setState({
                     addToFavs: "Remove from Favs",
-                    favsColor: "#ff4f6c"
+                    favsColor: "#A7A7A7"
                 })
             }
         }
     }
 
-    
+
 
     componentDidMount() {
         this.getItems()
@@ -191,19 +196,100 @@ export default class Details extends Component {
                     onBackdropPress={() => this.setState({ isVisible: false })}
                 >
                     <View style={{ flexDirection: 'column' }}>
-
-                        <AirbnbRating
-                            count={5}
-                            defaultRating={5}
-                            size={40}
-                            type='heart'
-                            onFinishRating={(rating) => {
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center', marginTop: 50 }}>
+                            <TouchableOpacity onPress={() => {
                                 this.setState({
-                                    newRatingNumber: rating
+                                    newRatingNumber: 1
                                 })
-                                console.log(rating)
+                                console.log("new rating number: " + this.state.newRatingNumber)
+                                for (i = 0; i < 1; i++) {
+                                    this.state.newRatingPicker[i] = require('../assets/pics/gemIcon.png')
+                                    console.log(i + 'changed to gem')
+                                }
+                                for (j = 1; j < 6; j++) {
+                                    this.state.newRatingPicker[j] = require('../assets/pics/gemIconOFF.png')
+                                    console.log(j + 'changed to circle')
+                                }
                             }}
-                        />
+                                style={{ width: 50, height: 50 }}>
+                                <Image source={this.state.newRatingPicker[0]} style={{ height: 50, width: 50 }}
+                                />
+                            </TouchableOpacity>
+
+                            <TouchableOpacity onPress={() => {
+                                this.setState({
+                                    newRatingNumber: 2
+                                })
+                                console.log("new rating number: " + this.state.newRatingNumber)
+                                for (i = 0; i < 2; i++) {
+                                    this.state.newRatingPicker[i] = require('../assets/pics/gemIcon.png')
+                                    console.log(i + 'changed to gem')
+                                }
+                                for (j = 2; j < 6; j++) {
+                                    this.state.newRatingPicker[j] = require('../assets/pics/gemIconOFF.png')
+                                    console.log(j + 'changed to circle')
+                                }
+                            }}
+                                style={{ width: 50, height: 50 }}>
+                                <Image source={this.state.newRatingPicker[1]} style={{ height: 50, width: 50 }}
+                                />
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => {
+                                this.setState({
+                                    newRatingNumber: 3
+                                })
+                                console.log("new rating number: " + this.state.newRatingNumber)
+                                for (i = 0; i < 3; i++) {
+                                    this.state.newRatingPicker[i] = require('../assets/pics/gemIcon.png')
+                                    console.log(i + 'changed to gem')
+                                }
+                                for (j = 3; j < 6; j++) {
+                                    this.state.newRatingPicker[j] = require('../assets/pics/gemIconOFF.png')
+                                    console.log(j + 'changed to circle')
+                                }
+                            }}
+                                style={{ width: 50, height: 50 }}>
+                                <Image source={this.state.newRatingPicker[2]} style={{ height: 50, width: 50 }}
+                                />
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => {
+                                this.setState({
+                                    newRatingNumber: 4
+                                })
+                                console.log("new rating number: " + this.state.newRatingNumber)
+                                for (i = 0; i < 4; i++) {
+                                    this.state.newRatingPicker[i] = require('../assets/pics/gemIcon.png')
+                                    console.log(i + 'changed to gem')
+                                }
+                                for (j = 4; j < 6; j++) {
+                                    this.state.newRatingPicker[j] = require('../assets/pics/gemIconOFF.png')
+                                    console.log(j + 'changed to circle')
+                                }
+                            }}
+                                style={{ width: 50, height: 50 }}>
+                                <Image source={this.state.newRatingPicker[3]} style={{ height: 50, width: 50 }}
+                                />
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => {
+                                this.setState({
+                                    newRatingNumber: 5
+                                })
+                                console.log("new rating number: " + this.state.newRatingNumber)
+                                for (i = 0; i < 5; i++) {
+                                    this.state.newRatingPicker[i] = require('../assets/pics/gemIcon.png')
+                                    console.log(i + 'changed to gem')
+                                }
+                                for (j = 5; j < 6; j++) {
+                                    this.state.newRatingPicker[j] = require('../assets/pics/gemIconOFF.png')
+                                    console.log(j + 'changed to circle')
+                                }
+                            }}
+                                style={{ width: 50, height: 50 }}>
+                                <Image source={this.state.newRatingPicker[4]} style={{ height: 50, width: 50 }}
+                                />
+                            </TouchableOpacity>
+                        </View>
+
                         <Input
                             inputContainerStyle={{
                                 borderColor: 'black',
@@ -216,20 +302,32 @@ export default class Details extends Component {
                             placeholder='Review Title'
                             onChangeText={(reviewTitle) => this.setState({ reviewTitle })}
                         />
-                        <Input
-                            inputContainerStyle={{
-                                borderColor: 'black',
-                                borderWidth: 1,
-                                borderRadius: 20,
-                                height: 300
-                            }}
-                            containerStyle={{
-                                marginTop: 25,
-                                height: 300
-                            }}
-                            placeholder='Type your review here'
-                            onChangeText={(reviewBody) => this.setState({ reviewBody })}
-                        />
+                        <View style={{alignItems: 'flex-start', textAlignVertical: 'top'}}>
+                            <Input
+                                inputContainerStyle={{
+                                    borderColor: 'black',
+                                    borderWidth: 1,
+                                    borderRadius: 20,
+                                    height: 300,
+                                    textAlignVertical: 'auto'
+                                }}
+                                containerStyle={{
+                                    marginTop: 25,
+                                    height: 300,
+                                    alignItems: 'flex-start',
+                                    textAlignVertical: 'auto'
+                                }}
+                                placeholder='Type your review here'
+                                onChangeText={(reviewBody) => this.setState({ reviewBody })}
+                                inputStyle={{
+                                    textAlignVertical: 'top'
+                                }}
+                                multiline={true}
+                                style={{
+                                    textAlignVertical: 'top'
+                                }}
+                            />
+                        </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
                             <Button
                                 buttonStyle={{
@@ -237,7 +335,7 @@ export default class Details extends Component {
                                     width: 145,
                                     borderRadius: 30,
                                     marginTop: 30,
-                                    backgroundColor: '#f44336'
+                                    backgroundColor: '#A7A7A7'
                                 }}
                                 title='Cancel'
                                 onPress={() => this.setState({
@@ -250,7 +348,7 @@ export default class Details extends Component {
                                     width: 145,
                                     borderRadius: 30,
                                     marginTop: 30,
-                                    backgroundColor: '#509f67'
+                                    backgroundColor: '#32D6F1'
                                 }}
                                 title='Submit'
                                 onPress={() =>
@@ -309,7 +407,8 @@ export default class Details extends Component {
                                 buttonStyle={{
                                     height: 50,
                                     width: 150,
-                                    borderRadius: 30
+                                    borderRadius: 30,
+                                    backgroundColor: '#32D6F1'
                                 }}
                                 title='Add a review'
                                 onPress={() => {
