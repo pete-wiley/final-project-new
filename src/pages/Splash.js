@@ -25,7 +25,8 @@ class SplashScreen extends React.Component {
     return (
       <View style={styles.viewStyles}>
         <Text style={styles.textStyles}>
-           Loading
+          Thank you everyone for coming out! We have spent the last four weeks developing the follow project
+          BhamGems! This app was made with react-native with data connected to MongoDB. Please reach out to us if you have any questions.
         </Text>
       </View>
     );

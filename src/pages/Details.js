@@ -121,7 +121,7 @@ export default class Details extends Component {
                     this.setState({ errors: res.errors });
                 } else {
                     this.setState({
-                        addToFavs: 'Remove from Favs',
+                        addToFavs: 'Remove',
                         favsColor: '#ff4f6c'
                     })
                 }
@@ -162,7 +162,7 @@ export default class Details extends Component {
             if (this.state.currentFavs[i].picid == global.item.picid) {
                 console.log('gotem')
                 this.setState({
-                    addToFavs: "Remove from Favs",
+                    addToFavs: "Remove",
                     favsColor: "#ff4f6c"
                 })
             }

@@ -207,7 +207,7 @@ const DrawerConfig = {
 
 const DrawerNavigator = createDrawerNavigator(
   {
-    
+    SplashScreen,
     Home:{
       screen:HomeStack
     }, 
