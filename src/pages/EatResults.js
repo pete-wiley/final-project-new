@@ -178,7 +178,7 @@ export default class EatResults extends Component {
                             </ImageBackground>
                         ))
                     }
-                    <ImageBackground
+                    {/* <ImageBackground
                         style={{ width: '100%', backgroundColor: 'rgba(25, 35, 35)' }}
                         source={this.state.ftPicState}>
                         <Text h1 style={{
@@ -215,7 +215,7 @@ export default class EatResults extends Component {
                                 />
                             </ImageBackground>
                         ))
-                    }
+                    } */}
                 </SafeAreaView>
                     }
             </ScrollView>

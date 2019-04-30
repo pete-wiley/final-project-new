@@ -37,7 +37,7 @@ export default class Profile extends Component {
 
     getItems = async () => {
         try {
-            let response = await fetch(`https://bham-gems-api.herokuapp.com/reviews/reviewer/john-cena`, {
+            let response = await fetch(`https://bham-gems-api.herokuapp.com/reviews/reviewer/haley-mk`, {
                 method: 'GET',
                 headers: {
                     Accept: 'application/json',
