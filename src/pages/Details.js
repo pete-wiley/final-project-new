@@ -302,7 +302,7 @@ export default class Details extends Component {
                             placeholder='Review Title'
                             onChangeText={(reviewTitle) => this.setState({ reviewTitle })}
                         />
-                        <View style={{alignItems: 'flex-start', textAlignVertical: 'top'}}>
+                        <View style={{ alignItems: 'flex-start', textAlignVertical: 'top' }}>
                             <Input
                                 inputContainerStyle={{
                                     borderColor: 'black',
@@ -394,7 +394,7 @@ export default class Details extends Component {
                             <Button
                                 buttonStyle={{
                                     height: 50,
-                                    width: 150,
+                                    width: 110,
                                     borderRadius: 30,
                                     marginRight: 30,
                                     backgroundColor: this.state.favsColor
@@ -403,10 +403,11 @@ export default class Details extends Component {
                                 onPress={() => this.addToFavorites()}
                             />
 
+
                             <Button
                                 buttonStyle={{
                                     height: 50,
-                                    width: 150,
+                                    width: 110,
                                     borderRadius: 30,
                                     backgroundColor: '#32D6F1'
                                 }}
@@ -417,6 +418,21 @@ export default class Details extends Component {
                                     })
                                 }}
                             />
+
+                            <Button
+                                buttonStyle={{
+                                    height: 50,
+                                    width: 110,
+                                    borderRadius: 30,
+                                    marginRight: 30,
+                                    backgroundColor: '#32D6F1'
+                                }}
+                                title='Add to playlist'
+                                onPress={() => {
+                                    this.props.navigation.navigate('AddToPlaylist')
+                                }}
+                            />
+
                         </View>
                     </View>
                     {/* The Mapping for reviews */}
