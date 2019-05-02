@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Text, View, ScrollView, TouchableOpacity } from 'react-native'
+import { Text, View, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native'
 import { Button, ListItem, Overlay, Input } from 'react-native-elements'
 import LaunchNavigator from 'react-native-launch-navigator';
+import { SafeAreaView } from 'react-navigation';
 
 export default class Playlists extends Component {
 
@@ -82,97 +83,106 @@ export default class Playlists extends Component {
     this.getItems()
     return (
       <ScrollView>
-        <Overlay
-          isVisible={this.state.isVisible}
-          onBackdropPress={() => this.setState({ isVisible: false })}
-          overlayStyle={{
-            height: 300
-          }}
-        >
-          <Text style={{ fontSize: 25 }}>What would you like to name this playlist?</Text>
-          <Input
-            inputContainerStyle={{
-              borderColor: 'black',
-              borderWidth: 1,
-              borderRadius: 20
-            }}
-            containerStyle={{
-              marginTop: 40
-            }}
-            placeholder='Playlist Name'
-            onChangeText={(playlistName) => this.setState({ playlistName })}
-          />
-          <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
-            <Button
-              buttonStyle={{
-                height: 50,
-                width: 145,
-                borderRadius: 30,
-                marginTop: 40,
-                backgroundColor: '#A7A7A7'
-              }}
-              title='Cancel'
-              onPress={() => this.setState({
-                isVisible: false
-              })}
-            />
-            <Button
-              buttonStyle={{
-                height: 50,
-                width: 145,
-                borderRadius: 30,
-                marginTop: 40,
-                backgroundColor: '#32D6F1'
-              }}
-              title='Create'
-              onPress={() =>
-                this.makePlaylist()
-              }
-            />
-          </View>
-        </Overlay>
-        <View style={{
-          flexDirection: 'column',
-          justifyContent: 'space-evenly',
-          alignItems: 'center'
-        }}>
-          <Button
-            buttonStyle={{
-              height: 50,
-              width: 350,
-              borderRadius: 30,
-              marginTop: 30,
-              backgroundColor: '#32D6F1',
-              marginBottom: 30
-            }}
-            title='New Playlist'
-            onPress={() => {
-              this.setState({
-                isVisible: true
-              })
-            }}
-          />
-
-          {
-            this.state.items.map((l, i) => (
-              <ListItem
-                key={i}
-                containerStyle={{ backgroundColor: 'rgba(25, 25, 25, 0.6)', width: '100%' }}
-                title={l.name}
-                titleStyle={{
-                  fontSize: 25,
-                  paddingBottom: 6,
-                  color: 'white',
+        {
+          this.state.loading ?
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+              <ActivityIndicator style={{ paddingTop: 325 }} size="large" />
+            </View>
+            :
+            <SafeAreaView>
+              <Overlay
+                isVisible={this.state.isVisible}
+                onBackdropPress={() => this.setState({ isVisible: false })}
+                overlayStyle={{
+                  height: 300
                 }}
-                bottomDivider
-                chevron
-                onPress={() =>
-                  this.clicked(l)
+              >
+                <Text style={{ fontSize: 25 }}>What would you like to name this playlist?</Text>
+                <Input
+                  inputContainerStyle={{
+                    borderColor: 'black',
+                    borderWidth: 1,
+                    borderRadius: 20
+                  }}
+                  containerStyle={{
+                    marginTop: 40
+                  }}
+                  placeholder='Playlist Name'
+                  onChangeText={(playlistName) => this.setState({ playlistName })}
+                />
+                <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+                  <Button
+                    buttonStyle={{
+                      height: 50,
+                      width: 145,
+                      borderRadius: 30,
+                      marginTop: 40,
+                      backgroundColor: '#A7A7A7'
+                    }}
+                    title='Cancel'
+                    onPress={() => this.setState({
+                      isVisible: false
+                    })}
+                  />
+                  <Button
+                    buttonStyle={{
+                      height: 50,
+                      width: 145,
+                      borderRadius: 30,
+                      marginTop: 40,
+                      backgroundColor: '#32D6F1'
+                    }}
+                    title='Create'
+                    onPress={() =>
+                      this.makePlaylist()
+                    }
+                  />
+                </View>
+              </Overlay>
+              <View style={{
+                flexDirection: 'column',
+                justifyContent: 'space-evenly',
+                alignItems: 'center'
+              }}>
+                <Button
+                  buttonStyle={{
+                    height: 50,
+                    width: 350,
+                    borderRadius: 30,
+                    marginTop: 30,
+                    backgroundColor: '#32D6F1',
+                    marginBottom: 30
+                  }}
+                  title='New Playlist'
+                  onPress={() => {
+                    this.setState({
+                      isVisible: true
+                    })
+                  }}
+                />
+
+                {
+                  this.state.items.map((l, i) => (
+                    <ListItem
+                      key={i}
+                      containerStyle={{ backgroundColor: 'rgba(25, 25, 25, 0.6)', width: '100%', marginBottom: 2 }}
+                      title={l.name}
+                      titleStyle={{
+                        fontSize: 25,
+                        paddingBottom: 6,
+                        color: 'white',
+                      }}
+                      bottomDivider
+                      chevron
+                      onPress={() =>
+                        this.clicked(l)
+                      }
+                    />
+                  ))
                 }
-              />
-            ))
-          }
-        </View>
+              </View>
+            </SafeAreaView>
+        }
       </ScrollView>
     )
   }

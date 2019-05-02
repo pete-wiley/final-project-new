@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, SafeAreaView, StyleSheet, Linking, TouchableOpacity, ImageBackground } from 'react-native'
+import { View, SafeAreaView, StyleSheet, Linking, TouchableOpacity, ImageBackground, ActivityIndicator } from 'react-native'
 import { Text, Image, ListItem, Button, Overlay, Input, Rating, AirbnbRating } from 'react-native-elements'
 import { ScrollView } from 'react-native-gesture-handler';
 import { pics } from '../assets/consts'
@@ -155,37 +155,48 @@ export default class Details extends Component {
     render() {
         this.getPlaces()
         return (
-            <View>
+            <ScrollView>
                 {
-                    this.state.places.map((l, i) => (
-                        <ImageBackground
-                            key={i}
-                            style={{ width: '100%', marginBottom: 2 }}
-                            source={pics[l.picid]}
-                        >
-                            <ListItem
-                                key={i}
-                                containerStyle={{ backgroundColor: 'rgba(25, 25, 25, 0.6)' }}
-                                title={l.name}
-                                titleStyle={{
-                                    fontSize: 25,
-                                    paddingBottom: 6,
-                                    color: 'white',
-                                }}
-                                subtitle={l.description}
-                                subtitleStyle={{
-                                    color: 'white'
-                                }}
-                                bottomDivider
-                                chevron
-                                onPress={() =>
-                                    this.clicked(l)
+                    this.state.loading ?
+                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                            <ActivityIndicator style={{ paddingTop: 325 }} size="large" />
+                        </View>
+                        :
+                        <SafeAreaView>
+                            <View>
+                                {
+                                    this.state.places.map((l, i) => (
+                                        <ImageBackground
+                                            key={i}
+                                            style={{ width: '100%', marginBottom: 2 }}
+                                            source={pics[l.picid]}
+                                        >
+                                            <ListItem
+                                                key={i}
+                                                containerStyle={{ backgroundColor: 'rgba(25, 25, 25, 0.6)' }}
+                                                title={l.name}
+                                                titleStyle={{
+                                                    fontSize: 25,
+                                                    paddingBottom: 6,
+                                                    color: 'white',
+                                                }}
+                                                subtitle={l.description}
+                                                subtitleStyle={{
+                                                    color: 'white'
+                                                }}
+                                                bottomDivider
+                                                chevron
+                                                onPress={() =>
+                                                    this.clicked(l)
+                                                }
+                                            />
+                                        </ImageBackground>
+                                    ))
                                 }
-                            />
-                        </ImageBackground>
-                    ))
+                            </View>
+                        </SafeAreaView>
                 }
-            </View>
+            </ScrollView>
         )
     }
 }
