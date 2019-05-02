@@ -105,20 +105,7 @@ const PlaylistStack = createStackNavigator(
         }
       }
     },
-    AddToPlaylist:{
-      screen: AddToPlaylist,
-      navigationOptions: ({ navigation }) => {
-        return {
-          headerBackTitle: null,
-          headerBackImage:(
-            <Icon
-              name="arrow-left"
-              size={30}
-              style={{ paddingLeft: 10}} />
-          )
-        }
-      }
-    },
+    
     PopulatePlaylist:{
       screen: PopulatePlaylist,
       navigationOptions: ({ navigation }) => {
@@ -147,7 +134,7 @@ const PlaylistStack = createStackNavigator(
           )
         }
       }
-    }
+    },
   }
 )
 
@@ -242,6 +229,20 @@ const HomeStack = createStackNavigator(
     },
     Details:{
       screen: Details,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerBackTitle: null,
+          headerBackImage:(
+            <Icon
+              name="arrow-left"
+              size={30}
+              style={{ paddingLeft: 10}} />
+          )
+        }
+      }
+    },
+    AddToPlaylist:{
+      screen: AddToPlaylist,
       navigationOptions: ({ navigation }) => {
         return {
           headerBackTitle: null,

@@ -22,9 +22,9 @@ export default class PopulatePlaylist extends Component {
                             marginTop: 50,
                             backgroundColor: '#32D6F1'
                         }}
-                        title='Go Home'
+                        title='Go Back'
                         onPress={() =>
-                            this.props.navigation.navigate('Home')
+                            this.props.navigation.navigate('Playlists')
                         }
                     />
                 </View>
