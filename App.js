@@ -19,6 +19,7 @@ import Playlists from './src/pages/Playlists'
 import MenuDrawer from './src/component/MenuDrawer';
 import PlaylistDetails from './src/pages/PlaylistDetails'
 import AddToPlaylist from './src/pages/AddToPlaylist'
+import PopulatePlaylist from './src/pages/PopulatePlaylist'
 import SplashScreen from './src/pages/Splash'
 
 const ProfileStack = createStackNavigator(
@@ -196,6 +197,34 @@ const HomeStack = createStackNavigator(
     },
     PlaylistDetails:{
       screen: PlaylistDetails,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerBackTitle: null,
+          headerBackImage:(
+            <Icon
+              name="arrow-left"
+              size={30}
+              style={{ paddingLeft: 10}} />
+          )
+        }
+      }
+    },
+    AddToPlaylist:{
+      screen: AddToPlaylist,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerBackTitle: null,
+          headerBackImage:(
+            <Icon
+              name="arrow-left"
+              size={30}
+              style={{ paddingLeft: 10}} />
+          )
+        }
+      }
+    },
+    PopulatePlaylist:{
+      screen: PopulatePlaylist,
       navigationOptions: ({ navigation }) => {
         return {
           headerBackTitle: null,

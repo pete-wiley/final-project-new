@@ -41,36 +41,41 @@ export default class Playlists extends Component {
   }
 
   makePlaylist = async () => {
-      try {
-          let response = await fetch('https://bham-gems-api.herokuapp.com/playlist', {
-              method: 'POST',
-              headers: {
-                  Accept: 'application/json',
-                  'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                  name: this.state.playlistName,
-                  places: []
-              })
-          })
-          let res = await response.json();
-          if (res.errors) {
-              this.setState({ errors: res.errors });
-          } else {
-            this.setState({
-              isVisible: false
-            })
-            console.log(res)
-          }
-      } catch (errors) {
-          console.log('catch err');
-          console.log(errors);
+    try {
+      let response = await fetch('https://bham-gems-api.herokuapp.com/playlist', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: this.state.playlistName,
+          places: []
+        })
+      })
+      let res = await response.json();
+      if (res.errors) {
+        this.setState({ errors: res.errors });
+      } else {
+        this.setState({
+          isVisible: false
+        })
+        console.log(res)
       }
+    } catch (errors) {
+      console.log('catch err');
+      console.log(errors);
+    }
   }
 
   clicked = (thing) => {
     global.places = thing.places
-    this.props.navigation.navigate('PlaylistDetails')
+    console.log('THESE ARE GLOBAL PLACES: ' + global.places)
+    if (global.places == '') {
+      this.props.navigation.navigate('PopulatePlaylist')
+    } else {
+      this.props.navigation.navigate('PlaylistDetails')
+    }
   }
 
   render() {

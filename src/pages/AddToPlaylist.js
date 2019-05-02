@@ -3,7 +3,7 @@ import { Text, View, ScrollView, TouchableOpacity } from 'react-native'
 import { Button, ListItem, Overlay, Input } from 'react-native-elements'
 import LaunchNavigator from 'react-native-launch-navigator';
 
-export default class Playlists extends Component {
+export default class AddToPlaylist extends Component {
 
   constructor(props) {
     super(props)
@@ -68,9 +68,34 @@ export default class Playlists extends Component {
       }
   }
 
-  clicked = (thing) => {
-    global.places = thing.places
-    this.props.navigation.navigate('PlaylistDetails')
+  clicked = async (thing) => {
+    updatedPlaces = thing.places
+    newPlace = {
+        picid: global.item.picid,
+        objectid: global.item._id
+    }
+    updatedPlaces.push(newPlace)
+    try {
+        let response = await fetch(`https://bham-gems-api.herokuapp.com/playlist/${thing._id}`, {
+            method: 'PUT',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                places: updatedPlaces
+            })
+        })
+        let res = await response.json();
+        if (res.errors) {
+            this.setState({ errors: res.errors });
+        } else {
+            this.props.navigation.navigate('Details')
+        }
+    } catch (errors) {
+        console.log('catch err');
+        console.log(errors);
+    }
   }
 
   render() {
