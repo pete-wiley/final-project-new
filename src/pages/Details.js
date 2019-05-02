@@ -424,7 +424,7 @@ export default class Details extends Component {
                                     height: 50,
                                     width: 110,
                                     borderRadius: 30,
-                                    marginRight: 30,
+                                    marginLeft: 30,
                                     backgroundColor: '#32D6F1'
                                 }}
                                 title='Add to playlist'
