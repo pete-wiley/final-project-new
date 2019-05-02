@@ -73,6 +73,7 @@ const FavoritesStack = createStackNavigator(
     }
   }
 )
+
 const PlaylistStack = createStackNavigator(
   {
     Playlists:{
@@ -89,6 +90,64 @@ const PlaylistStack = createStackNavigator(
         };
       }
     },
+    PlaylistDetails:{
+      screen: PlaylistDetails,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerBackTitle: null,
+          headerBackImage:(
+            <Icon
+              name="arrow-left"
+              size={30}
+              style={{ paddingLeft: 10}} 
+              onPress={() => navigation.navigate('Playlists')}/>
+          )
+        }
+      }
+    },
+    AddToPlaylist:{
+      screen: AddToPlaylist,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerBackTitle: null,
+          headerBackImage:(
+            <Icon
+              name="arrow-left"
+              size={30}
+              style={{ paddingLeft: 10}} />
+          )
+        }
+      }
+    },
+    PopulatePlaylist:{
+      screen: PopulatePlaylist,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerBackTitle: null,
+          headerBackImage:(
+            <Icon
+              name="arrow-left"
+              size={30}
+              style={{ paddingLeft: 10}} 
+              onPress={() => navigation.navigate('Playlists')}/>
+          )
+        }
+      }
+    },
+    Details:{
+      screen: Details,
+      navigationOptions: ({ navigation }) => {
+        return {
+          headerBackTitle: null,
+          headerBackImage:(
+            <Icon
+              name="arrow-left"
+              size={30}
+              style={{ paddingLeft: 10}} />
+          )
+        }
+      }
+    }
   }
 )
 
@@ -195,48 +254,6 @@ const HomeStack = createStackNavigator(
         }
       }
     },
-    PlaylistDetails:{
-      screen: PlaylistDetails,
-      navigationOptions: ({ navigation }) => {
-        return {
-          headerBackTitle: null,
-          headerBackImage:(
-            <Icon
-              name="arrow-left"
-              size={30}
-              style={{ paddingLeft: 10}} />
-          )
-        }
-      }
-    },
-    AddToPlaylist:{
-      screen: AddToPlaylist,
-      navigationOptions: ({ navigation }) => {
-        return {
-          headerBackTitle: null,
-          headerBackImage:(
-            <Icon
-              name="arrow-left"
-              size={30}
-              style={{ paddingLeft: 10}} />
-          )
-        }
-      }
-    },
-    PopulatePlaylist:{
-      screen: PopulatePlaylist,
-      navigationOptions: ({ navigation }) => {
-        return {
-          headerBackTitle: null,
-          headerBackImage:(
-            <Icon
-              name="arrow-left"
-              size={30}
-              style={{ paddingLeft: 10}} />
-          )
-        }
-      }
-    }
   },
 )
 
